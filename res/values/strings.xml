@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Equations</string>
+    <string name="app_version">1.0</string>
+
+    <string-array name="polygon2D">
+        <item>Triangle</item>
+        <item>Quadrilateral</item>
+        <item>Sector</item>
+        <item>Square</item>
+        <item>Rectangle</item>
+        <item>Circle</item>
+        <item>Ellipse</item>
+        <item>Trapezoid</item>
+    </string-array>
+
+    <string name="search_label">Search</string>
+    <string name="search_hint">Search formulas</string>
+    <string name="menu_preferences">Settings</string>
+    <string name="prefs_appearance">Appearance</string>
+    <string name="must_be_integer">Number must be an integer!</string>
+    <string name="number_too_large">Number is too large!</string>
+    <string name="blank_field">One or more of the fields are blank!</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array name="themesEntry">
+        <item>Holo Dark</item>
+        <item>Holo Light</item>
+    </string-array>
+    <string-array name="themesValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="pythagorean">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+
+    <string name="height">Height</string>
+    <string name="width">Width</string>
+    <string name="base">Base</string>
+    <string name="solve">Solve</string>
+    <string name="point_1">Point 1</string>
+    <string name="point_2">Point 2</string>
+    <string name="x1">x1</string>
+    <string name="x2">x2</string>
+    <string name="y1">y1</string>
+    <string name="y2">y2</string>
+    <string name="a">a</string>
+    <string name="b">b</string>
+    <string name="c">c</string>
+    <string name="radicand">Enter radicand</string>
+    <string name="contentDescription">Formula</string>
+    <string name="moles">moles</string>
+    <string name="temperature">temperature</string>
+    <string name="volume">volume</string>
+    <string name="pressure">pressure</string>
+    <string name="degrees">degrees</string>
+    <string name="radius">radius</string>
+    <string name="side">side</string>
+    <string name="side_a">side a</string>
+    <string name="side_b">side b</string>
+    <string name="apothem">apothem</string>
+    <string name="major_axis">major axis</string>
+    <string name="minor_axis">minor axis</string>
+    <string name="base_1">base 1</string>
+    <string name="base_2">base 2</string>
+
+    <string-array name="ideal_gas">
+        <item>P</item>
+        <item>V</item>
+        <item>n</item>
+        <item>T</item>
+    </string-array>
+    <string-array name="dim1_motion">
+        <item>v</item>
+        <item>u</item>
+        <item>a</item>
+        <item>s</item>
+    </string-array>
+    <string-array name="force">
+        <item>F</item>
+        <item>m</item>
+        <item>a</item>
+    </string-array>
+    <string-array name="torque">
+        <item>t</item>
+        <item>r</item>
+        <item>F</item>
+        <item>theta (radians)</item>
+    </string-array>
+    <string-array name="centripetal_force">
+        <item>F</item>
+        <item>m</item>
+        <item>v</item>
+        <item>r</item>
+    </string-array>
+    <string-array name="centripetal_accel">
+        <item>a</item>
+        <item>v</item>
+        <item>r</item>
+    </string-array>
+    <string-array name="gravitation">
+        <item>F</item>
+        <item>m1</item>
+        <item>m2</item>
+        <item>r</item>
+    </string-array>
+    <string-array name="projectile_height">
+        <item>h</item>
+        <item>v</item>
+        <item>theta</item>
+    </string-array>
+    <string-array name="projectile_range">
+        <item>r</item>
+        <item>v</item>
+        <item>theta</item>
+    </string-array>
+    <string-array name="coulombs_law">
+        <item>f</item>
+        <item>q1</item>
+        <item>q2</item>
+        <item>r</item>
+    </string-array>
+    <string-array name="escape_velocity">
+        <item>v</item>
+        <item>m</item>
+        <item>r</item>
+    </string-array>
+    <string-array name="momentum">
+        <item>p</item>
+        <item>m</item>
+        <item>v</item>
+    </string-array>
+    <string-array name="work">
+        <item>W</item>
+        <item>F</item>
+        <item>D</item>
+    </string-array>
+    <string-array name="ohms_law">
+        <item>I</item>
+        <item>V</item>
+        <item>R</item>
+    </string-array>
+    <string-array name="categories">
+        <item>Algebra</item>
+        <item>Geometry</item>
+        <item>Trigonometry</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+    </string-array>
+
+    <string name="answer">Answer</string>
+    <string name="distance_formula">Distance Formula</string>
+    <string name="log_def">Logarithm Definition</string>
+    <string name="log_identity">Logarithmic Identities</string>
+    <string name="log_prop">Logarithmic Properties</string>
+    <string name="quad_formula">Quadratic Formula</string>
+    <string name="radicand_simp">Radicand Simplify</string>
+    <string name="slope">Slope</string>
+    <string name="sum_def">Summation Definition</string>
+    <string name="sum_prop">Summation Properties</string>
+    <string name="acid_base_eq">Acid/Base Equations</string>
+    <string name="fuctional_groups">Functional Groups</string>
+    <string name="gas_const">Ideal Gas Constant</string>
+    <string name="boyle_law">Boyle\'s Law</string>
+    <string name="charles_law">Charles\' Law</string>
+    <string name="gay_lussacs_law">Gay-Lussac\'s Law</string>
+    <string name="daltons_law">Dalton\'s Law</string>
+    <string name="combined_gas_law">Combined Gas Law</string>
+    <string name="ideal_gas_law">Ideal Gas Law</string>
+    <string name="area_formulas">Area Formulas</string>
+    <string name="herons_formula">Heron\'s Formula</string>
+    <string name="pythagorean_theorem">Pythagorean Theorem</string>
+    <string name="law_of_sines">Law of Sines</string>
+    <string name="law_of_cosines">Law of Cosines</string>
+    <string name="law_of_tangents">Law of Tangents</string>
+    <string name="product_sum_formulas">Product to Sum Formulas</string>
+    <string name="sum_product_formulas">Sum to Product Formulas</string>
+    <string name="power_reduction_formulas">Power Reduction Formulas</string>
+    <string name="sum_difference_formulas">Sum/Difference Formulas</string>
+    <string name="even_odd_formulas">Even/Odd Formulas</string>
+    <string name="cofunction_formulas">Cofunction Formulas</string>
+    <string name="pythagorean_identities">Pythagorean Identities</string>
+    <string name="quotient_formulas">Quotient Formulas</string>
+    <string name="right_triangle_definitions">Right Triangle Definitions</string>
+    <string name="reciprocal_identities">Reciprocal Identities</string>
+    <string name="bernoullis_law">Bernoulli\'s Law</string>
+    <string name="centripetal_acceleration">Centripetal Acceleration</string>
+    <string name="centripetal_force">Centripetal Force</string>
+    <string name="coulombs_law">Coulomb\'s Law</string>
+    <string name="escape_velocity">Escape Velocity</string>
+    <string name="force">Force</string>
+    <string name="universal_gravitation">Newton\'s Law of Universal Gravitation</string>
+    <string name="maximum_height_of_a_projectile">Maximum Height of a Projectile</string>
+    <string name="maximum_range_of_a_projectile">Maximum Range of a Projectile</string>
+    <string name="momentum">Momentum</string>
+    <string name="ohms_law">Ohm\'s Law</string>
+    <string name="one_dimensional_motion">One Dimensional Motion</string>
+    <string name="particle_energy">Particle Energy</string>
+    <string name="planck_constant">Planck Constant</string>
+    <string name="speed_of_light">Speed of Light</string>
+    <string name="permittivity_of_free_space">Permittivity of Free Space</string>
+    <string name="gravitation_constant">Gravitation Constant</string>
+    <string name="gravitational_acceleration">Gravitational Acceleration</string>
+    <string name="resistance">Resistance</string>
+    <string name="torque">Torque</string>
+    <string name="work">Work</string>
+    
+    <string name="theme">Theme</string>
+    <string name="about">About</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="report_problem">Report a problem</string>
+    <string name="open_source">Open Source Licenses</string>
+    <string name="copyright">Copyright</string>
+    <string name="copyright_details">© 2012 Mohit Deshpande</string>
+    <string name="version">Version</string>
+    <string name="open_source_licenses">
+
+ActionBarSherlock:\n\n
+        
+Copyright 2012 Jake Wharton\n\n
+
+Licensed under the Apache License, Version 2.0 (the "License");\n
+you may not use this file except in compliance with the License.\n
+You may obtain a copy of the License at\n\n
+
+   \thttp://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software\n
+distributed under the License is distributed on an "AS IS" BASIS,\n
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
+See the License for the specific language governing permissions and\n
+limitations under the License.\n\n\n
+
+
+Android Open Source Project:\n\n
+
+Copyright © 2010 The Android Open Source Project\n\n
+
+Licensed under the Apache License, Version 2.0 (the "License");\n
+you may not use this file except in compliance with the License.\n
+You may obtain a copy of the License at\n\n
+ 
+	\thttp://www.apache.org/licenses/LICENSE-2.0\n\n
+ 
+Unless required by applicable law or agreed to in writing, software\n
+distributed under the License is distributed on an "AS IS" BASIS,\n
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
+See the License for the specific language governing permissions and\n
+limitations under the License.\n
+    </string>
+
+</resources>

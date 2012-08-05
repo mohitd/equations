@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<TableLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content">
+    
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_alcohol"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_aldehyde"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_amine"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_aromatic"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_carboxylic"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_ester"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_ether"/>
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="35dip"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/img_chem_ketone"/>
+
+	</TableLayout>
+
+</ScrollView>

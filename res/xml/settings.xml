@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory 
+        android:title="@string/about">
+        <Preference 
+            android:key="feedback_key"
+            android:title="@string/send_feedback"/>
+        <Preference
+            android:key="bug_key"
+            android:title="@string/report_problem"/>
+        <Preference
+            android:key="open_source_key" 
+            android:title="@string/open_source"/>
+        <Preference 
+            android:title="@string/copyright"
+            android:summary="@string/copyright_details"
+            android:enabled="false"/>
+    	<Preference 
+    	    android:title="@string/version"
+    	    android:summary="@string/app_version"
+    	    android:enabled="false"/>    
+    </PreferenceCategory>
+    
+</PreferenceScreen>

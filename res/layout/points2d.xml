@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/img_point2d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/contentDescription"
+        android:paddingBottom="25dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point_1" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/dist_x1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/x1"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            android:nextFocusRight="@+id/dist_y1" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/dist_y1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/y1"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            android:nextFocusDown="@+id/dist_x2" >
+        </EditText>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point_2" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/dist_x2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/x2"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            android:nextFocusRight="@+id/dist_y2" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/dist_y2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/y2"
+            android:imeOptions="actionDone"
+            android:inputType="numberSigned" >
+        </EditText>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dist_solve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dip"
+        android:text="@string/solve" >
+    </Button>
+
+</LinearLayout>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.centauri.equations"
+    android:versionCode="1"
+    android:versionName="@string/app_version"
+    android:installLocation="preferExternal">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="14" />
+
+    <application
+        android:icon="@drawable/ic_launcher_free"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sherlock">
+        <provider
+            android:name=".provider.EquationsProvider"
+            android:authorities="com.centauri.equations.provider.EquationsProvider"
+            tools:ignore="ExportedContentProvider" />
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".activity.SearchActivity" />
+
+        <activity android:name="com.centauri.equations.activity.settings.SettingsActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.Categories" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value="com.centauri.equations.activity.SearchActivity" />
+        </activity>
+        <activity
+            android:name="com.centauri.equations.activity.SearchActivity"
+            android:label="@string/search_label"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <!-- Algebraic formulas -->
+
+        <activity android:name="com.centauri.equations.activity.algebra.QuadraticFormulaActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.QUADRATIC" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.algebra.DistanceFormulaActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.DISTANCE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.algebra.RadicalActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.RADICAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.algebra.SlopeActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.SLOPE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.algebra.LogarithmActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.LOG_DEF" />
+                <action android:name="com.centauri.equations.action.LOG_IDENTITY" />
+                <action android:name="com.centauri.equations.action.LOG_PROP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.algebra.SummationActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.SUM_DEF" />
+                <action android:name="com.centauri.equations.action.SUM_PROP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Geometric formulas -->
+
+        <activity android:name="com.centauri.equations.activity.geometry.HeronsFormulaActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.HERON" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.geometry.AreaActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.AREA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.geometry.PythagoreanActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PYTHAGOREAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Trigonometry -->
+
+        <activity android:name="com.centauri.equations.activity.trig.TrigActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.LAW_OF_SINES" />
+                <action android:name="com.centauri.equations.action.LAW_OF_COSINES" />
+                <action android:name="com.centauri.equations.action.LAW_OF_TANGENTS" />
+                <action android:name="com.centauri.equations.action.PRODUCT_TO_SUM" />
+                <action android:name="com.centauri.equations.action.SUM_TO_PRODUCT" />
+                <action android:name="com.centauri.equations.action.POWER_REDUCTION" />
+                <action android:name="com.centauri.equations.action.SUM_DIFFERENCE" />
+                <action android:name="com.centauri.equations.action.EVEN_ODD" />
+                <action android:name="com.centauri.equations.action.COFUNCTION" />
+                <action android:name="com.centauri.equations.action.PYTHAGOREAN_IDENTITY" />
+                <action android:name="com.centauri.equations.action.QUOTIENT" />
+                <action android:name="com.centauri.equations.action.RIGHT_TRIANGLE" />
+                <action android:name="com.centauri.equations.action.RECIPROCAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Chemistry -->
+
+        <activity android:name="com.centauri.equations.activity.chem.IdealGasActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.GAS_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.chem.GasLawsActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.GAS_CONSTANT" />
+                <action android:name="com.centauri.equations.action.BOYLES_LAW" />
+                <action android:name="com.centauri.equations.action.CHARLES_LAW" />
+                <action android:name="com.centauri.equations.action.GAY_LUSSAC_LAW" />
+                <action android:name="com.centauri.equations.action.DALTON_LAW" />
+                <action android:name="com.centauri.equations.action.COMBINED_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.chem.FunctionalGroupsActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.FUNCTION_GROUPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.chem.AcidBaseActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.ACID_BASE_EQUATIONS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Physics formulas -->
+
+        <activity android:name="com.centauri.equations.activity.physics.OneDimensionMotionActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.1D_MOTION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.ForceActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.FORCE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.TorqueActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.TORQUE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.CentripetalForceActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.CENTRIPETAL_FORCE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.CentripetalAccelActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.CENTRIPETAL_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.GravitationActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.GRAVITATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileHeightActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.MAX_PROJECTILE_HEIGHT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileRangeActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.MAX_PROJECTILE_RANGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.CoulombsLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.COULOMBS_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.EscapeVelocityActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.ESCAPE_VELOCITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.MomentumActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.MOMENTUM" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.WorkActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.WORK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.OhmsLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.OHMS_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.ParticleEnergyActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PARTICLE_ENERGY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.ResistanceActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.RESISTANCE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.BernoullisLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.BERNOULLIS_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.activity.physics.PhysicsConstantsActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PLANCK_CONSTANT" />
+                <action android:name="com.centauri.equations.action.SPEED_OF_LIGHT" />
+                <action android:name="com.centauri.equations.action.PERMITTIVITY" />
+                <action android:name="com.centauri.equations.action.GRAVITATION_CONSTANT" />
+                <action android:name="com.centauri.equations.action.GRAVITATIONAL_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
