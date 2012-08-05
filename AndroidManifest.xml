@@ -4,7 +4,7 @@
     package="com.centauri.equations"
     android:versionCode="1"
     android:versionName="@string/app_version"
-    android:installLocation="preferExternal">
+    android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="8"
