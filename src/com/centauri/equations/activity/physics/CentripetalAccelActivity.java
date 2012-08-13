@@ -148,7 +148,6 @@ public class CentripetalAccelActivity extends Categories {
 
 	    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 	    dialog.setTitle(getResources().getString(R.string.answer));
-	    dialog.setIcon(android.R.drawable.ic_dialog_info);
 
 	    if (a_txt.getText().toString().equals("")
 		    || b_txt.getText().toString().equals("")) {

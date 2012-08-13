@@ -181,7 +181,6 @@ public class QuadraticFormulaActivity extends SherlockFragmentActivity {
 
 	    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 
-	    dialog.setIcon(android.R.drawable.ic_dialog_info);
 	    dialog.setTitle(R.string.answer);
 	    dialog.setMessage(text.toString());
 	    dialog.setOnCancelListener(new OnCancelListener() {

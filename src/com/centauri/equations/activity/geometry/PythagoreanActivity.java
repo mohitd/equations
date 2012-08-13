@@ -156,7 +156,6 @@ public class PythagoreanActivity extends Categories {
 
 	    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 	    dialog.setTitle("Answer");
-	    dialog.setIcon(android.R.drawable.ic_dialog_info);
 	    dialog.setMessage(sides[0].toString() + "," + sides[1].toString()
 		    + "," + sides[2].toString());
 	    dialog.setOnCancelListener(new OnCancelListener() {

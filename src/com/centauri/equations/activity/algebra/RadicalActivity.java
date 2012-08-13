@@ -122,7 +122,6 @@ public class RadicalActivity extends Categories {
 		AlertDialog.Builder dialog = new AlertDialog.Builder(
 			getActivity());
 		dialog.setTitle(R.string.answer);
-		dialog.setIcon(android.R.drawable.ic_dialog_info);
 		dialog.setMessage(Html.fromHtml(radical.simplify().toString()));
 		dialog.setOnCancelListener(new OnCancelListener() {
 

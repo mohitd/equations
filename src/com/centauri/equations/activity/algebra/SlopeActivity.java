@@ -128,7 +128,6 @@ public class SlopeActivity extends Categories {
 
 	    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 	    dialog.setTitle(R.string.answer);
-	    dialog.setIcon(android.R.drawable.ic_dialog_info);
 	    dialog.setMessage(point1.toString() + point2.toString() + " = "
 		    + slope.toString());
 	    dialog.setOnCancelListener(new OnCancelListener() {

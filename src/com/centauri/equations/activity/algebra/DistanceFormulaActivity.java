@@ -129,7 +129,6 @@ public class DistanceFormulaActivity extends Categories {
 
 	    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 	    dialog.setTitle(R.string.answer);
-	    dialog.setIcon(android.R.drawable.ic_dialog_info);
 	    dialog.setMessage(point1.toString() + point2.toString() + " = "
 		    + result.toString());
 	    dialog.setOnCancelListener(new OnCancelListener() {

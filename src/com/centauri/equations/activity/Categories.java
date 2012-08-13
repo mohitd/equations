@@ -2,6 +2,7 @@ package com.centauri.equations.activity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -120,6 +121,18 @@ public class Categories extends SherlockFragmentActivity implements
 
 	setupActionBar();
 
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+	// Gingerbread is the only version that has a black legacy menu
+	if (Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD
+		|| Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD_MR1) {
+	    MenuItem prefs = menu.findItem(R.id.menu_settings);
+	    prefs.setIcon(R.drawable.ic_menu_settings_dark);
+	}
+
+	return true;
     }
 
     @Override

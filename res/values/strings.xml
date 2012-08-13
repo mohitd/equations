@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.0</string>
+    <string name="app_version">1.0.1</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -16,7 +16,7 @@
     </string-array>
 
     <string name="search_label">Search</string>
-    <string name="search_hint">Search formulas</string>
+    <string name="search_hint">Search</string>
     <string name="menu_preferences">Settings</string>
     <string name="prefs_appearance">Appearance</string>
     <string name="must_be_integer">Number must be an integer!</string>
