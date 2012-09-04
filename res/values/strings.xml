@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.0.1</string>
+    <string name="app_version">1.1</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -208,6 +208,25 @@
     <string name="resistance">Resistance</string>
     <string name="torque">Torque</string>
     <string name="work">Work</string>
+    <string name="angular_speed">Angular Speed</string>
+    <string name="average_acceleration">Average Acceleration</string>
+    <string name="average_angular_accel">Average Angular Acceleration</string>
+    <string name="average_velocity">Average Velocity</string>
+    <string name="displacement">Displacement</string>
+    <string name="gravitational_energy">Gravitational Potential Energy</string>
+    <string name="hookes_law">Hooke\'s Law</string>
+    <string name="impulse">Impulse</string>
+    <string name="instantaneous_accel">Instantaneous Acceleration</string>
+    <string name="instantaneous_velocity">Instantaneous Velocity</string>
+    <string name="keplers_third_law">Kepler\'s Third Law</string>
+    <string name="kinetic_energy">Kinetic Energy</string>
+    <string name="newtons_third_law">Newton\'s Third Law</string>
+    <string name="power">Power</string>
+    <string name="static_friction">Static Friction</string>
+    <string name="tangent_accel">Tangential Acceleration</string>
+    <string name="tangent_speed">Tangentual Speed</string>
+    <string name="vector_comp">Vector Components</string>
+    <string name="velocity_equ">Velocity Equations</string>
     
     <string name="theme">Theme</string>
     <string name="about">About</string>
@@ -217,6 +236,8 @@
     <string name="copyright">Copyright</string>
     <string name="copyright_details">© 2012 Mohit Deshpande</string>
     <string name="version">Version</string>
+    <string name="db_problems">Database problems</string>
+    <string name="db_explanation">Tap here. Choose "Clear data". Restart the app.</string>
     <string name="open_source_licenses">
 
 ActionBarSherlock:\n\n

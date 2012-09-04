@@ -24,7 +24,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -129,6 +129,26 @@ public class EquationsProvider extends ContentProvider {
 
 	    addFormula(db, "Acid/Base Equations", "Chemistry");
 
+	    addPhysicsFormula(db, "Angular Speed");
+	    addPhysicsFormula(db, "Average Acceleration");
+	    addPhysicsFormula(db, "Average Angular Acceleration");
+	    addPhysicsFormula(db, "Average Velocity");
+	    addPhysicsFormula(db, "Displacement");
+	    addPhysicsFormula(db, "Gravitational Potential Energy");
+	    addPhysicsFormula(db, "Hooke's Law");
+	    addPhysicsFormula(db, "Impulse");
+	    addPhysicsFormula(db, "Instantaneous Acceleration");
+	    addPhysicsFormula(db, "Instantaneous Velocity");
+	    addPhysicsFormula(db, "Kepler's Third Law");
+	    addPhysicsFormula(db, "Kinetic Energy");
+	    addPhysicsFormula(db, "Newton's Third Law");
+	    addPhysicsFormula(db, "Power");
+	    addPhysicsFormula(db, "Static Friction");
+	    addPhysicsFormula(db, "Tangential Acceleration");
+	    addPhysicsFormula(db, "Tangential Speed");
+	    addPhysicsFormula(db, "Vector Components");
+	    addPhysicsFormula(db, "Velocity Equations");
+
 	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=1", null);
 	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=2", null);
 	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=21", null);
@@ -138,7 +158,25 @@ public class EquationsProvider extends ContentProvider {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+	    addPhysicsFormula(db, "Angular Speed");
+	    addPhysicsFormula(db, "Average Acceleration");
+	    addPhysicsFormula(db, "Average Angular Acceleration");
+	    addPhysicsFormula(db, "Average Velocity");
+	    addPhysicsFormula(db, "Displacement");
+	    addPhysicsFormula(db, "Gravitational Potential Energy");
+	    addPhysicsFormula(db, "Hooke's Law");
+	    addPhysicsFormula(db, "Impulse");
+	    addPhysicsFormula(db, "Instantaneous Acceleration");
+	    addPhysicsFormula(db, "Instantaneous Velocity");
+	    addPhysicsFormula(db, "Kepler's Third Law");
+	    addPhysicsFormula(db, "Kinetic Energy");
+	    addPhysicsFormula(db, "Newton's Third Law");
+	    addPhysicsFormula(db, "Power");
+	    addPhysicsFormula(db, "Static Friction");
+	    addPhysicsFormula(db, "Tangential Acceleration");
+	    addPhysicsFormula(db, "Tangential Speed");
+	    addPhysicsFormula(db, "Vector Components");
+	    addPhysicsFormula(db, "Velocity Equations");
 	}
 
 	private long addFormula(SQLiteDatabase db, String formulaName,
@@ -147,6 +185,10 @@ public class EquationsProvider extends ContentProvider {
 	    values.put(Formula.FORMULA_NAME, formulaName);
 	    values.put(Formula.CATEGORY, category);
 	    return db.insert(FORMULA_TABLE_NAME, null, values);
+	}
+
+	private long addPhysicsFormula(SQLiteDatabase db, String formulaName) {
+	    return addFormula(db, formulaName, "Physics");
 	}
 
     }

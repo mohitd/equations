@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.centauri.equations"
-    android:versionCode="3"
+    android:versionCode="4"
     android:versionName="@string/app_version"
     android:installLocation="auto">
 
@@ -310,6 +310,159 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.AngularSpeedActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.ANGULAR_SPEED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.AverageAngularAccelActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.AVERAGE_ANGULAR_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.AverageAccelActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.AVERAGE_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.AverageVelocityActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.AVERAGE_VELOCITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.DisplacementActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.DISPLACEMENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.GravitationEnergyActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.GRAV_ENERGY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.HookesLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.HOOKES_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.ImpulseActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.IMPULSE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.InstantAccelActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.INSTANT_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.InstantVelocityActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.INSTANT_VELOCITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.KeplersThirdLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.KEPLERS_3_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.KineticEnergyActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.KINETIC_ENERGY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.NewtonsThirdLawActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.NEWTONS_3_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.PowerActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.POWER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.StaticFrictionActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.STATIC_FRICTION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.TangentAccelActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.TANGENT_ACCEL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.TangentSpeedActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.TANGENT_SPEED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.VectorComponentsActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.VECTOR_COMP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.physics.VelocityEquActivity" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.VELOCITY_EQU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>
