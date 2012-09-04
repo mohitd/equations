@@ -66,19 +66,24 @@ public class Categories extends SherlockFragmentActivity implements
 
 	Cursor algebraCursor = getContentResolver().query(
 		Equations.Formula.CONTENT_URI, PROJECTION,
-		"category=\"" + categories[0] + "\"", null, null);
+		"category=\"" + categories[0] + "\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 	Cursor geometryCursor = getContentResolver().query(
 		Equations.Formula.CONTENT_URI, PROJECTION,
-		"category=\"" + categories[1] + "\"", null, null);
+		"category=\"" + categories[1] + "\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 	Cursor trigCursor = getContentResolver().query(
 		Equations.Formula.CONTENT_URI, PROJECTION,
-		"category=\"" + categories[2] + "\"", null, null);
+		"category=\"" + categories[2] + "\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 	Cursor chemCursor = getContentResolver().query(
 		Equations.Formula.CONTENT_URI, PROJECTION,
-		"category=\"" + categories[3] + "\"", null, null);
+		"category=\"" + categories[3] + "\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 	Cursor physicsCursor = getContentResolver().query(
 		Equations.Formula.CONTENT_URI, PROJECTION,
-		"category=\"" + categories[4] + "\"", null, null);
+		"category=\"" + categories[4] + "\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 
 	algebraAdapter = new SimpleCursorAdapter(this,
 		android.R.layout.simple_list_item_1, algebraCursor, from, to, 0);

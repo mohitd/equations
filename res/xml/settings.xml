@@ -9,6 +9,10 @@
         <Preference
             android:key="bug_key"
             android:title="@string/report_problem"/>
+        <Preference 
+    	    android:key="db_problems_key"
+    	    android:title="@string/db_problems"
+    	    android:summary="@string/db_explanation"/>  
         <Preference
             android:key="open_source_key" 
             android:title="@string/open_source"/>
@@ -19,7 +23,8 @@
     	<Preference 
     	    android:title="@string/version"
     	    android:summary="@string/app_version"
-    	    android:enabled="false"/>    
+    	    android:enabled="false"/>  
+
     </PreferenceCategory>
     
 </PreferenceScreen>

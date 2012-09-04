@@ -3,9 +3,11 @@ package com.centauri.equations.activity.settings;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.provider.Settings;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
@@ -78,6 +80,20 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				    }
 				});
 			builder.create().show();
+			return true;
+		    }
+		});
+
+	((Preference) findPreference("db_problems_key"))
+		.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+		    public boolean onPreferenceClick(Preference preference) {
+			Intent intent = new Intent();
+			intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+			Uri uri = Uri.fromParts("package", getPackageName(),
+				null);
+			intent.setData(uri);
+			startActivity(intent);
 			return true;
 		    }
 		});
