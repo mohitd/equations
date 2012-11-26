@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.centauri.equations"
-    android:versionCode="4"
+    android:versionCode="5"
     android:versionName="@string/app_version"
     android:installLocation="auto">
 
@@ -100,6 +100,18 @@
                 <action android:name="com.centauri.equations.action.SUM_PROP" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.algebra.VectorActivity" >
+            <intent-filter >
+				<action android:name="com.centauri.equations.action.VEC_ADD_SUB"/>
+				<action android:name="com.centauri.equations.action.VEC_DEF" />
+				<action android:name="com.centauri.equations.action.VEC_DOT"/>
+				<action android:name="com.centauri.equations.action.VEC_PROP"/>
+				<action android:name="com.centauri.equations.action.VEC_SCAL"/>
+				
+				<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

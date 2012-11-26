@@ -10,6 +10,7 @@ import com.centauri.equations.activity.algebra.QuadraticFormulaActivity;
 import com.centauri.equations.activity.algebra.RadicalActivity;
 import com.centauri.equations.activity.algebra.SlopeActivity;
 import com.centauri.equations.activity.algebra.SummationActivity;
+import com.centauri.equations.activity.algebra.VectorActivity;
 import com.centauri.equations.activity.chem.AcidBaseActivity;
 import com.centauri.equations.activity.chem.FunctionalGroupsActivity;
 import com.centauri.equations.activity.chem.GasLawsActivity;
@@ -139,6 +140,11 @@ public class FormulaMap {
 	formulaMap.put(72, TangentSpeedActivity.ACTION_TANGENT_SPEED);
 	formulaMap.put(73, VectorComponentsActivity.ACTION_VECTOR_COMP);
 	formulaMap.put(74, VelocityEquActivity.ACTION_VELOCITY_EQU);
+	formulaMap.put(75, VectorActivity.ACTION_VEC_ADD_SUB);
+	formulaMap.put(76, VectorActivity.ACTION_VEC_DEF);
+	formulaMap.put(77, VectorActivity.ACTION_VEC_DOT);
+	formulaMap.put(78, VectorActivity.ACTION_VEC_PROP);
+	formulaMap.put(79, VectorActivity.ACTION_VEC_SCAL);
 
 	fragmentMap.put(1,
 		new QuadraticFormulaActivity.QuadraticFormulaFragment());
@@ -234,20 +240,25 @@ public class FormulaMap {
 	fragmentMap.put(72, new TangentSpeedActivity.TangentSpeedFragment());
 	fragmentMap.put(73, new VectorComponentsActivity.VectorCompFragment());
 	fragmentMap.put(74, new VelocityEquActivity.VelocityEquFragment());
+	fragmentMap.put(75, new VectorActivity.VectorAddSubFragment());
+	fragmentMap.put(76, new VectorActivity.VectorDefFragment());
+	fragmentMap.put(77, new VectorActivity.VectorDotFragment());
+	fragmentMap.put(78, new VectorActivity.VectorPropFragment());
+	fragmentMap.put(79, new VectorActivity.ScalarMultiplyFragment());
     }
 
     private FormulaMap() {
     }
 
     public static Intent getIntent(long id) {
-	if (id < 0 || id > 74)
+	if (id < 0 || id > 79)
 	    throw new IllegalArgumentException("Invalid id: " + id);
 	String action = formulaMap.get((int) id);
 	return new Intent(action);
     }
 
     public static Fragment getFragment(long id) {
-	if (id < 0 || id > 74)
+	if (id < 0 || id > 79)
 	    throw new IllegalArgumentException("Invalid id: " + id);
 	Fragment fragment = fragmentMap.get((int) id);
 	return fragment;

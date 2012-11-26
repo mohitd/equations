@@ -24,7 +24,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -61,10 +61,12 @@ public class EquationsProvider extends ContentProvider {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-	    db.execSQL("CREATE TABLE " + FORMULA_TABLE_NAME + " ("
-		    + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+	    db.execSQL("CREATE TABLE IF NOT EXISTS " + FORMULA_TABLE_NAME
+		    + " (" + BaseColumns._ID
+		    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 		    + SearchManager.SUGGEST_COLUMN_TEXT_1 + " TEXT,"
 		    + Formula.CATEGORY + " TEXT" + ");");
+	    // TODO: Add formulas from String resources!
 	    addFormula(db, "Quadratic Formula", "Algebra");
 	    addFormula(db, "Distance Formula", "Algebra");
 	    addFormula(db, "Radical Simplification", "Algebra");
@@ -149,34 +151,43 @@ public class EquationsProvider extends ContentProvider {
 	    addPhysicsFormula(db, "Vector Components");
 	    addPhysicsFormula(db, "Velocity Equations");
 
-	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=1", null);
-	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=2", null);
-	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=21", null);
-	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=55", null);
-	    db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=7", null);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-	    addPhysicsFormula(db, "Angular Speed");
-	    addPhysicsFormula(db, "Average Acceleration");
-	    addPhysicsFormula(db, "Average Angular Acceleration");
-	    addPhysicsFormula(db, "Average Velocity");
-	    addPhysicsFormula(db, "Displacement");
-	    addPhysicsFormula(db, "Gravitational Potential Energy");
-	    addPhysicsFormula(db, "Hooke's Law");
-	    addPhysicsFormula(db, "Impulse");
-	    addPhysicsFormula(db, "Instantaneous Acceleration");
-	    addPhysicsFormula(db, "Instantaneous Velocity");
-	    addPhysicsFormula(db, "Kepler's Third Law");
-	    addPhysicsFormula(db, "Kinetic Energy");
-	    addPhysicsFormula(db, "Newton's Third Law");
-	    addPhysicsFormula(db, "Power");
-	    addPhysicsFormula(db, "Static Friction");
-	    addPhysicsFormula(db, "Tangential Acceleration");
-	    addPhysicsFormula(db, "Tangential Speed");
-	    addPhysicsFormula(db, "Vector Components");
-	    addPhysicsFormula(db, "Velocity Equations");
+
+	    if (newVersion == 2) {
+		addPhysicsFormula(db, "Angular Speed");
+		addPhysicsFormula(db, "Average Acceleration");
+		addPhysicsFormula(db, "Average Angular Acceleration");
+		addPhysicsFormula(db, "Average Velocity");
+		addPhysicsFormula(db, "Displacement");
+		addPhysicsFormula(db, "Gravitational Potential Energy");
+		addPhysicsFormula(db, "Hooke's Law");
+		addPhysicsFormula(db, "Impulse");
+		addPhysicsFormula(db, "Instantaneous Acceleration");
+		addPhysicsFormula(db, "Instantaneous Velocity");
+		addPhysicsFormula(db, "Kepler's Third Law");
+		addPhysicsFormula(db, "Kinetic Energy");
+		addPhysicsFormula(db, "Newton's Third Law");
+		addPhysicsFormula(db, "Power");
+		addPhysicsFormula(db, "Static Friction");
+		addPhysicsFormula(db, "Tangential Acceleration");
+		addPhysicsFormula(db, "Tangential Speed");
+		addPhysicsFormula(db, "Vector Components");
+		addPhysicsFormula(db, "Velocity Equations");
+	    } else if (newVersion == 3) {
+		// Recreate the database so that we can add the formulas that we
+		// deleted in the previous versions
+		db.execSQL("DROP TABLE IF EXISTS " + FORMULA_TABLE_NAME);
+		onCreate(db);
+		addAlgebraicFormula(db, "Vector Addition and Subtraction");
+		addAlgebraicFormula(db, "Vector Definition");
+		addAlgebraicFormula(db, "Vector Dot Product");
+		addAlgebraicFormula(db, "Vector Properties");
+		addAlgebraicFormula(db, "Scalar Multiplication");
+	    }
+
 	}
 
 	private long addFormula(SQLiteDatabase db, String formulaName,
@@ -189,6 +200,10 @@ public class EquationsProvider extends ContentProvider {
 
 	private long addPhysicsFormula(SQLiteDatabase db, String formulaName) {
 	    return addFormula(db, formulaName, "Physics");
+	}
+
+	private long addAlgebraicFormula(SQLiteDatabase db, String formulaName) {
+	    return addFormula(db, formulaName, "Algebra");
 	}
 
     }
