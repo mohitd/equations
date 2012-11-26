@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.1</string>
+    <string name="app_version">1.2</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -227,6 +227,11 @@
     <string name="tangent_speed">Tangentual Speed</string>
     <string name="vector_comp">Vector Components</string>
     <string name="velocity_equ">Velocity Equations</string>
+    <string name="vec_add_sub">Vector Addition and Subtraction</string>
+    <string name="vec_def">Vector Definition</string>
+    <string name="vec_dot">Vector Dot Product</string>
+    <string name="vec_prop">Vector Properties</string>
+    <string name="vec_scal">Scalar Multiplication</string>
     
     <string name="theme">Theme</string>
     <string name="about">About</string>
