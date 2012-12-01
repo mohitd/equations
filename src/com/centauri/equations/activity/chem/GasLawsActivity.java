@@ -99,7 +99,7 @@ public class GasLawsActivity extends Categories {
 		    R.id.img_formula);
 	    image.setImageResource(R.drawable.img_chem_gas_constant);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
-		    .setTitle(R.string.gas_const);
+		    .setTitle(R.string.ideal_gas_const);
 	}
     }
 

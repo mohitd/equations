@@ -53,7 +53,7 @@ public class FunctionalGroupsActivity extends Categories {
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
-	getSupportActionBar().setTitle(R.string.fuctional_groups);
+	getSupportActionBar().setTitle(R.string.functional_groups);
 	getSupportActionBar().setSubtitle(
 		getResources().getStringArray(R.array.categories)[3]);
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);

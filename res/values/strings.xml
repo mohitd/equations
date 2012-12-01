@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.2</string>
+    <string name="app_version">1.2.1</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -163,8 +163,8 @@
     <string name="sum_def">Summation Definition</string>
     <string name="sum_prop">Summation Properties</string>
     <string name="acid_base_eq">Acid/Base Equations</string>
-    <string name="fuctional_groups">Functional Groups</string>
-    <string name="gas_const">Ideal Gas Constant</string>
+    <string name="functional_groups">Functional Groups</string>
+    <string name="ideal_gas_const">Ideal Gas Constant</string>
     <string name="boyle_law">Boyle\'s Law</string>
     <string name="charles_law">Charles\' Law</string>
     <string name="gay_lussacs_law">Gay-Lussac\'s Law</string>
@@ -213,7 +213,7 @@
     <string name="average_angular_accel">Average Angular Acceleration</string>
     <string name="average_velocity">Average Velocity</string>
     <string name="displacement">Displacement</string>
-    <string name="gravitational_energy">Gravitational Potential Energy</string>
+    <string name="gravitational_pot_energy">Gravitational Potential Energy</string>
     <string name="hookes_law">Hooke\'s Law</string>
     <string name="impulse">Impulse</string>
     <string name="instantaneous_accel">Instantaneous Acceleration</string>
