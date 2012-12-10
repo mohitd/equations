@@ -84,7 +84,7 @@ public class RadicalActivity extends Categories {
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    ((ImageView) getView().findViewById(R.id.img_area))
-		    .setImageResource(R.drawable.img_radical);
+		    .setImageResource(R.drawable.img_alg_radical);
 
 	    a_txt = ((EditText) getView().findViewById(R.id.area_a));
 

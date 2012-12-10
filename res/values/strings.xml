@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.2.1</string>
+    <string name="app_version">1.3</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -232,6 +232,11 @@
     <string name="vec_dot">Vector Dot Product</string>
     <string name="vec_prop">Vector Properties</string>
     <string name="vec_scal">Scalar Multiplication</string>
+    <string name="de_moivre">De Moivre\'s Theorem</string>
+    <string name="dot_prop">Dot Product Properties</string>
+    <string name="euler_formula">Euler\'s Formula</string>
+    <string name="trig_form">Trigonometric Form of a Complex Number</string>
+    <string name="vec_proj">Vector Projection</string>
     
     <string name="theme">Theme</string>
     <string name="about">About</string>

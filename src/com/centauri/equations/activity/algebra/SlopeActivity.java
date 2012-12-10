@@ -88,7 +88,7 @@ public class SlopeActivity extends Categories {
 	    y2_txt = ((EditText) getView().findViewById(R.id.dist_y2));
 
 	    ((ImageView) getView().findViewById(R.id.img_point2d))
-		    .setImageResource(R.drawable.img_slope);
+		    .setImageResource(R.drawable.img_alg_slope);
 	    ((Button) getView().findViewById(R.id.dist_solve))
 		    .setOnClickListener(this);
 	}

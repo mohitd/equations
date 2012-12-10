@@ -26,7 +26,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -192,6 +192,13 @@ public class EquationsProvider extends ContentProvider {
 	    addAlgebraicFormula(db, res.getString(R.string.vec_dot));
 	    addAlgebraicFormula(db, res.getString(R.string.vec_prop));
 	    addAlgebraicFormula(db, res.getString(R.string.vec_scal));
+
+	    // 4
+	    addAlgebraicFormula(db, res.getString(R.string.de_moivre));
+	    addAlgebraicFormula(db, res.getString(R.string.dot_prop));
+	    addAlgebraicFormula(db, res.getString(R.string.euler_formula));
+	    addFormula(db, res.getString(R.string.trig_form), "Trigonometry");
+	    addAlgebraicFormula(db, res.getString(R.string.vec_proj));
 	}
 
 	@Override

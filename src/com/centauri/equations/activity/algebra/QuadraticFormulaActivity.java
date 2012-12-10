@@ -95,7 +95,7 @@ public class QuadraticFormulaActivity extends SherlockFragmentActivity {
 	    c_txt = (EditText) getView().findViewById(R.id.area_c);
 
 	    ((ImageView) getView().findViewById(R.id.img_area))
-		    .setImageResource(R.drawable.img_quadratic);
+		    .setImageResource(R.drawable.img_alg_quadratic);
 
 	    a_txt.setHint(R.string.a);
 	    b_txt.setHint(R.string.b);

@@ -31,6 +31,7 @@ public class TrigActivity extends Categories {
     public static final String ACTION_QUOTIENT = "com.centauri.equations.action.QUOTIENT";
     public static final String ACTION_RIGHT_TRIANGLE = "com.centauri.equations.action.RIGHT_TRIANGLE";
     public static final String ACTION_RECIPROCAL = "com.centauri.equations.action.RECIPROCAL";
+    public static final String ACTION_TRIG_FORM = "com.centauri.equations.action.TRIG_FORM";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class TrigActivity extends Categories {
 	    transaction.add(android.R.id.content, new RightTriangleFragment());
 	} else if (action.equals(ACTION_RECIPROCAL)) {
 	    transaction.add(android.R.id.content, new ReciprocalFragment());
+	} else if (action.equals(ACTION_TRIG_FORM)) {
+	    transaction.add(android.R.id.content, new TrigFormFragment());
 	}
 
 	transaction.commit();
@@ -351,6 +354,25 @@ public class TrigActivity extends Categories {
 	    image.setImageResource(R.drawable.img_trig_reciprocal);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.reciprocal_identities);
+	}
+    }
+
+    public static class TrigFormFragment extends SherlockFragment {
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+		Bundle savedInstanceState) {
+	    return inflater.inflate(R.layout.single_image, container, false);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	    super.onActivityCreated(savedInstanceState);
+	    ImageView image = (ImageView) getView().findViewById(
+		    R.id.img_formula);
+	    image.setImageResource(R.drawable.img_trig_trig_form);
+	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
+		    .setTitle(R.string.trig_form);
 	}
     }
 }

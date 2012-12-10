@@ -89,7 +89,7 @@ public class DistanceFormulaActivity extends Categories {
 	    y2_txt = ((EditText) getView().findViewById(R.id.dist_y2));
 
 	    ((ImageView) getView().findViewById(R.id.img_point2d))
-		    .setImageResource(R.drawable.img_distance);
+		    .setImageResource(R.drawable.img_alg_distance);
 	    ((Button) getView().findViewById(R.id.dist_solve))
 		    .setOnClickListener(this);
 	}

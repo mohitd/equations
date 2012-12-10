@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.centauri.equations"
-    android:versionCode="6"
+    android:versionCode="7"
     android:versionName="@string/app_version"
     android:installLocation="auto">
 
@@ -110,8 +110,26 @@
 				<action android:name="com.centauri.equations.action.VEC_DOT"/>
 				<action android:name="com.centauri.equations.action.VEC_PROP"/>
 				<action android:name="com.centauri.equations.action.VEC_SCAL"/>
+				<action android:name="com.centauri.equations.action.DOT_PROP" />
+				<action android:name="com.centauri.equations.action.VEC_PROJ"/>
 				
 				<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.algebra.DeMoivreActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.DE_MOIVRE"/>
+                
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.centauri.equations.activity.algebra.EulerFormulaActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.EULER_FORMULA"/>
+                
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
@@ -156,6 +174,7 @@
                 <action android:name="com.centauri.equations.action.QUOTIENT" />
                 <action android:name="com.centauri.equations.action.RIGHT_TRIANGLE" />
                 <action android:name="com.centauri.equations.action.RECIPROCAL" />
+                <action android:name="com.centauri.equations.action.TRIG_FORM" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
