@@ -8,6 +8,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.UriMatcher;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 
+import com.centauri.equations.R;
 import com.centauri.equations.provider.Equations.Formula;
 
 public class EquationsProvider extends ContentProvider {
@@ -24,7 +26,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -55,8 +57,11 @@ public class EquationsProvider extends ContentProvider {
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
+	private Context context;
+
 	public DatabaseHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	    this.context = context;
 	}
 
 	@Override
@@ -66,128 +71,141 @@ public class EquationsProvider extends ContentProvider {
 		    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 		    + SearchManager.SUGGEST_COLUMN_TEXT_1 + " TEXT,"
 		    + Formula.CATEGORY + " TEXT" + ");");
-	    // TODO: Add formulas from String resources!
-	    addFormula(db, "Quadratic Formula", "Algebra");
-	    addFormula(db, "Distance Formula", "Algebra");
-	    addFormula(db, "Radical Simplification", "Algebra");
-	    addFormula(db, "Slope", "Algebra");
+	    Resources res = context.getResources();
 
-	    addFormula(db, "Area", "Geometry");
-	    addFormula(db, "Pythagorean Theorem", "Geometry");
-	    addFormula(db, "Heron's Formula", "Geometry");
+	    // 1
+	    addFormula(db, res.getString(R.string.quad_formula), "Algebra");
+	    addFormula(db, res.getString(R.string.distance_formula), "Algebra");
+	    addFormula(db, res.getString(R.string.radicand_simp), "Algebra");
+	    addFormula(db, res.getString(R.string.slope), "Algebra");
 
-	    addFormula(db, "Law of Sines", "Trigonometry");
-	    addFormula(db, "Law of Cosines", "Trigonometry");
-	    addFormula(db, "Law of Tangents", "Trigonometry");
-	    addFormula(db, "Product to Sum Formulas", "Trigonometry");
-	    addFormula(db, "Sum to Product Formulas", "Trigonometry");
-	    addFormula(db, "Power Reduction Formulas", "Trigonometry");
-	    addFormula(db, "Sum/Difference Formulas", "Trigonometry");
-	    addFormula(db, "Even/Odd Identities", "Trigonometry");
-	    addFormula(db, "Cofunction Formulas", "Trigonometry");
-	    addFormula(db, "Pythagorean Identities", "Trigonometry");
-	    addFormula(db, "Quotient Formulas", "Trigonometry");
-	    addFormula(db, "Right Triangle Definitions", "Trigonometry");
-	    addFormula(db, "Reciprocal Identities", "Trigonometry");
+	    addFormula(db, res.getString(R.string.area_formulas), "Geometry");
+	    addFormula(db, res.getString(R.string.pythagorean_theorem),
+		    "Geometry");
+	    addFormula(db, res.getString(R.string.herons_formula), "Geometry");
 
-	    addFormula(db, "Ideal Gas Law", "Chemistry");
-	    addFormula(db, "Ideal Gas Constant", "Chemistry");
-	    addFormula(db, "Functional Groups", "Chemistry");
+	    addFormula(db, res.getString(R.string.law_of_sines), "Trigonometry");
+	    addFormula(db, res.getString(R.string.law_of_cosines),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.law_of_tangents),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.product_sum_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.sum_product_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.power_reduction_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.sum_difference_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.even_odd_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.cofunction_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.pythagorean_identities),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.quotient_formulas),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.right_triangle_definitions),
+		    "Trigonometry");
+	    addFormula(db, res.getString(R.string.reciprocal_identities),
+		    "Trigonometry");
 
-	    addFormula(db, "Logarithm Definition", "Algebra");
-	    addFormula(db, "Logarithmic Identities", "Algebra");
-	    addFormula(db, "Logarithmic Properties", "Algebra");
-	    addFormula(db, "Summation Definition", "Algebra");
-	    addFormula(db, "Summation Properties", "Algebra");
+	    addFormula(db, res.getString(R.string.ideal_gas_law), "Chemistry");
+	    addFormula(db, res.getString(R.string.ideal_gas_const), "Chemistry");
+	    addFormula(db, res.getString(R.string.functional_groups),
+		    "Chemistry");
 
-	    addFormula(db, "Boyle's Law", "Chemistry");
-	    addFormula(db, "Charles' Law", "Chemistry");
-	    addFormula(db, "Gay-Lussac's Law", "Chemistry");
-	    addFormula(db, "Dalton's Law", "Chemistry");
-	    addFormula(db, "Combined Gas Law", "Chemistry");
+	    addFormula(db, res.getString(R.string.log_def), "Algebra");
+	    addFormula(db, res.getString(R.string.log_identity), "Algebra");
+	    addFormula(db, res.getString(R.string.log_prop), "Algebra");
+	    addFormula(db, res.getString(R.string.sum_def), "Algebra");
+	    addFormula(db, res.getString(R.string.sum_prop), "Algebra");
 
-	    addFormula(db, "One Dimensional Motion", "Physics");
-	    addFormula(db, "Force", "Physics");
-	    addFormula(db, "Torque", "Physics");
-	    addFormula(db, "Centripetal Force", "Physics");
-	    addFormula(db, "Centripetal Acceleration", "Physics");
-	    addFormula(db, "Newton's Law of Universal Gravitation", "Physics");
-	    addFormula(db, "Maximum Height of a Projectile", "Physics");
-	    addFormula(db, "Maximum Range of a Projectile", "Physics");
-	    addFormula(db, "Coulumb's Law", "Physics");
-	    addFormula(db, "Escape Velocity", "Physics");
-	    addFormula(db, "Momentum", "Physics");
-	    addFormula(db, "Work", "Physics");
-	    addFormula(db, "Ohm's Law", "Physics");
-	    addFormula(db, "Particle Energy", "Physics");
-	    addFormula(db, "Resistance", "Physics");
-	    addFormula(db, "Bernoulli's Law", "Physics");
+	    addFormula(db, res.getString(R.string.boyle_law), "Chemistry");
+	    addFormula(db, res.getString(R.string.charles_law), "Chemistry");
+	    addFormula(db, res.getString(R.string.gay_lussacs_law), "Chemistry");
+	    addFormula(db, res.getString(R.string.daltons_law), "Chemistry");
+	    addFormula(db, res.getString(R.string.combined_gas_law),
+		    "Chemistry");
 
-	    addFormula(db, "Planck Constant", "Physics");
-	    addFormula(db, "Speed of Light", "Physics");
-	    addFormula(db, "Permittivity of Free Space", "Physics");
-	    addFormula(db, "Gravitation Constant", "Physics");
-	    addFormula(db, "Gravitational Acceleration", "Physics");
+	    addFormula(db, res.getString(R.string.one_dimensional_motion),
+		    "Physics");
+	    addFormula(db, res.getString(R.string.force), "Physics");
+	    addFormula(db, res.getString(R.string.torque), "Physics");
+	    addFormula(db, res.getString(R.string.centripetal_force), "Physics");
+	    addFormula(db, res.getString(R.string.centripetal_acceleration),
+		    "Physics");
+	    addFormula(db, res.getString(R.string.universal_gravitation),
+		    "Physics");
+	    addFormula(db,
+		    res.getString(R.string.maximum_height_of_a_projectile),
+		    "Physics");
+	    addFormula(db,
+		    res.getString(R.string.maximum_range_of_a_projectile),
+		    "Physics");
+	    addFormula(db, res.getString(R.string.coulombs_law), "Physics");
+	    addFormula(db, res.getString(R.string.escape_velocity), "Physics");
+	    addFormula(db, res.getString(R.string.momentum), "Physics");
+	    addFormula(db, res.getString(R.string.work), "Physics");
+	    addFormula(db, res.getString(R.string.ohms_law), "Physics");
+	    addFormula(db, res.getString(R.string.particle_energy), "Physics");
+	    addFormula(db, res.getString(R.string.resistance), "Physics");
+	    addFormula(db, res.getString(R.string.bernoullis_law), "Physics");
 
-	    addFormula(db, "Acid/Base Equations", "Chemistry");
+	    addFormula(db, res.getString(R.string.planck_constant), "Physics");
+	    addFormula(db, res.getString(R.string.speed_of_light), "Physics");
+	    addFormula(db, res.getString(R.string.permittivity_of_free_space),
+		    "Physics");
+	    addFormula(db, res.getString(R.string.gravitation_constant),
+		    "Physics");
+	    addFormula(db, res.getString(R.string.gravitational_acceleration),
+		    "Physics");
 
-	    addPhysicsFormula(db, "Angular Speed");
-	    addPhysicsFormula(db, "Average Acceleration");
-	    addPhysicsFormula(db, "Average Angular Acceleration");
-	    addPhysicsFormula(db, "Average Velocity");
-	    addPhysicsFormula(db, "Displacement");
-	    addPhysicsFormula(db, "Gravitational Potential Energy");
-	    addPhysicsFormula(db, "Hooke's Law");
-	    addPhysicsFormula(db, "Impulse");
-	    addPhysicsFormula(db, "Instantaneous Acceleration");
-	    addPhysicsFormula(db, "Instantaneous Velocity");
-	    addPhysicsFormula(db, "Kepler's Third Law");
-	    addPhysicsFormula(db, "Kinetic Energy");
-	    addPhysicsFormula(db, "Newton's Third Law");
-	    addPhysicsFormula(db, "Power");
-	    addPhysicsFormula(db, "Static Friction");
-	    addPhysicsFormula(db, "Tangential Acceleration");
-	    addPhysicsFormula(db, "Tangential Speed");
-	    addPhysicsFormula(db, "Vector Components");
-	    addPhysicsFormula(db, "Velocity Equations");
+	    addFormula(db, res.getString(R.string.acid_base_eq), "Chemistry");
 
+	    // 2
+	    addPhysicsFormula(db, res.getString(R.string.angular_speed));
+	    addPhysicsFormula(db, res.getString(R.string.average_acceleration));
+	    addPhysicsFormula(db, res.getString(R.string.average_angular_accel));
+	    addPhysicsFormula(db, res.getString(R.string.average_velocity));
+	    addPhysicsFormula(db, res.getString(R.string.displacement));
+	    addPhysicsFormula(db,
+		    res.getString(R.string.gravitational_pot_energy));
+	    addPhysicsFormula(db, res.getString(R.string.hookes_law));
+	    addPhysicsFormula(db, res.getString(R.string.impulse));
+	    addPhysicsFormula(db, res.getString(R.string.instantaneous_accel));
+	    addPhysicsFormula(db,
+		    res.getString(R.string.instantaneous_velocity));
+	    addPhysicsFormula(db, res.getString(R.string.keplers_third_law));
+	    addPhysicsFormula(db, res.getString(R.string.kinetic_energy));
+	    addPhysicsFormula(db, res.getString(R.string.newtons_third_law));
+	    addPhysicsFormula(db, res.getString(R.string.power));
+	    addPhysicsFormula(db, res.getString(R.string.static_friction));
+	    addPhysicsFormula(db, res.getString(R.string.tangent_accel));
+	    addPhysicsFormula(db, res.getString(R.string.tangent_speed));
+	    addPhysicsFormula(db, res.getString(R.string.vector_comp));
+	    addPhysicsFormula(db, res.getString(R.string.velocity_equ));
+
+	    // 3
+	    addAlgebraicFormula(db, res.getString(R.string.vec_add_sub));
+	    addAlgebraicFormula(db, res.getString(R.string.vec_def));
+	    addAlgebraicFormula(db, res.getString(R.string.vec_dot));
+	    addAlgebraicFormula(db, res.getString(R.string.vec_prop));
+	    addAlgebraicFormula(db, res.getString(R.string.vec_scal));
+
+	    // 4
+	    addAlgebraicFormula(db, res.getString(R.string.de_moivre));
+	    addAlgebraicFormula(db, res.getString(R.string.dot_prop));
+	    addAlgebraicFormula(db, res.getString(R.string.euler_formula));
+	    addFormula(db, res.getString(R.string.trig_form), "Trigonometry");
+	    addAlgebraicFormula(db, res.getString(R.string.vec_proj));
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-	    if (newVersion == 2) {
-		addPhysicsFormula(db, "Angular Speed");
-		addPhysicsFormula(db, "Average Acceleration");
-		addPhysicsFormula(db, "Average Angular Acceleration");
-		addPhysicsFormula(db, "Average Velocity");
-		addPhysicsFormula(db, "Displacement");
-		addPhysicsFormula(db, "Gravitational Potential Energy");
-		addPhysicsFormula(db, "Hooke's Law");
-		addPhysicsFormula(db, "Impulse");
-		addPhysicsFormula(db, "Instantaneous Acceleration");
-		addPhysicsFormula(db, "Instantaneous Velocity");
-		addPhysicsFormula(db, "Kepler's Third Law");
-		addPhysicsFormula(db, "Kinetic Energy");
-		addPhysicsFormula(db, "Newton's Third Law");
-		addPhysicsFormula(db, "Power");
-		addPhysicsFormula(db, "Static Friction");
-		addPhysicsFormula(db, "Tangential Acceleration");
-		addPhysicsFormula(db, "Tangential Speed");
-		addPhysicsFormula(db, "Vector Components");
-		addPhysicsFormula(db, "Velocity Equations");
-	    } else if (newVersion == 3) {
-		// Recreate the database so that we can add the formulas that we
-		// deleted in the previous versions
-		db.execSQL("DROP TABLE IF EXISTS " + FORMULA_TABLE_NAME);
-		onCreate(db);
-		addAlgebraicFormula(db, "Vector Addition and Subtraction");
-		addAlgebraicFormula(db, "Vector Definition");
-		addAlgebraicFormula(db, "Vector Dot Product");
-		addAlgebraicFormula(db, "Vector Properties");
-		addAlgebraicFormula(db, "Scalar Multiplication");
-	    }
-
+	    // Recreates the database as to check for new formulas
+	    db.execSQL("DROP TABLE IF EXISTS " + FORMULA_TABLE_NAME);
+	    onCreate(db);
 	}
 
 	private long addFormula(SQLiteDatabase db, String formulaName,

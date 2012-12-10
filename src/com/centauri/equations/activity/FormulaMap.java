@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
 
+import com.centauri.equations.activity.algebra.DeMoivreActivity;
 import com.centauri.equations.activity.algebra.DistanceFormulaActivity;
+import com.centauri.equations.activity.algebra.EulerFormulaActivity;
 import com.centauri.equations.activity.algebra.LogarithmActivity;
 import com.centauri.equations.activity.algebra.QuadraticFormulaActivity;
 import com.centauri.equations.activity.algebra.RadicalActivity;
@@ -145,6 +147,11 @@ public class FormulaMap {
 	formulaMap.put(77, VectorActivity.ACTION_VEC_DOT);
 	formulaMap.put(78, VectorActivity.ACTION_VEC_PROP);
 	formulaMap.put(79, VectorActivity.ACTION_VEC_SCAL);
+	formulaMap.put(80, DeMoivreActivity.ACTION_DE_MOIVRE);
+	formulaMap.put(81, VectorActivity.ACTION_DOT_PROP);
+	formulaMap.put(82, EulerFormulaActivity.ACTION_EULER_FORMULA);
+	formulaMap.put(83, TrigActivity.ACTION_TRIG_FORM);
+	formulaMap.put(84, VectorActivity.ACTION_VEC_PROJ);
 
 	fragmentMap.put(1,
 		new QuadraticFormulaActivity.QuadraticFormulaFragment());
@@ -245,20 +252,25 @@ public class FormulaMap {
 	fragmentMap.put(77, new VectorActivity.VectorDotFragment());
 	fragmentMap.put(78, new VectorActivity.VectorPropFragment());
 	fragmentMap.put(79, new VectorActivity.ScalarMultiplyFragment());
+	fragmentMap.put(80, new DeMoivreActivity.DeMoivreFragment());
+	fragmentMap.put(81, new VectorActivity.DotPropFragment());
+	fragmentMap.put(82, new EulerFormulaActivity.EulerFormulaFragment());
+	fragmentMap.put(83, new TrigActivity.TrigFormFragment());
+	fragmentMap.put(84, new VectorActivity.VectorProjectionFragment());
     }
 
     private FormulaMap() {
     }
 
     public static Intent getIntent(long id) {
-	if (id < 0 || id > 79)
+	if (id < 0 || id > 84)
 	    throw new IllegalArgumentException("Invalid id: " + id);
 	String action = formulaMap.get((int) id);
 	return new Intent(action);
     }
 
     public static Fragment getFragment(long id) {
-	if (id < 0 || id > 79)
+	if (id < 0 || id > 84)
 	    throw new IllegalArgumentException("Invalid id: " + id);
 	Fragment fragment = fragmentMap.get((int) id);
 	return fragment;

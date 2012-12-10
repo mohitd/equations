@@ -20,7 +20,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.algebra.QuadraticFormulaActivity.QuadraticFormulaFragment;
 import com.centauri.equations.activity.settings.SettingsActivity;
 import com.centauri.equations.provider.Equations;
 import com.centauri.equations.provider.Equations.Formula;
@@ -53,8 +52,6 @@ public class Categories extends SherlockFragmentActivity implements
     private SimpleCursorAdapter physicsAdapter;
 
     private FormulasListFragment formulasFragment;
-
-    private QuadraticFormulaFragment formulaFragment;
 
     /** Called when the activity is first created. */
     @Override
@@ -106,19 +103,11 @@ public class Categories extends SherlockFragmentActivity implements
 
 	formulasFragment = (FormulasListFragment) getSupportFragmentManager()
 		.findFragmentById(R.id.formulasList);
-	formulaFragment = (QuadraticFormulaFragment) getSupportFragmentManager()
-		.findFragmentById(R.id.details);
 
 	if (formulasFragment == null) {
 	    formulasFragment = new FormulasListFragment();
 	    getSupportFragmentManager().beginTransaction()
 		    .add(R.id.formulasList, formulasFragment).commit();
-	}
-
-	if (formulaFragment == null && findViewById(R.id.details) != null) {
-	    formulaFragment = new QuadraticFormulaFragment();
-	    getSupportFragmentManager().beginTransaction()
-		    .add(R.id.details, formulaFragment).commit();
 	}
 
 	View details = findViewById(R.id.details);
@@ -214,6 +203,8 @@ public class Categories extends SherlockFragmentActivity implements
 	    if (dualPane)
 		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	    setListShown(true);
+
+	    setRetainInstance(true);
 	}
 
 	@Override

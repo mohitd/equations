@@ -90,7 +90,7 @@ public class PythagoreanActivity extends Categories {
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    ((ImageView) getView().findViewById(R.id.img_area))
-		    .setImageResource(R.drawable.img_pythagorean);
+		    .setImageResource(R.drawable.img_geo_pythagorean);
 	    ((Button) getView().findViewById(R.id.area_solve))
 		    .setOnClickListener(this);
 

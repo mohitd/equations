@@ -29,6 +29,8 @@ public class VectorActivity extends Categories {
     public static final String ACTION_VEC_DOT = "com.centauri.equations.action.VEC_DOT";
     public static final String ACTION_VEC_PROP = "com.centauri.equations.action.VEC_PROP";
     public static final String ACTION_VEC_SCAL = "com.centauri.equations.action.VEC_SCAL";
+    public static final String ACTION_DOT_PROP = "com.centauri.equations.action.DOT_PROP";
+    public static final String ACTION_VEC_PROJ = "com.centauri.equations.action.VEC_PROJ";
 
     /*
      * (non-Javadoc)
@@ -53,6 +55,11 @@ public class VectorActivity extends Categories {
 	    transaction.add(android.R.id.content, new VectorPropFragment());
 	} else if (action.equals(ACTION_VEC_SCAL)) {
 	    transaction.add(android.R.id.content, new ScalarMultiplyFragment());
+	} else if (action.equals(ACTION_DOT_PROP)) {
+	    transaction.add(android.R.id.content, new DotPropFragment());
+	} else if (action.equals(ACTION_VEC_PROJ)) {
+	    transaction.add(android.R.id.content,
+		    new VectorProjectionFragment());
 	}
 
 	transaction.commit();
@@ -178,9 +185,9 @@ public class VectorActivity extends Categories {
 	    super.onActivityCreated(savedInstanceState);
 	    ImageView image = (ImageView) getView().findViewById(
 		    R.id.img_formula);
-	    image.setImageResource(R.drawable.img_alg_vector_prop);
+	    image.setImageResource(R.drawable.img_alg_vector_dot);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
-		    .setTitle(R.string.vec_prop);
+		    .setTitle(R.string.vec_dot);
 	}
     }
 
@@ -243,6 +250,68 @@ public class VectorActivity extends Categories {
 	    image.setImageResource(R.drawable.img_alg_vector_scalar);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.vec_scal);
+	}
+    }
+
+    public static class DotPropFragment extends SherlockFragment {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater
+	 * , android.view.ViewGroup, android.os.Bundle)
+	 */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+		Bundle savedInstanceState) {
+	    return inflater.inflate(R.layout.single_image, container, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onActivityCreated(android.os.Bundle)
+	 */
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	    super.onActivityCreated(savedInstanceState);
+	    ImageView image = (ImageView) getView().findViewById(
+		    R.id.img_formula);
+	    image.setImageResource(R.drawable.img_alg_dot_prop);
+	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
+		    .setTitle(R.string.dot_prop);
+	}
+    }
+
+    public static class VectorProjectionFragment extends SherlockFragment {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater
+	 * , android.view.ViewGroup, android.os.Bundle)
+	 */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+		Bundle savedInstanceState) {
+	    return inflater.inflate(R.layout.single_image, container, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onActivityCreated(android.os.Bundle)
+	 */
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	    super.onActivityCreated(savedInstanceState);
+	    ImageView image = (ImageView) getView().findViewById(
+		    R.id.img_formula);
+	    image.setImageResource(R.drawable.img_alg_vector_proj);
+	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
+		    .setTitle(R.string.vec_proj);
 	}
     }
 

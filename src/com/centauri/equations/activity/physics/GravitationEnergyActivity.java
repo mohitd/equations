@@ -60,7 +60,7 @@ public class GravitationEnergyActivity extends Categories {
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
-	getSupportActionBar().setTitle(R.string.gravitational_energy);
+	getSupportActionBar().setTitle(R.string.gravitational_pot_energy);
 	getSupportActionBar().setSubtitle(
 		getResources().getStringArray(R.array.categories)[4]);
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);

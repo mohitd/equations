@@ -85,7 +85,7 @@ public class SummationActivity extends Categories {
 	    super.onActivityCreated(savedInstanceState);
 	    ImageView image = (ImageView) getView().findViewById(
 		    R.id.img_formula);
-	    image.setImageResource(R.drawable.img_algb_sum_def);
+	    image.setImageResource(R.drawable.img_alg_sum_def);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.sum_def);
 	}
@@ -103,7 +103,7 @@ public class SummationActivity extends Categories {
 	    super.onActivityCreated(savedInstanceState);
 	    ImageView image = (ImageView) getView().findViewById(
 		    R.id.img_formula);
-	    image.setImageResource(R.drawable.img_algb_sum_prop);
+	    image.setImageResource(R.drawable.img_alg_sum_prop);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.sum_prop);
 	}

@@ -84,7 +84,7 @@ public class HeronsFormulaActivity extends Categories {
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    ((ImageView) getView().findViewById(R.id.img_area))
-		    .setImageResource(R.drawable.img_heron);
+		    .setImageResource(R.drawable.img_geo_heron);
 
 	    a_txt = ((EditText) getView().findViewById(R.id.area_a));
 	    b_txt = ((EditText) getView().findViewById(R.id.area_b));
