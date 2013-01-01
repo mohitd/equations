@@ -1,6 +1,8 @@
 package com.centauri.equations.util;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 
 /**
  * This class represents all numbers (as all numbers can be represented as
@@ -140,7 +142,12 @@ public class Complex {
     @Override
     public String toString() {
 	StringBuilder buffer = new StringBuilder();
-	DecimalFormat style = new DecimalFormat("0.##########");
+	NumberFormat format = NumberFormat.getInstance();
+	DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+	if (format instanceof DecimalFormat) {
+	    symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
+	}
+	DecimalFormat style = new DecimalFormat("0.##########", symbols);
 
 	if (imag == 0) {
 	    buffer.append(style.format(real));

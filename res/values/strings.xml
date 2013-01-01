@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.3</string>
+    <string name="app_version">1.3.1</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -224,7 +224,7 @@
     <string name="power">Power</string>
     <string name="static_friction">Static Friction</string>
     <string name="tangent_accel">Tangential Acceleration</string>
-    <string name="tangent_speed">Tangentual Speed</string>
+    <string name="tangent_speed">Tangential Speed</string>
     <string name="vector_comp">Vector Components</string>
     <string name="velocity_equ">Velocity Equations</string>
     <string name="vec_add_sub">Vector Addition and Subtraction</string>
