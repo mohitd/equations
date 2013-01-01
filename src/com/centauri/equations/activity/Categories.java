@@ -59,6 +59,8 @@ public class Categories extends SherlockFragmentActivity implements
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.main);
 
+	AppRater.appLaunched(this);
+
 	String[] categories = getResources().getStringArray(R.array.categories);
 
 	Cursor algebraCursor = getContentResolver().query(

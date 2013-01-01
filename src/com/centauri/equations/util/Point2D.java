@@ -1,6 +1,8 @@
 package com.centauri.equations.util;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 
 public class Point2D {
     double x;
@@ -75,7 +77,12 @@ public class Point2D {
 
     @Override
     public String toString() {
-	DecimalFormat style = new DecimalFormat("0.###");
-	return "(" + style.format(x) + ", " + style.format(y) + ")";
+	NumberFormat format = NumberFormat.getInstance();
+	DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+	if (format instanceof DecimalFormat) {
+	    symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
+	}
+	DecimalFormat style = new DecimalFormat("0.##########", symbols);
+	return "(" + style.format(x) + "; " + style.format(y) + ")";
     }
 }
