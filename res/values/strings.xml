@@ -23,6 +23,9 @@
     <string name="number_too_large">Number is too large!</string>
     <string name="blank_field">One or more of the fields are blank!</string>
     <string name="cancel">Cancel</string>
+    <string name="favorite">Favorite</string>
+    <string name="added_to_favorites">Added to Favorites!</string>
+    <string name="removed_from_favorites">Removed from Favorites!</string>
 
     <string-array name="themesEntry">
         <item>Holo Dark</item>
@@ -150,6 +153,7 @@
         <item>Trigonometry</item>
         <item>Chemistry</item>
         <item>Physics</item>
+        <item>Favorites</item>
     </string-array>
 
     <string name="answer">Answer</string>

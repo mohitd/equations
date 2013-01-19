@@ -51,6 +51,8 @@ public class Categories extends SherlockFragmentActivity implements
 
     private SimpleCursorAdapter physicsAdapter;
 
+    private SimpleCursorAdapter favoritesAdapter;
+
     private FormulasListFragment formulasFragment;
 
     /** Called when the activity is first created. */
@@ -83,6 +85,9 @@ public class Categories extends SherlockFragmentActivity implements
 		Equations.Formula.CONTENT_URI, PROJECTION,
 		"category=\"" + categories[4] + "\"", null,
 		Equations.Formula.FORMULA_NAME + " ASC");
+	Cursor favoritesCursor = getContentResolver().query(
+		Formula.CONTENT_URI, PROJECTION, Formula.FAVORITE + "=1", null,
+		Formula.FORMULA_NAME + " ASC");
 
 	algebraAdapter = new SimpleCursorAdapter(this,
 		android.R.layout.simple_list_item_1, algebraCursor, from, to, 0);
@@ -95,6 +100,9 @@ public class Categories extends SherlockFragmentActivity implements
 		android.R.layout.simple_list_item_1, chemCursor, from, to, 0);
 	physicsAdapter = new SimpleCursorAdapter(this,
 		android.R.layout.simple_list_item_1, physicsCursor, from, to, 0);
+	favoritesAdapter = new SimpleCursorAdapter(this,
+		android.R.layout.simple_list_item_1, favoritesCursor, from, to,
+		0);
 
 	ArrayAdapter<String> _adapter = new ArrayAdapter<String>(this,
 		android.R.layout.simple_spinner_item, categories);
@@ -192,6 +200,9 @@ public class Categories extends SherlockFragmentActivity implements
 	    break;
 	case 4:
 	    formulasFragment.getListView().setAdapter(physicsAdapter);
+	    break;
+	case 5:
+	    formulasFragment.getListView().setAdapter(favoritesAdapter);
 	    break;
 	}
 	return false;
