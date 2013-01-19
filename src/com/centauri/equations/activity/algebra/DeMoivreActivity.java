@@ -24,6 +24,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
 import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaMap;
 import com.centauri.equations.provider.Equations.Formula;
 
 /**
@@ -34,7 +35,7 @@ public class DeMoivreActivity extends Categories {
     public static final String ACTION_DE_MOIVRE = "com.centauri.equations.action.DE_MOIVRE";
 
     private static boolean favorite;
-    private static String id;
+    private static long id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,11 @@ public class DeMoivreActivity extends Categories {
 
 	transaction.commit();
 
-	id = getIntent().getData().getPathSegments().get(1);
+	id = FormulaMap.getId(getIntent().getAction());
 	Cursor cursor = getContentResolver().query(Formula.CONTENT_URI,
 		new String[] { Formula._ID, Formula.FAVORITE },
 		Formula._ID + "=" + id, null, null);
+	cursor.moveToFirst();
 	favorite = (cursor.getInt(cursor
 		.getColumnIndexOrThrow(Formula.FAVORITE)) == 0) ? false : true;
 
@@ -68,6 +70,10 @@ public class DeMoivreActivity extends Categories {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+	if (favorite) {
+	    MenuItem item = menu.findItem(R.id.menu_fav);
+	    item.setIcon(R.drawable.rate_star_big_on_holo_light);
+	}
 	return true;
     }
 
@@ -79,6 +85,8 @@ public class DeMoivreActivity extends Categories {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+	MenuInflater inflater = getSupportMenuInflater();
+	inflater.inflate(R.menu.formula_menu, menu);
 	return true;
     }
 
@@ -91,6 +99,29 @@ public class DeMoivreActivity extends Categories {
 		    | Intent.FLAG_ACTIVITY_NEW_TASK);
 	    startActivity(parentIntent);
 	    finish();
+	    return true;
+	case R.id.menu_fav:
+	    Uri uri = ContentUris.withAppendedId(Formula.CONTENT_URI, id);
+	    ContentValues values = new ContentValues();
+	    if (favorite) {
+		favorite = false;
+		values.put(Formula.FAVORITE, 0);
+
+		Toast.makeText(
+			this,
+			getResources().getString(
+				R.string.removed_from_favorites),
+			Toast.LENGTH_SHORT).show();
+	    } else if (!favorite) {
+		favorite = true;
+		values.put(Formula.FAVORITE, 1);
+
+		Toast.makeText(this,
+			getResources().getString(R.string.added_to_favorites),
+			Toast.LENGTH_SHORT).show();
+	    }
+	    getContentResolver().update(uri, values, null, null);
+	    invalidateOptionsMenu();
 	    return true;
 	}
 	return false;
@@ -122,77 +153,6 @@ public class DeMoivreActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.de_moivre);
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.actionbarsherlock.app.SherlockFragment#onCreateOptionsMenu(com
-	 * .actionbarsherlock.view.Menu,
-	 * com.actionbarsherlock.view.MenuInflater)
-	 */
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-	    inflater.inflate(R.menu.formula_menu, menu);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.actionbarsherlock.app.SherlockFragment#onPrepareOptionsMenu(com
-	 * .actionbarsherlock.view.Menu)
-	 */
-	@Override
-	public void onPrepareOptionsMenu(Menu menu) {
-	    if (favorite) {
-		MenuItem item = menu.findItem(R.id.menu_fav);
-		item.setIcon(R.drawable.rate_star_big_on);
-	    }
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.actionbarsherlock.app.SherlockFragment#onOptionsItemSelected(
-	 * com.actionbarsherlock.view.MenuItem)
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	    case R.id.menu_fav:
-		Uri uri = ContentUris.withAppendedId(Formula.CONTENT_URI,
-			Long.parseLong(id));
-		ContentValues values = new ContentValues();
-		if (favorite) {
-		    favorite = false;
-		    values.put(Formula.FAVORITE, 0);
-
-		    Toast.makeText(
-			    getActivity(),
-			    getResources().getString(
-				    R.string.removed_from_favorites),
-			    Toast.LENGTH_SHORT).show();
-		} else if (!favorite) {
-		    favorite = true;
-		    values.put(Formula.FAVORITE, 1);
-
-		    Toast.makeText(
-			    getActivity(),
-			    getResources().getString(
-				    R.string.added_to_favorites),
-			    Toast.LENGTH_SHORT).show();
-		}
-		getActivity().getContentResolver().update(uri, values, null,
-			null);
-		getActivity().invalidateOptionsMenu();
-		return true;
-
-	    default:
-		return false;
-	    }
 	}
     }
 }

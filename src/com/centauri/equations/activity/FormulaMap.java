@@ -275,4 +275,15 @@ public class FormulaMap {
 	Fragment fragment = fragmentMap.get((int) id);
 	return fragment;
     }
+
+    public static long getId(String action) {
+	long id = 0;
+	for (int i = 0; i < formulaMap.size(); i++) {
+	    if (action.equals(formulaMap.get(i))) {
+		return i;
+	    }
+	}
+
+	return id;
+    }
 }

@@ -53,6 +53,7 @@ public class EquationsProvider extends ContentProvider {
 		+ SearchManager.SUGGEST_COLUMN_SHORTCUT_ID);
 	projectionMap.put(Formula.FORMULA_NAME, Formula.FORMULA_NAME);
 	projectionMap.put(Formula.CATEGORY, Formula.CATEGORY);
+	projectionMap.put(Formula.FAVORITE, Formula.FAVORITE);
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
