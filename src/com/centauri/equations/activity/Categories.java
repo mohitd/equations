@@ -27,7 +27,8 @@ import com.centauri.equations.provider.Equations.Formula;
 public class Categories extends SherlockFragmentActivity implements
 	OnNavigationListener {
 
-    private final String[] PROJECTION = { Formula._ID, Formula.FORMULA_NAME, };
+    private final String[] PROJECTION = { Formula._ID, Formula.FORMULA_NAME,
+	    Formula.FAVORITE };
 
     private final String[] from = { Formula.FORMULA_NAME };
 
@@ -35,7 +36,7 @@ public class Categories extends SherlockFragmentActivity implements
 
     private static int spinnerPosition = 0;
 
-    private static boolean dualPane = false;
+    public static boolean dualPane = false;
 
     private SpinnerAdapter adapter;
 
@@ -86,8 +87,9 @@ public class Categories extends SherlockFragmentActivity implements
 		"category=\"" + categories[4] + "\"", null,
 		Equations.Formula.FORMULA_NAME + " ASC");
 	Cursor favoritesCursor = getContentResolver().query(
-		Formula.CONTENT_URI, PROJECTION, Formula.FAVORITE + "=1", null,
-		Formula.FORMULA_NAME + " ASC");
+		Equations.Formula.CONTENT_URI, PROJECTION,
+		Formula.FAVORITE + " = \"1\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
 
 	algebraAdapter = new SimpleCursorAdapter(this,
 		android.R.layout.simple_list_item_1, algebraCursor, from, to, 0);
@@ -185,6 +187,11 @@ public class Categories extends SherlockFragmentActivity implements
 
     public boolean onNavigationItemSelected(int position, long id) {
 	Categories.spinnerPosition = position;
+	Cursor newFavoritesCursor = getContentResolver().query(
+		Equations.Formula.CONTENT_URI, PROJECTION,
+		Formula.FAVORITE + " = \"1\"", null,
+		Equations.Formula.FORMULA_NAME + " ASC");
+	favoritesAdapter.changeCursor(newFavoritesCursor);
 	switch (position) {
 	case 0:
 	    formulasFragment.getListView().setAdapter(algebraAdapter);
@@ -205,7 +212,7 @@ public class Categories extends SherlockFragmentActivity implements
 	    formulasFragment.getListView().setAdapter(favoritesAdapter);
 	    break;
 	}
-	return false;
+	return true;
     }
 
     public static class FormulasListFragment extends SherlockListFragment {

@@ -3,12 +3,9 @@ package com.centauri.equations.activity.chem;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -19,15 +16,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.chem.IdealGas;
 
-public class IdealGasActivity extends Categories {
+public class IdealGasActivity extends FormulaActivity {
 
     public static final String ACTION_GAS_LAW = "com.centauri.equations.action.GAS_LAW";
 
@@ -36,30 +31,6 @@ public class IdealGasActivity extends Categories {
 	super.onCreate(savedInstanceState);
 	getSupportFragmentManager().beginTransaction()
 		.add(android.R.id.content, new IdealGasFragment()).commit();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
     }
 
     @Override
@@ -72,19 +43,13 @@ public class IdealGasActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class IdealGasFragment extends SherlockFragment implements
+    public static class IdealGasFragment extends FormulaFragment implements
 	    OnClickListener, OnItemSelectedListener {
 
 	private ArrayAdapter<CharSequence> adapter;
 	private Spinner spinner;
 
 	private EditText a_txt, b_txt, c_txt;
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.variable, container, false);
-	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -205,6 +170,29 @@ public class IdealGasActivity extends Categories {
 	    b_txt.setText("");
 	    c_txt.setText("");
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.variable;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
     }
 
 }

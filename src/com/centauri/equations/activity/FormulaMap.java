@@ -286,4 +286,34 @@ public class FormulaMap {
 
 	return id;
     }
+
+    public static long getId(Fragment fragment) {
+	long id = 0;
+	for (int i = 0; i < fragmentMap.size(); i++) {
+	    if (fragment.equals(fragmentMap.get(i))) {
+		id = i;
+	    }
+	}
+
+	return id;
+    }
+
+    // TODO Better workaround?
+    public static long getId(Fragment fragment, String action) {
+	if (Categories.dualPane) {
+	    for (int i = 0; i < fragmentMap.size(); i++) {
+		if (fragment.equals(fragmentMap.get(i))) {
+		    return i;
+		}
+	    }
+	} else if (!Categories.dualPane) {
+	    for (int i = 0; i < formulaMap.size(); i++) {
+		if (action.equals(formulaMap.get(i))) {
+		    return i;
+		}
+	    }
+	}
+
+	return -1;
+    }
 }
