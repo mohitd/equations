@@ -32,7 +32,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		    public boolean onPreferenceClick(Preference preference) {
 			Intent emailIntent = new Intent(Intent.ACTION_SEND);
 			emailIntent.putExtra(Intent.EXTRA_EMAIL,
-				new String[] { "centauricompany@yahoo.com" });
+				new String[] { "centauriappsco@gmail.com" });
 			emailIntent.setType("plain/text");
 			emailIntent
 				.putExtra(Intent.EXTRA_SUBJECT, "Feedback: ");

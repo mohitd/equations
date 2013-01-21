@@ -22,5 +22,6 @@ public final class Equations {
 
 	public static final String FORMULA_NAME = SearchManager.SUGGEST_COLUMN_TEXT_1;
 	public static final String CATEGORY = "category";
+	public static final String FAVORITE = "favorite";
     }
 }

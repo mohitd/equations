@@ -1,22 +1,16 @@
 package com.centauri.equations.activity.trig;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
-public class TrigActivity extends Categories {
+public class TrigActivity extends FormulaActivity {
 
     public static final String ACTION_SINES = "com.centauri.equations.action.LAW_OF_SINES";
     public static final String ACTION_COSINES = "com.centauri.equations.action.LAW_OF_COSINES";
@@ -78,30 +72,6 @@ public class TrigActivity extends Categories {
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
-    }
-
-    @Override
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
@@ -110,13 +80,7 @@ public class TrigActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class LawOfSinesFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class LawOfSinesFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -127,15 +91,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.law_of_sines);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class LawOfCosinesFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class LawOfCosinesFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -146,15 +126,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.law_of_cosines);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class LawOfTangentsFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class LawOfTangentsFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -165,15 +161,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.law_of_tangents);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class ProductToSumFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class ProductToSumFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -184,15 +196,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.product_sum_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class SumToProductFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class SumToProductFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -203,15 +231,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.sum_product_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class PowerReductionFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class PowerReductionFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -222,15 +266,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.power_reduction_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class SumDifferenceFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class SumDifferenceFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -241,15 +301,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.sum_difference_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class EvenOddFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class EvenOddFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -260,15 +336,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.even_odd_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class CofunctionFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class CofunctionFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -279,15 +371,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.cofunction_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class PythagoreanIdentitiesFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class PythagoreanIdentitiesFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -298,15 +406,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.pythagorean_identities);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class QuotientFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class QuotientFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -317,15 +441,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.quotient_formulas);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class RightTriangleFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class RightTriangleFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -336,15 +476,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.right_triangle_definitions);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class ReciprocalFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class ReciprocalFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -355,15 +511,31 @@ public class TrigActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.reciprocal_identities);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class TrigFormFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class TrigFormFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -373,6 +545,28 @@ public class TrigActivity extends Categories {
 	    image.setImageResource(R.drawable.img_trig_trig_form);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.trig_form);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
 	}
     }
 }

@@ -3,25 +3,19 @@
  */
 package com.centauri.equations.activity.physics;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
 /**
  * @author mohitd2000
  * 
  */
-public class VectorComponentsActivity extends Categories {
+public class VectorComponentsActivity extends FormulaActivity {
     public static final String ACTION_VECTOR_COMP = "com.centauri.equations.action.VECTOR_COMP";
 
     @Override
@@ -29,30 +23,6 @@ public class VectorComponentsActivity extends Categories {
 	super.onCreate(savedInstanceState);
 	getSupportFragmentManager().beginTransaction()
 		.add(android.R.id.content, new VectorCompFragment()).commit();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
     }
 
     @Override
@@ -65,19 +35,35 @@ public class VectorComponentsActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class VectorCompFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class VectorCompFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    ((ImageView) getView().findViewById(R.id.img_formula))
 		    .setImageResource(R.drawable.img_phy_vector_components);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
 	}
     }
 }

@@ -3,27 +3,21 @@
  */
 package com.centauri.equations.activity.algebra;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
 /**
  * @author mohitd2000
  * 
  */
-public class DeMoivreActivity extends Categories {
+public class DeMoivreActivity extends FormulaActivity {
     public static final String ACTION_DE_MOIVRE = "com.centauri.equations.action.DE_MOIVRE";
 
     @Override
@@ -43,42 +37,6 @@ public class DeMoivreActivity extends Categories {
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.centauri.equations.activity.Categories#onPrepareOptionsMenu(com.
-     * actionbarsherlock.view.Menu)
-     */
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.centauri.equations.activity.Categories#onCreateOptionsMenu(com.
-     * actionbarsherlock.view.Menu)
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
-    }
-
     @Override
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
@@ -88,13 +46,7 @@ public class DeMoivreActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class DeMoivreFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class DeMoivreFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -104,6 +56,30 @@ public class DeMoivreActivity extends Categories {
 	    image.setImageResource(R.drawable.img_alg_demoivre);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.de_moivre);
+
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
     }
 }

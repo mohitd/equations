@@ -3,27 +3,22 @@ package com.centauri.equations.activity.algebra;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.Point2D;
 
-public class SlopeActivity extends Categories {
+public class SlopeActivity extends FormulaActivity {
 
     public static final String ACTION_SLOPE = "com.centauri.equations.action.SLOPE";
 
@@ -32,30 +27,6 @@ public class SlopeActivity extends Categories {
 	super.onCreate(savedInstanceState);
 	getSupportFragmentManager().beginTransaction()
 		.add(android.R.id.content, new SlopeFragment()).commit();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
     }
 
     @Override
@@ -68,16 +39,10 @@ public class SlopeActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class SlopeFragment extends SherlockFragment implements
+    public static class SlopeFragment extends FormulaFragment implements
 	    OnClickListener {
 
 	private EditText x1_txt, y1_txt, x2_txt, y2_txt;
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.points2d, container, false);
-	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -144,5 +109,28 @@ public class SlopeActivity extends Categories {
 	    x2_txt.setText("");
 	    y2_txt.setText("");
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.points2d;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
     }
 }
