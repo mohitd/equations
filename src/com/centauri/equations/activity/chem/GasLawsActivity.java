@@ -1,22 +1,16 @@
 package com.centauri.equations.activity.chem;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
-public class GasLawsActivity extends Categories {
+public class GasLawsActivity extends FormulaActivity {
 
     public static final String ACTION_GAS_CONSTANT = "com.centauri.equations.action.GAS_CONSTANT";
     public static final String ACTION_BOYLE_LAW = "com.centauri.equations.action.BOYLES_LAW";
@@ -52,30 +46,6 @@ public class GasLawsActivity extends Categories {
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
-    }
-
-    @Override
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
@@ -84,13 +54,7 @@ public class GasLawsActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class GasConstantFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class GasConstantFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -101,15 +65,31 @@ public class GasLawsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.ideal_gas_const);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
     }
 
-    public static class BoylesLawFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class BoylesLawFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -120,15 +100,31 @@ public class GasLawsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.boyle_law);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
     }
 
-    public static class CharlesLawFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class CharlesLawFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -139,15 +135,31 @@ public class GasLawsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.charles_law);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
     }
 
-    public static class GayLussacLawFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class GayLussacLawFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -158,15 +170,31 @@ public class GasLawsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.gay_lussacs_law);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
     }
 
-    public static class DaltonsFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class DaltonsFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -177,15 +205,31 @@ public class GasLawsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.daltons_law);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
     }
 
-    public static class CombinedGasLawFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class CombinedGasLawFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -195,6 +239,28 @@ public class GasLawsActivity extends Categories {
 	    image.setImageResource(R.drawable.img_chem_combined_gas);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.combined_gas_law);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
 	}
     }
 

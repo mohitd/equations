@@ -1,19 +1,13 @@
 package com.centauri.equations.activity.chem;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
-public class FunctionalGroupsActivity extends Categories {
+public class FunctionalGroupsActivity extends FormulaActivity {
 
     public static final String ACTION_FUNCTION_GROUPS = "com.centauri.equations.action.FUNCTION_GROUPS";
 
@@ -26,30 +20,6 @@ public class FunctionalGroupsActivity extends Categories {
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
-    }
-
-    @Override
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
@@ -59,12 +29,28 @@ public class FunctionalGroupsActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class FunctionalGroupFragment extends SherlockFragment {
+    public static class FunctionalGroupFragment extends FormulaFragment {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.table_functional_groups,
-		    container, false);
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.table_functional_groups;
 	}
     }
 }

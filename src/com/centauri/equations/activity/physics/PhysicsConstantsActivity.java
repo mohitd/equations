@@ -1,22 +1,16 @@
 package com.centauri.equations.activity.physics;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.FormulaActivity;
+import com.centauri.equations.activity.FormulaMap;
 
-public class PhysicsConstantsActivity extends Categories {
+public class PhysicsConstantsActivity extends FormulaActivity {
 
     public static final String ACTION_PLANCK_CONSTANT = "com.centauri.equations.action.PLANCK_CONSTANT";
     public static final String ACTION_SPEED_OF_LIGHT = "com.centauri.equations.action.SPEED_OF_LIGHT";
@@ -53,30 +47,6 @@ public class PhysicsConstantsActivity extends Categories {
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case android.R.id.home:
-	    Intent parentIntent = new Intent(this, Categories.class);
-	    parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-		    | Intent.FLAG_ACTIVITY_NEW_TASK);
-	    startActivity(parentIntent);
-	    finish();
-	    return true;
-	}
-	return false;
-    }
-
-    @Override
     protected void setupActionBar() {
 	getSupportActionBar().setNavigationMode(
 		ActionBar.NAVIGATION_MODE_STANDARD);
@@ -85,13 +55,7 @@ public class PhysicsConstantsActivity extends Categories {
 	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public static class PlancksConstantFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class PlancksConstantFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -102,15 +66,31 @@ public class PhysicsConstantsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.planck_constant);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class SpeedOfLightFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class SpeedOfLightFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -121,15 +101,31 @@ public class PhysicsConstantsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.speed_of_light);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class PermittivityFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class PermittivityFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -140,15 +136,31 @@ public class PhysicsConstantsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.permittivity_of_free_space);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class GravitationConstantFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class GravitationConstantFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -159,15 +171,31 @@ public class PhysicsConstantsActivity extends Categories {
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.gravitation_constant);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
+	}
     }
 
-    public static class GravitationAccelFragment extends SherlockFragment {
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.single_image, container, false);
-	}
+    public static class GravitationAccelFragment extends FormulaFragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -177,6 +205,28 @@ public class PhysicsConstantsActivity extends Categories {
 	    image.setImageResource(R.drawable.img_phy_gravitational_accel);
 	    ((SherlockFragmentActivity) getActivity()).getSupportActionBar()
 		    .setTitle(R.string.gravitational_acceleration);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity.FormulaFragment#
+	 * getFragmentView()
+	 */
+	@Override
+	protected int getFragmentView() {
+	    return R.layout.single_image;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.centauri.equations.activity.FormulaActivity#getID()
+	 */
+	@Override
+	protected long getID() {
+	    return FormulaMap
+		    .getId(this, getActivity().getIntent().getAction());
 	}
     }
 }

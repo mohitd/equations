@@ -26,7 +26,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -53,6 +53,7 @@ public class EquationsProvider extends ContentProvider {
 		+ SearchManager.SUGGEST_COLUMN_SHORTCUT_ID);
 	projectionMap.put(Formula.FORMULA_NAME, Formula.FORMULA_NAME);
 	projectionMap.put(Formula.CATEGORY, Formula.CATEGORY);
+	projectionMap.put(Formula.FAVORITE, Formula.FAVORITE);
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -70,7 +71,8 @@ public class EquationsProvider extends ContentProvider {
 		    + " (" + BaseColumns._ID
 		    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 		    + SearchManager.SUGGEST_COLUMN_TEXT_1 + " TEXT,"
-		    + Formula.CATEGORY + " TEXT" + ");");
+		    + Formula.CATEGORY + " TEXT," + Formula.FAVORITE
+		    + " INTEGER" + ");");
 	    Resources res = context.getResources();
 
 	    // 1
