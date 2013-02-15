@@ -8,13 +8,14 @@ import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.centauri.equations.R;
+import com.centauri.equations.activity.FormulaActivity;
 import com.centauri.equations.activity.FormulaMap;
 
 /**
  * @author mohitd2000
  * 
  */
-public class AngularSpeedActivity extends ForceActivity {
+public class AngularSpeedActivity extends FormulaActivity {
 
     public static final String ACTION_ANGULAR_SPEED = "com.centauri.equations.action.ANGULAR_SPEED";
 

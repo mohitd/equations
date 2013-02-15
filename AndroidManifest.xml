@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.centauri.equations"
-    android:versionCode="9"
+    android:versionCode="10"
     android:versionName="@string/app_version"
     android:installLocation="auto">
 
@@ -23,14 +23,14 @@
             android:name="android.app.default_searchable"
             android:value=".activity.SearchActivity" />
 
-        <activity android:name="com.centauri.equations.activity.settings.SettingsActivity" >
+        <activity android:name="com.centauri.equations.activity.settings.SettingsActivity" android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PREFERENCES" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.Categories" >
+        <activity android:name="com.centauri.equations.activity.Categories" android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,35 +57,35 @@
 
         <!-- Algebraic formulas -->
 
-        <activity android:name="com.centauri.equations.activity.algebra.QuadraticFormulaActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.QuadraticFormulaActivity" android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="com.centauri.equations.action.QUADRATIC" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.algebra.DistanceFormulaActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.DistanceFormulaActivity" android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="com.centauri.equations.action.DISTANCE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.algebra.RadicalActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.RadicalActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.RADICAL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.algebra.SlopeActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.SlopeActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.SLOPE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.algebra.LogarithmActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.LogarithmActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.LOG_DEF" />
                 <action android:name="com.centauri.equations.action.LOG_IDENTITY" />
@@ -94,7 +94,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.algebra.SummationActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.SummationActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.SUM_DEF" />
                 <action android:name="com.centauri.equations.action.SUM_PROP" />
@@ -103,7 +103,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.algebra.VectorActivity" >
+        <activity android:name="com.centauri.equations.activity.algebra.VectorActivity" android:configChanges="orientation|screenSize">
             <intent-filter >
 				<action android:name="com.centauri.equations.action.VEC_ADD_SUB"/>
 				<action android:name="com.centauri.equations.action.VEC_DEF" />
@@ -117,7 +117,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.algebra.DeMoivreActivity">
+        <activity android:name="com.centauri.equations.activity.algebra.DeMoivreActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.DE_MOIVRE"/>
                 
@@ -125,7 +125,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.algebra.EulerFormulaActivity">
+        <activity android:name="com.centauri.equations.activity.algebra.EulerFormulaActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.EULER_FORMULA"/>
                 
@@ -135,21 +135,21 @@
 
         <!-- Geometric formulas -->
 
-        <activity android:name="com.centauri.equations.activity.geometry.HeronsFormulaActivity" >
+        <activity android:name="com.centauri.equations.activity.geometry.HeronsFormulaActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.HERON" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.geometry.AreaActivity" >
+        <activity android:name="com.centauri.equations.activity.geometry.AreaActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.AREA" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.geometry.PythagoreanActivity" >
+        <activity android:name="com.centauri.equations.activity.geometry.PythagoreanActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PYTHAGOREAN" />
 
@@ -159,7 +159,7 @@
 
         <!-- Trigonometry -->
 
-        <activity android:name="com.centauri.equations.activity.trig.TrigActivity" >
+        <activity android:name="com.centauri.equations.activity.trig.TrigActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.LAW_OF_SINES" />
                 <action android:name="com.centauri.equations.action.LAW_OF_COSINES" />
@@ -182,7 +182,7 @@
 
         <!-- Chemistry -->
 
-        <activity android:name="com.centauri.equations.activity.chem.IdealGasActivity" >
+        <activity android:name="com.centauri.equations.activity.chem.IdealGasActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.GAS_LAW" />
 
@@ -201,14 +201,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.chem.FunctionalGroupsActivity" >
+        <activity android:name="com.centauri.equations.activity.chem.FunctionalGroupsActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.FUNCTION_GROUPS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.chem.AcidBaseActivity" >
+        <activity android:name="com.centauri.equations.activity.chem.AcidBaseActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.ACID_BASE_EQUATIONS" />
 
@@ -218,119 +218,119 @@
 
         <!-- Physics formulas -->
 
-        <activity android:name="com.centauri.equations.activity.physics.OneDimensionMotionActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.OneDimensionMotionActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.1D_MOTION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.ForceActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.ForceActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.FORCE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.TorqueActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.TorqueActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.TORQUE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.CentripetalForceActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.CentripetalForceActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.CENTRIPETAL_FORCE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.CentripetalAccelActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.CentripetalAccelActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.CENTRIPETAL_ACCEL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.GravitationActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.GravitationActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.GRAVITATION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileHeightActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileHeightActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.MAX_PROJECTILE_HEIGHT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileRangeActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.MaxProjectileRangeActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.MAX_PROJECTILE_RANGE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.CoulombsLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.CoulombsLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.COULOMBS_LAW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.EscapeVelocityActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.EscapeVelocityActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.ESCAPE_VELOCITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.MomentumActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.MomentumActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.MOMENTUM" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.WorkActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.WorkActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.WORK" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.OhmsLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.OhmsLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.OHMS_LAW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.ParticleEnergyActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.ParticleEnergyActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PARTICLE_ENERGY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.ResistanceActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.ResistanceActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.RESISTANCE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.BernoullisLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.BernoullisLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.BERNOULLIS_LAW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.activity.physics.PhysicsConstantsActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.PhysicsConstantsActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PLANCK_CONSTANT" />
                 <action android:name="com.centauri.equations.action.SPEED_OF_LIGHT" />
@@ -342,7 +342,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.AngularSpeedActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.AngularSpeedActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.ANGULAR_SPEED" />
 
@@ -350,7 +350,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.AverageAngularAccelActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.AverageAngularAccelActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.AVERAGE_ANGULAR_ACCEL" />
 
@@ -358,7 +358,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.AverageAccelActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.AverageAccelActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.AVERAGE_ACCEL" />
 
@@ -366,7 +366,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.AverageVelocityActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.AverageVelocityActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.AVERAGE_VELOCITY" />
 
@@ -374,7 +374,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.DisplacementActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.DisplacementActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.DISPLACEMENT" />
 
@@ -382,7 +382,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.GravitationEnergyActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.GravitationEnergyActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.GRAV_ENERGY" />
 
@@ -390,7 +390,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.HookesLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.HookesLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.HOOKES_LAW" />
 
@@ -398,7 +398,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.ImpulseActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.ImpulseActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.IMPULSE" />
 
@@ -406,7 +406,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.InstantAccelActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.InstantAccelActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.INSTANT_ACCEL" />
 
@@ -414,7 +414,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.InstantVelocityActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.InstantVelocityActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.INSTANT_VELOCITY" />
 
@@ -422,7 +422,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.KeplersThirdLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.KeplersThirdLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.KEPLERS_3_LAW" />
 
@@ -430,7 +430,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.KineticEnergyActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.KineticEnergyActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.KINETIC_ENERGY" />
 
@@ -438,7 +438,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.NewtonsThirdLawActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.NewtonsThirdLawActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.NEWTONS_3_LAW" />
 
@@ -446,7 +446,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.PowerActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.PowerActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.POWER" />
 
@@ -454,7 +454,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.StaticFrictionActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.StaticFrictionActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.STATIC_FRICTION" />
 
@@ -462,7 +462,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.TangentAccelActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.TangentAccelActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.TANGENT_ACCEL" />
 
@@ -470,7 +470,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.TangentSpeedActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.TangentSpeedActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.TANGENT_SPEED" />
 
@@ -478,7 +478,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.VectorComponentsActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.VectorComponentsActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.VECTOR_COMP" />
 
@@ -486,7 +486,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.centauri.equations.activity.physics.VelocityEquActivity" >
+        <activity android:name="com.centauri.equations.activity.physics.VelocityEquActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.VELOCITY_EQU" />
 
