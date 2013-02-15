@@ -68,6 +68,7 @@ public abstract class FormulaActivity extends SherlockFragmentActivity {
 		favorite = (cursor.getInt(cursor
 			.getColumnIndexOrThrow(Formula.FAVORITE)) == 0) ? false
 			: true;
+	    cursor.close();
 	}
 
 	@Override
@@ -79,9 +80,11 @@ public abstract class FormulaActivity extends SherlockFragmentActivity {
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
+	    MenuItem item = menu.findItem(R.id.menu_fav);
 	    if (favorite) {
-		MenuItem item = menu.findItem(R.id.menu_fav);
 		item.setIcon(R.drawable.rate_star_big_on_holo_light);
+	    } else {
+		item.setIcon(R.drawable.rate_star_big_off_holo_light);
 	    }
 	}
 
