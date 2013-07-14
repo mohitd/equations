@@ -3,65 +3,30 @@ package com.centauri.equations.activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
+import android.util.SparseIntArray;
 
-import com.centauri.equations.activity.algebra.DeMoivreActivity;
+import com.centauri.equations.R;
 import com.centauri.equations.activity.algebra.DistanceFormulaActivity;
-import com.centauri.equations.activity.algebra.EulerFormulaActivity;
-import com.centauri.equations.activity.algebra.LogarithmActivity;
 import com.centauri.equations.activity.algebra.QuadraticFormulaActivity;
 import com.centauri.equations.activity.algebra.RadicalActivity;
 import com.centauri.equations.activity.algebra.SlopeActivity;
-import com.centauri.equations.activity.algebra.SummationActivity;
-import com.centauri.equations.activity.algebra.VectorActivity;
-import com.centauri.equations.activity.chem.AcidBaseActivity;
 import com.centauri.equations.activity.chem.FunctionalGroupsActivity;
-import com.centauri.equations.activity.chem.GasLawsActivity;
-import com.centauri.equations.activity.chem.IdealGasActivity;
 import com.centauri.equations.activity.geometry.AreaActivity;
 import com.centauri.equations.activity.geometry.HeronsFormulaActivity;
 import com.centauri.equations.activity.geometry.PythagoreanActivity;
-import com.centauri.equations.activity.physics.AngularSpeedActivity;
-import com.centauri.equations.activity.physics.AverageAccelActivity;
-import com.centauri.equations.activity.physics.AverageAngularAccelActivity;
-import com.centauri.equations.activity.physics.AverageVelocityActivity;
-import com.centauri.equations.activity.physics.BernoullisLawActivity;
 import com.centauri.equations.activity.physics.CentripetalAccelActivity;
 import com.centauri.equations.activity.physics.CentripetalForceActivity;
 import com.centauri.equations.activity.physics.CoulombsLawActivity;
-import com.centauri.equations.activity.physics.DisplacementActivity;
 import com.centauri.equations.activity.physics.EscapeVelocityActivity;
-import com.centauri.equations.activity.physics.ForceActivity;
 import com.centauri.equations.activity.physics.GravitationActivity;
-import com.centauri.equations.activity.physics.GravitationEnergyActivity;
-import com.centauri.equations.activity.physics.HookesLawActivity;
-import com.centauri.equations.activity.physics.ImpulseActivity;
-import com.centauri.equations.activity.physics.InstantAccelActivity;
-import com.centauri.equations.activity.physics.InstantVelocityActivity;
-import com.centauri.equations.activity.physics.KeplersThirdLawActivity;
-import com.centauri.equations.activity.physics.KineticEnergyActivity;
 import com.centauri.equations.activity.physics.MaxProjectileHeightActivity;
 import com.centauri.equations.activity.physics.MaxProjectileRangeActivity;
-import com.centauri.equations.activity.physics.MomentumActivity;
-import com.centauri.equations.activity.physics.NewtonsThirdLawActivity;
-import com.centauri.equations.activity.physics.OhmsLawActivity;
-import com.centauri.equations.activity.physics.OneDimensionMotionActivity;
-import com.centauri.equations.activity.physics.ParticleEnergyActivity;
-import com.centauri.equations.activity.physics.PhysicsConstantsActivity;
-import com.centauri.equations.activity.physics.PowerActivity;
-import com.centauri.equations.activity.physics.ResistanceActivity;
-import com.centauri.equations.activity.physics.StaticFrictionActivity;
-import com.centauri.equations.activity.physics.TangentAccelActivity;
-import com.centauri.equations.activity.physics.TangentSpeedActivity;
-import com.centauri.equations.activity.physics.TorqueActivity;
-import com.centauri.equations.activity.physics.VectorComponentsActivity;
-import com.centauri.equations.activity.physics.VelocityEquActivity;
-import com.centauri.equations.activity.physics.WorkActivity;
-import com.centauri.equations.activity.trig.TrigActivity;
 
 public class FormulaMap {
 
-    static SparseArray<String> formulaMap = new SparseArray<String>();
-    static SparseArray<Fragment> fragmentMap = new SparseArray<Fragment>();
+    private static SparseArray<String> formulaMap = new SparseArray<String>();
+    private static SparseArray<Fragment> fragmentMap = new SparseArray<Fragment>();
+    private static SparseIntArray imageMap = new SparseIntArray();
 
     static {
         formulaMap.put(1, QuadraticFormulaActivity.ACTION_QUADRATIC);
@@ -71,35 +36,7 @@ public class FormulaMap {
         formulaMap.put(5, AreaActivity.ACTION_AREA);
         formulaMap.put(6, PythagoreanActivity.ACTION_PYTHAGOREAN);
         formulaMap.put(7, HeronsFormulaActivity.ACTION_HERON);
-        formulaMap.put(8, TrigActivity.ACTION_SINES);
-        formulaMap.put(9, TrigActivity.ACTION_COSINES);
-        formulaMap.put(10, TrigActivity.ACTION_TANGENTS);
-        formulaMap.put(11, TrigActivity.ACTION_PRODUCT_SUM);
-        formulaMap.put(12, TrigActivity.ACTION_SUM_PRODUCT);
-        formulaMap.put(13, TrigActivity.ACTION_POWER_REDUCTION);
-        formulaMap.put(14, TrigActivity.ACTION_SUM_DIFFERENCE);
-        formulaMap.put(15, TrigActivity.ACTION_EVEN_ODD);
-        formulaMap.put(16, TrigActivity.ACTION_COFUNCTION);
-        formulaMap.put(17, TrigActivity.ACTION_PYTHAGOREAN_IDENTITY);
-        formulaMap.put(18, TrigActivity.ACTION_QUOTIENT);
-        formulaMap.put(19, TrigActivity.ACTION_RIGHT_TRIANGLE);
-        formulaMap.put(20, TrigActivity.ACTION_RECIPROCAL);
-        formulaMap.put(21, IdealGasActivity.ACTION_GAS_LAW);
-        formulaMap.put(22, GasLawsActivity.ACTION_GAS_CONSTANT);
         formulaMap.put(23, FunctionalGroupsActivity.ACTION_FUNCTION_GROUPS);
-        formulaMap.put(24, LogarithmActivity.ACTION_LOG_DEF);
-        formulaMap.put(25, LogarithmActivity.ACTION_LOG_IDENTITY);
-        formulaMap.put(26, LogarithmActivity.ACTION_LOG_PROP);
-        formulaMap.put(27, SummationActivity.ACTION_SUM_DEF);
-        formulaMap.put(28, SummationActivity.ACTION_SUM_PROP);
-        formulaMap.put(29, GasLawsActivity.ACTION_BOYLE_LAW);
-        formulaMap.put(30, GasLawsActivity.ACTION_CHARLES_LAW);
-        formulaMap.put(31, GasLawsActivity.ACTION_GAY_LUSSAC_LAW);
-        formulaMap.put(32, GasLawsActivity.ACTION_DALTON_LAW);
-        formulaMap.put(33, GasLawsActivity.ACTION_COMBINED_LAW);
-        formulaMap.put(34, OneDimensionMotionActivity.ACTION_1D_MOTION);
-        formulaMap.put(35, ForceActivity.ACTION_FORCE);
-        formulaMap.put(36, TorqueActivity.ACTION_TORQUE);
         formulaMap.put(37, CentripetalForceActivity.ACTION_CENTRIPETAL_FORCE);
         formulaMap.put(38, CentripetalAccelActivity.ACTION_CENTRIPETAL_ACCEL);
         formulaMap.put(39, GravitationActivity.ACTION_GRAVITATION);
@@ -109,49 +46,6 @@ public class FormulaMap {
                 MaxProjectileRangeActivity.ACTION_MAX_PROJECTILE_RANGE);
         formulaMap.put(42, CoulombsLawActivity.ACTION_COULOMBS_LAW);
         formulaMap.put(43, EscapeVelocityActivity.ACTION_ESCAPE_VELOCITY);
-        formulaMap.put(44, MomentumActivity.ACTION_MOMENTUM);
-        formulaMap.put(45, WorkActivity.ACTION_WORK);
-        formulaMap.put(46, OhmsLawActivity.ACTION_OHMS_LAW);
-        formulaMap.put(47, ParticleEnergyActivity.ACTION_PARTICLE_ENERGY);
-        formulaMap.put(48, ResistanceActivity.ACTION_RESISTANCE);
-        formulaMap.put(49, BernoullisLawActivity.ACTION_BERNOULLIS_LAW);
-        formulaMap.put(50, PhysicsConstantsActivity.ACTION_PLANCK_CONSTANT);
-        formulaMap.put(51, PhysicsConstantsActivity.ACTION_SPEED_OF_LIGHT);
-        formulaMap.put(52, PhysicsConstantsActivity.ACTION_PERMITTIVITY);
-        formulaMap
-                .put(53, PhysicsConstantsActivity.ACTION_GRAVITATION_CONSTANT);
-        formulaMap.put(54, PhysicsConstantsActivity.ACTION_GRAVITATION_ACCEL);
-        formulaMap.put(55, AcidBaseActivity.ACTION_ACID_BASE_EQUATIONS);
-        formulaMap.put(56, AngularSpeedActivity.ACTION_ANGULAR_SPEED);
-        formulaMap.put(57, AverageAccelActivity.ACTION_AVERAGE_ACCEL);
-        formulaMap.put(58,
-                AverageAngularAccelActivity.ACTION_AVERAGE_ANGULAR_ACCEL);
-        formulaMap.put(59, AverageVelocityActivity.ACTION_AVERAGE_VELOCITY);
-        formulaMap.put(60, DisplacementActivity.ACTION_DISPLACEMENT);
-        formulaMap.put(61, GravitationEnergyActivity.ACTION_GRAV_ENERGY);
-        formulaMap.put(62, HookesLawActivity.ACTION_HOOKES_LAW);
-        formulaMap.put(63, ImpulseActivity.ACTION_IMPULSE);
-        formulaMap.put(64, InstantAccelActivity.ACTION_INSTANT_ACCEL);
-        formulaMap.put(65, InstantVelocityActivity.ACTION_INSTANT_VELOCITY);
-        formulaMap.put(66, KeplersThirdLawActivity.ACTION_KEPLERS_3_LAW);
-        formulaMap.put(67, KineticEnergyActivity.ACTION_KINETIC_ENERGY);
-        formulaMap.put(68, NewtonsThirdLawActivity.ACTION_NEWTONS_3_LAW);
-        formulaMap.put(69, PowerActivity.ACTION_POWER);
-        formulaMap.put(70, StaticFrictionActivity.ACTION_STATIC_FRICTION);
-        formulaMap.put(71, TangentAccelActivity.ACTION_TANGENT_ACCEL);
-        formulaMap.put(72, TangentSpeedActivity.ACTION_TANGENT_SPEED);
-        formulaMap.put(73, VectorComponentsActivity.ACTION_VECTOR_COMP);
-        formulaMap.put(74, VelocityEquActivity.ACTION_VELOCITY_EQU);
-        formulaMap.put(75, VectorActivity.ACTION_VEC_ADD_SUB);
-        formulaMap.put(76, VectorActivity.ACTION_VEC_DEF);
-        formulaMap.put(77, VectorActivity.ACTION_VEC_DOT);
-        formulaMap.put(78, VectorActivity.ACTION_VEC_PROP);
-        formulaMap.put(79, VectorActivity.ACTION_VEC_SCAL);
-        formulaMap.put(80, DeMoivreActivity.ACTION_DE_MOIVRE);
-        formulaMap.put(81, VectorActivity.ACTION_DOT_PROP);
-        formulaMap.put(82, EulerFormulaActivity.ACTION_EULER_FORMULA);
-        formulaMap.put(83, TrigActivity.ACTION_TRIG_FORM);
-        formulaMap.put(84, VectorActivity.ACTION_VEC_PROJ);
 
         fragmentMap.put(1,
                 new QuadraticFormulaActivity.QuadraticFormulaFragment());
@@ -162,37 +56,8 @@ public class FormulaMap {
         fragmentMap.put(5, new AreaActivity.AreaFragment());
         fragmentMap.put(6, new PythagoreanActivity.PythagoreanFragment());
         fragmentMap.put(7, new HeronsFormulaActivity.HeronsFormulaFragment());
-        fragmentMap.put(8, new TrigActivity.LawOfSinesFragment());
-        fragmentMap.put(9, new TrigActivity.LawOfCosinesFragment());
-        fragmentMap.put(10, new TrigActivity.LawOfTangentsFragment());
-        fragmentMap.put(11, new TrigActivity.ProductToSumFragment());
-        fragmentMap.put(12, new TrigActivity.SumToProductFragment());
-        fragmentMap.put(13, new TrigActivity.PowerReductionFragment());
-        fragmentMap.put(14, new TrigActivity.SumDifferenceFragment());
-        fragmentMap.put(15, new TrigActivity.EvenOddFragment());
-        fragmentMap.put(16, new TrigActivity.CofunctionFragment());
-        fragmentMap.put(17, new TrigActivity.PythagoreanIdentitiesFragment());
-        fragmentMap.put(18, new TrigActivity.QuotientFragment());
-        fragmentMap.put(19, new TrigActivity.RightTriangleFragment());
-        fragmentMap.put(20, new TrigActivity.ReciprocalFragment());
-        fragmentMap.put(21, new IdealGasActivity.IdealGasFragment());
-        fragmentMap.put(22, new GasLawsActivity.GasConstantFragment());
         fragmentMap.put(23,
                 new FunctionalGroupsActivity.FunctionalGroupFragment());
-        fragmentMap.put(24, new LogarithmActivity.LogarithmDefFragment());
-        fragmentMap.put(25, new LogarithmActivity.LogarithmIdentityFragment());
-        fragmentMap.put(26, new LogarithmActivity.LogarithmPropFragment());
-        fragmentMap.put(27, new SummationActivity.SummationDefFragment());
-        fragmentMap.put(28, new SummationActivity.SummationPropFragment());
-        fragmentMap.put(29, new GasLawsActivity.BoylesLawFragment());
-        fragmentMap.put(30, new GasLawsActivity.CharlesLawFragment());
-        fragmentMap.put(31, new GasLawsActivity.GayLussacLawFragment());
-        fragmentMap.put(32, new GasLawsActivity.DaltonsFragment());
-        fragmentMap.put(33, new GasLawsActivity.CombinedGasLawFragment());
-        fragmentMap.put(34,
-                new OneDimensionMotionActivity.OneDimensionMotionFragment());
-        fragmentMap.put(35, new ForceActivity.ForceFragment());
-        fragmentMap.put(36, new TorqueActivity.TorqueFragment());
         fragmentMap.put(37,
                 new CentripetalForceActivity.CentripetalForceFragment());
         fragmentMap.put(38,
@@ -205,115 +70,109 @@ public class FormulaMap {
         fragmentMap.put(42, new CoulombsLawActivity.CoulombsLawFragment());
         fragmentMap
                 .put(43, new EscapeVelocityActivity.EscapeVelocityFragment());
-        fragmentMap.put(44, new MomentumActivity.MomentumFragment());
-        fragmentMap.put(45, new WorkActivity.WorkFragment());
-        fragmentMap.put(46, new OhmsLawActivity.OhmsLawFragment());
-        fragmentMap
-                .put(47, new ParticleEnergyActivity.ParticleEnergyFragment());
-        fragmentMap.put(48, new ResistanceActivity.ResistanceFragment());
-        fragmentMap.put(49, new BernoullisLawActivity.BernoullisLawFragment());
-        fragmentMap.put(50,
-                new PhysicsConstantsActivity.PlancksConstantFragment());
-        fragmentMap
-                .put(51, new PhysicsConstantsActivity.SpeedOfLightFragment());
-        fragmentMap
-                .put(52, new PhysicsConstantsActivity.PermittivityFragment());
-        fragmentMap.put(53,
-                new PhysicsConstantsActivity.GravitationConstantFragment());
-        fragmentMap.put(54,
-                new PhysicsConstantsActivity.GravitationAccelFragment());
-        fragmentMap.put(55, new AcidBaseActivity.AcidBaseFragment());
-        fragmentMap.put(56, new AngularSpeedActivity.AngularSpeedFragment());
-        fragmentMap.put(57, new AverageAccelActivity.AverageAccelFragment());
-        fragmentMap.put(58,
-                new AverageAngularAccelActivity.AverageAngularAccelFragment());
-        fragmentMap.put(59,
-                new AverageVelocityActivity.AverageVelocityFragment());
-        fragmentMap.put(60, new DisplacementActivity.DisplacementFragment());
-        fragmentMap.put(61,
-                new GravitationEnergyActivity.GravitationEnergyFragment());
-        fragmentMap.put(62, new HookesLawActivity.HookesLawFragment());
-        fragmentMap.put(63, new ImpulseActivity.ImpulseFragment());
-        fragmentMap.put(64, new InstantAccelActivity.InstantAccelFragment());
-        fragmentMap.put(65,
-                new InstantVelocityActivity.InstantVelocityFragment());
-        fragmentMap.put(66, new KeplersThirdLawActivity.Keplers3LawFragment());
-        fragmentMap.put(67, new KineticEnergyActivity.KineticEnergyFragment());
-        fragmentMap.put(68, new NewtonsThirdLawActivity.Newtons3LawFragment());
-        fragmentMap.put(69, new PowerActivity.PowerFragment());
-        fragmentMap
-                .put(70, new StaticFrictionActivity.StaticFrictionFragment());
-        fragmentMap.put(71, new TangentAccelActivity.TangentAccelFragment());
-        fragmentMap.put(72, new TangentSpeedActivity.TangentSpeedFragment());
-        fragmentMap.put(73, new VectorComponentsActivity.VectorCompFragment());
-        fragmentMap.put(74, new VelocityEquActivity.VelocityEquFragment());
-        fragmentMap.put(75, new VectorActivity.VectorAddSubFragment());
-        fragmentMap.put(76, new VectorActivity.VectorDefFragment());
-        fragmentMap.put(77, new VectorActivity.VectorDotFragment());
-        fragmentMap.put(78, new VectorActivity.VectorPropFragment());
-        fragmentMap.put(79, new VectorActivity.ScalarMultiplyFragment());
-        fragmentMap.put(80, new DeMoivreActivity.DeMoivreFragment());
-        fragmentMap.put(81, new VectorActivity.DotPropFragment());
-        fragmentMap.put(82, new EulerFormulaActivity.EulerFormulaFragment());
-        fragmentMap.put(83, new TrigActivity.TrigFormFragment());
-        fragmentMap.put(84, new VectorActivity.VectorProjectionFragment());
+
+        imageMap.put(1, R.drawable.img_alg_quadratic);
+        imageMap.put(2, R.drawable.img_alg_distance);
+        imageMap.put(3, R.drawable.img_alg_radical);
+        imageMap.put(8, R.drawable.img_trig_law_of_sines);
+        imageMap.put(9, R.drawable.img_trig_law_of_cosines);
+        imageMap.put(10, R.drawable.img_trig_law_of_tangents);
+        imageMap.put(11, R.drawable.img_trig_product_sum);
+        imageMap.put(12, R.drawable.img_trig_sum_product);
+        imageMap.put(13, R.drawable.img_trig_power_reduce);
+        imageMap.put(14, R.drawable.img_trig_sum_difference);
+        imageMap.put(15, R.drawable.img_trig_even_odd);
+        imageMap.put(16, R.drawable.img_trig_cofunction);
+        imageMap.put(17, R.drawable.img_trig_pythagorean_identities);
+        imageMap.put(18, R.drawable.img_trig_quotient);
+        imageMap.put(19, R.drawable.img_trig_right_triangle);
+        imageMap.put(20, R.drawable.img_trig_reciprocal);
+        imageMap.put(21, R.drawable.img_chem_ideal_gas);
+        imageMap.put(22, R.drawable.img_chem_gas_constant);
+        imageMap.put(24, R.drawable.img_alg_log_def);
+        imageMap.put(25, R.drawable.img_alg_log_identity);
+        imageMap.put(26, R.drawable.img_alg_log_prop);
+        imageMap.put(27, R.drawable.img_alg_sum_def);
+        imageMap.put(28, R.drawable.img_alg_sum_prop);
+        imageMap.put(29, R.drawable.img_chem_boyle);
+        imageMap.put(30, R.drawable.img_chem_charles);
+        imageMap.put(31, R.drawable.img_chem_gay_lussac);
+        imageMap.put(32, R.drawable.img_chem_dalton);
+        imageMap.put(33, R.drawable.img_chem_combined_gas);
+        imageMap.put(34, R.drawable.img_phy_1d_motion);
+        imageMap.put(35, R.drawable.img_phy_newtons_laws);
+        imageMap.put(36, R.drawable.img_phy_torque);
+        imageMap.put(37, R.drawable.img_phy_centripetal_force);
+        imageMap.put(38, R.drawable.img_phy_centripetal_accel);
+        imageMap.put(39, R.drawable.img_phy_gravitation);
+        imageMap.put(40, R.drawable.img_phy_trajectory_height);
+        imageMap.put(41, R.drawable.img_phy_trajectory_distance);
+        imageMap.put(42, R.drawable.img_phy_coulombs_law);
+        imageMap.put(43, R.drawable.img_phy_escape_velocity);
+        imageMap.put(44, R.drawable.img_phy_momentum);
+        imageMap.put(45, R.drawable.img_phy_work);
+        imageMap.put(46, R.drawable.img_phy_ohm);
+        imageMap.put(47, R.drawable.img_phy_energy);
+        imageMap.put(48, R.drawable.img_phy_resistance);
+        imageMap.put(49, R.drawable.img_phy_bernoulli);
+        imageMap.put(50, R.drawable.img_phy_planck_constant);
+        imageMap.put(51, R.drawable.img_phy_speed_of_light);
+        imageMap.put(52, R.drawable.img_phy_permittivity);
+        imageMap.put(53, R.drawable.img_phy_gravitation_constant);
+        imageMap.put(54, R.drawable.img_phy_gravitational_accel);
+        imageMap.put(55, R.drawable.img_chem_acid_base);
+        imageMap.put(56, R.drawable.img_phy_angular_speed);
+        imageMap.put(57, R.drawable.img_phy_average_acceleration);
+        imageMap.put(58, R.drawable.img_phy_average_angular_acceleration);
+        imageMap.put(59, R.drawable.img_phy_average_velocity);
+        imageMap.put(60, R.drawable.img_phy_displacement);
+        imageMap.put(61, R.drawable.img_phy_gravitational_potential_energy);
+        imageMap.put(62, R.drawable.img_phy_hookes_law);
+        imageMap.put(63, R.drawable.img_phy_impulse);
+        imageMap.put(64, R.drawable.img_phy_instantaneous_acceleration);
+        imageMap.put(65, R.drawable.img_phy_instantaneous_velocity);
+        imageMap.put(66, R.drawable.img_phy_keplers_third_law);
+        imageMap.put(67, R.drawable.img_phy_kinetic_energy);
+        imageMap.put(68, R.drawable.img_phy_newtons_third_law);
+        imageMap.put(69, R.drawable.img_phy_power);
+        imageMap.put(70, R.drawable.img_phy_static_friction);
+        imageMap.put(71, R.drawable.img_phy_tangential_acceleration);
+        imageMap.put(72, R.drawable.img_phy_tangential_speed);
+        imageMap.put(73, R.drawable.img_phy_vector_components);
+        imageMap.put(74, R.drawable.img_phy_velocity_equations);
+        imageMap.put(75, R.drawable.img_alg_vector_addsub);
+        imageMap.put(76, R.drawable.img_alg_vector_def);
+        imageMap.put(77, R.drawable.img_alg_vector_dot);
+        imageMap.put(78, R.drawable.img_alg_vector_prop);
+        imageMap.put(79, R.drawable.img_alg_vector_scalar);
+        imageMap.put(80, R.drawable.img_alg_demoivre);
+        imageMap.put(81, R.drawable.img_alg_dot_prop);
+        imageMap.put(82, R.drawable.img_alg_euler_formula);
+        imageMap.put(83, R.drawable.img_trig_trig_form);
+        imageMap.put(84, R.drawable.img_alg_vector_proj);
     }
 
     private FormulaMap() {
     }
 
     public static Intent getIntent(long id) {
-        if (id < 0 || id > 84)
-            throw new IllegalArgumentException("Invalid id: " + id);
         String action = formulaMap.get((int) id);
-        return new Intent(action);
+        if (action == null) {
+            return new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA);
+        } else {
+            return new Intent(action);
+        }
     }
 
     public static Fragment getFragment(long id) {
-        if (id < 0 || id > 84)
-            throw new IllegalArgumentException("Invalid id: " + id);
         Fragment fragment = fragmentMap.get((int) id);
+        if (fragment == null) {
+            fragment = new ImageFormulaActivity.ImageFormulaFragment();
+        }
         return fragment;
     }
 
-    public static long getId(String action) {
-        long id = 0;
-        for (int i = 0; i < formulaMap.size(); i++) {
-            if (action.equals(formulaMap.get(i))) {
-                return i;
-            }
-        }
-
-        return id;
-    }
-
-    public static long getId(Fragment fragment) {
-        long id = 0;
-        for (int i = 0; i < fragmentMap.size(); i++) {
-            if (fragment.equals(fragmentMap.get(i))) {
-                id = i;
-            }
-        }
-
-        return id;
-    }
-
-    // TODO Better workaround?
-    public static long getId(Fragment fragment, String action) {
-        if (Categories.dualPane) {
-            for (int i = 0; i < fragmentMap.size(); i++) {
-                if (fragment.equals(fragmentMap.get(i))) {
-                    return i;
-                }
-            }
-        } else if (!Categories.dualPane) {
-            for (int i = 0; i < formulaMap.size(); i++) {
-                if (action.equals(formulaMap.get(i))) {
-                    return i;
-                }
-            }
-        }
-
-        return -1;
+    public static int getImage(long id) {
+        return imageMap.get((int) id);
     }
 }

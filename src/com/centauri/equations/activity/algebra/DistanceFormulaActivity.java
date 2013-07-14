@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,36 +12,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.FormulaActivity;
-import com.centauri.equations.activity.FormulaMap;
+import com.centauri.equations.activity.ImageFormulaActivity;
+import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.Point2D;
 
-public class DistanceFormulaActivity extends FormulaActivity {
+public class DistanceFormulaActivity extends ImageFormulaActivity {
 
     public static final String ACTION_DISTANCE = "com.centauri.equations.action.DISTANCE";
 
+    /**
+     * @see com.centauri.equations.activity.ImageFormulaActivity#getFragment()
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, new DistanceFormulaFragment())
-                .commit();
+    protected Fragment getFragment() {
+        return new DistanceFormulaFragment();
     }
 
-    @Override
-    protected void setupActionBar() {
-        getSupportActionBar().setNavigationMode(
-                ActionBar.NAVIGATION_MODE_STANDARD);
-        getSupportActionBar().setTitle(R.string.distance_formula);
-        getSupportActionBar().setSubtitle(
-                getResources().getStringArray(R.array.categories)[0]);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public static class DistanceFormulaFragment extends FormulaFragment
+    public static class DistanceFormulaFragment extends ImageFormulaFragment
             implements OnClickListener {
 
         private EditText x1_txt, y1_txt, x2_txt, y2_txt;
@@ -53,7 +43,7 @@ public class DistanceFormulaActivity extends FormulaActivity {
             x2_txt = ((EditText) getView().findViewById(R.id.dist_x2));
             y2_txt = ((EditText) getView().findViewById(R.id.dist_y2));
 
-            ((ImageView) getView().findViewById(R.id.img_point2d))
+            ((ImageView) getView().findViewById(R.id.img_formula))
                     .setImageResource(R.drawable.img_alg_distance);
             ((Button) getView().findViewById(R.id.dist_solve))
                     .setOnClickListener(this);
@@ -121,14 +111,12 @@ public class DistanceFormulaActivity extends FormulaActivity {
             return R.layout.points2d;
         }
 
-        /*
-         * (non-Javadoc)
-         * @see FormulaActivity#getID()
+        /**
+         * @see com.centauri.equations.activity.ImageFormulaActivity.ImageFormulaFragment#getID()
          */
         @Override
         protected long getID() {
-            return FormulaMap
-                    .getId(this, getActivity().getIntent().getAction());
+            return getArguments().getLong(Formula._ID);
         }
 
     }

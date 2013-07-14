@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -17,10 +18,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.FormulaActivity;
-import com.centauri.equations.activity.FormulaMap;
+import com.centauri.equations.activity.ImageFormulaActivity;
+import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.Polygon;
 import com.centauri.equations.util.shape2d.Ellipse;
@@ -30,28 +30,19 @@ import com.centauri.equations.util.shape2d.Sector;
 import com.centauri.equations.util.shape2d.Trapezoid;
 import com.centauri.equations.util.shape2d.Triangle;
 
-public class AreaActivity extends FormulaActivity {
+public class AreaActivity extends ImageFormulaActivity {
 
     public static final String ACTION_AREA = "com.centauri.equations.action.AREA";
 
+    /**
+     * @see com.centauri.equations.activity.ImageFormulaActivity#getFragment()
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, new AreaFragment()).commit();
+    protected Fragment getFragment() {
+        return new AreaFragment();
     }
 
-    @Override
-    protected void setupActionBar() {
-        getSupportActionBar().setNavigationMode(
-                ActionBar.NAVIGATION_MODE_STANDARD);
-        getSupportActionBar().setTitle(R.string.area_formulas);
-        getSupportActionBar().setSubtitle(
-                getResources().getStringArray(R.array.categories)[1]);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public static class AreaFragment extends FormulaFragment implements
+    public static class AreaFragment extends ImageFormulaFragment implements
             OnClickListener, OnItemSelectedListener {
 
         private ArrayAdapter<CharSequence> adapter;
@@ -62,7 +53,7 @@ public class AreaActivity extends FormulaActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_area))
+            ((ImageView) getView().findViewById(R.id.img_formula))
                     .setImageResource(R.drawable.img_area_triangle);
 
             a_txt = ((EditText) getView().findViewById(R.id.area_a));
@@ -87,7 +78,7 @@ public class AreaActivity extends FormulaActivity {
             b_txt.setVisibility(View.VISIBLE);
             c_txt.setVisibility(View.GONE);
             ImageView formula = (ImageView) getView().findViewById(
-                    R.id.img_area);
+                    R.id.img_formula);
 
             // TODO Seperate the Polygon Enum!!!
             switch (Polygon.valueOf(adapter.getItem(position).toString()
@@ -288,7 +279,7 @@ public class AreaActivity extends FormulaActivity {
         }
 
         /**
-         * @see equations.activity.FormulaActivity.FormulaFragment#getFragmentView()
+         * @see BaseFormulaActivity.activity.FormulaActivity.BaseFormulaFragment#getFragmentView()
          */
         @Override
         protected int getFragmentView() {
@@ -296,12 +287,11 @@ public class AreaActivity extends FormulaActivity {
         }
 
         /**
-         * @see equations.activity.FormulaActivity.FormulaFragment#getID()
+         * @see com.centauri.equations.activity.ImageFormulaActivity.ImageFormulaFragment#getID()
          */
         @Override
         protected long getID() {
-            return FormulaMap
-                    .getId(this, getActivity().getIntent().getAction());
+            return getArguments().getLong(Formula._ID);
         }
     }
 }

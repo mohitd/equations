@@ -5,16 +5,18 @@ package com.centauri.equations.activity;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -23,53 +25,91 @@ import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.BuildConfig;
 import com.centauri.equations.R;
 import com.centauri.equations.provider.Equations;
+import com.centauri.equations.provider.Equations.Formula;
 
 /**
  * @author mohitd2000
  * 
  */
-public abstract class FormulaActivity extends SherlockFragmentActivity {
+public class ImageFormulaActivity extends SherlockFragmentActivity {
 
-    protected static boolean favorite;
+    public static final String ACTION_VIEW_FORMULA = "com.centauri.equations.action.VIEW_FORMULA";
 
+    private static final String[] PROJECTION = { Equations.Formula._ID,
+            Equations.Formula.FORMULA_NAME, Equations.Formula.CATEGORY, };
+
+    /**
+     * @see com.centauri.equations.activity.BaseFormulaActivity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupActionBar();
+
+        long id = getIntent().getLongExtra(Formula._ID, 0);
+
+        if (savedInstanceState == null) {
+            Fragment fragment = getFragment();
+            Bundle arguments = new Bundle();
+            arguments.putLong(Formula._ID, id);
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, fragment).commit();
+        }
+
+        Cursor cursor = getContentResolver().query(
+                Equations.Formula.CONTENT_URI, PROJECTION,
+                Equations.Formula._ID + "=" + id, null, null);
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            String formulaName = cursor.getString(cursor
+                    .getColumnIndexOrThrow(Formula.FORMULA_NAME));
+            String formulaCategory = cursor.getString(cursor
+                    .getColumnIndexOrThrow(Formula.CATEGORY));
+            getSupportActionBar().setTitle(formulaName);
+            getSupportActionBar().setSubtitle(formulaCategory);
+        }
+        cursor.close();
+
+        getSupportActionBar().setNavigationMode(
+                ActionBar.NAVIGATION_MODE_STANDARD);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    protected Fragment getFragment() {
+        return new ImageFormulaFragment();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
-            Intent parentIntent = new Intent(this, Categories.class);
-            parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(parentIntent);
-            finish();
+            onBackPressed();
             return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
-    protected abstract void setupActionBar();
+    public static class ImageFormulaFragment extends SherlockFragment {
 
-    public abstract static class FormulaFragment extends SherlockFragment {
+        private static final String[] PROJECTION = { Equations.Formula._ID,
+                Equations.Formula.FAVORITE };
+
+        private boolean favorite;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             if (BuildConfig.DEBUG) Log.d("Base Fragment", "Id is " + getID());
             Cursor cursor = getActivity().getContentResolver().query(
-                    Equations.Formula.CONTENT_URI,
-                    new String[] { Equations.Formula._ID,
-                            Equations.Formula.FAVORITE },
+                    Equations.Formula.CONTENT_URI, PROJECTION,
                     Equations.Formula._ID + "=" + getID(), null, null);
             cursor.moveToFirst();
-            if (cursor.getCount() > 0)
+            if (cursor.getCount() > 0) {
                 favorite = (cursor.getInt(cursor
                         .getColumnIndexOrThrow(Equations.Formula.FAVORITE)) != 0);
+            }
             cursor.close();
+
         }
 
         @Override
@@ -91,8 +131,8 @@ public abstract class FormulaActivity extends SherlockFragmentActivity {
 
         @Override
         public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-            inflater.inflate(R.menu.formula_menu, menu);
             super.onCreateOptionsMenu(menu, inflater);
+            inflater.inflate(R.menu.formula_menu, menu);
         }
 
         @Override
@@ -127,12 +167,29 @@ public abstract class FormulaActivity extends SherlockFragmentActivity {
                 return true;
 
             default:
-                return false;
+                return super.onOptionsItemSelected(item);
             }
         }
 
-        protected abstract int getFragmentView();
+        /**
+         * @see android.support.v4.app.Fragment#onStart()
+         */
+        @Override
+        public void onStart() {
+            super.onStart();
+            ImageView imageView = (ImageView) getView().findViewById(
+                    R.id.img_formula);
+            int imageResource = FormulaMap.getImage(getID());
+            if (imageResource != 0) imageView.setImageResource(imageResource);
+        }
 
-        protected abstract long getID();
+        protected int getFragmentView() {
+            return R.layout.single_image;
+        }
+
+        protected long getID() {
+            return getArguments().getLong(Formula._ID);
+        }
+
     }
 }

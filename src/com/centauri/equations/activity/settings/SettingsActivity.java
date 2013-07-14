@@ -16,7 +16,7 @@ import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.Categories;
+import com.centauri.equations.activity.MainActivity;
 
 public class SettingsActivity extends SherlockPreferenceActivity {
 
@@ -120,7 +120,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent parentIntent = new Intent(this, Categories.class);
+        Intent parentIntent = new Intent(this, MainActivity.class);
         parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(parentIntent);
@@ -136,7 +136,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
-            Intent parentIntent = new Intent(this, Categories.class);
+            Intent parentIntent = new Intent(this, MainActivity.class);
             parentIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(parentIntent);

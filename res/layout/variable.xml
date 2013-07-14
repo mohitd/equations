@@ -15,11 +15,13 @@
         </Spinner>
 
         <ImageView
-            android:id="@+id/img_area"
+            android:id="@+id/img_formula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/contentDescription"
             android:paddingBottom="25dip"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:paddingTop="25dip" />
 
         <LinearLayout

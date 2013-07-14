@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -15,36 +16,26 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.FormulaActivity;
-import com.centauri.equations.activity.FormulaMap;
+import com.centauri.equations.activity.ImageFormulaActivity;
+import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.shape2d.Triangle;
 
-public class PythagoreanActivity extends FormulaActivity {
+public class PythagoreanActivity extends ImageFormulaActivity {
 
     public static final String ACTION_PYTHAGOREAN = "com.centauri.equations.action.PYTHAGOREAN";
 
+    /**
+     * @see com.centauri.equations.activity.ImageFormulaActivity#getFragment()
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, new PythagoreanFragment()).commit();
+    protected Fragment getFragment() {
+        return new PythagoreanFragment();
     }
 
-    @Override
-    protected void setupActionBar() {
-        getSupportActionBar().setNavigationMode(
-                ActionBar.NAVIGATION_MODE_STANDARD);
-        getSupportActionBar().setTitle(R.string.pythagorean_theorem);
-        getSupportActionBar().setSubtitle(
-                getResources().getStringArray(R.array.categories)[1]);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public static class PythagoreanFragment extends FormulaFragment implements
-            OnClickListener, OnItemSelectedListener {
+    public static class PythagoreanFragment extends ImageFormulaFragment
+            implements OnClickListener, OnItemSelectedListener {
 
         private ArrayAdapter<CharSequence> adapter;
         private Spinner spinner;
@@ -54,7 +45,7 @@ public class PythagoreanActivity extends FormulaActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_area))
+            ((ImageView) getView().findViewById(R.id.img_formula))
                     .setImageResource(R.drawable.img_geo_pythagorean);
             ((Button) getView().findViewById(R.id.area_solve))
                     .setOnClickListener(this);
@@ -159,7 +150,7 @@ public class PythagoreanActivity extends FormulaActivity {
         }
 
         /**
-         * @see equations.activity.FormulaActivity.FormulaFragment#getFragmentView()
+         * @see equations.activity.BaseFormulaActivity.BaseFormulaFragment#getFragmentView()
          */
         @Override
         protected int getFragmentView() {
@@ -167,12 +158,11 @@ public class PythagoreanActivity extends FormulaActivity {
         }
 
         /**
-         * @see equations.activity.FormulaActivity.FormulaFragment#getID()
+         * @see com.centauri.equations.activity.ImageFormulaActivity.ImageFormulaFragment#getID()
          */
         @Override
         protected long getID() {
-            return FormulaMap
-                    .getId(this, getActivity().getIntent().getAction());
+            return getArguments().getLong(Formula._ID);
         }
     }
 }

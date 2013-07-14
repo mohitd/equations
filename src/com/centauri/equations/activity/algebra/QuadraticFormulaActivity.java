@@ -8,45 +8,34 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.centauri.equations.R;
-import com.centauri.equations.activity.FormulaActivity;
-import com.centauri.equations.activity.FormulaMap;
+import com.centauri.equations.activity.ImageFormulaActivity;
+import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.Quadratic;
 
-public class QuadraticFormulaActivity extends FormulaActivity {
+public class QuadraticFormulaActivity extends ImageFormulaActivity {
 
     public static final String ACTION_QUADRATIC = "com.centauri.equations.action.QUADRATIC";
 
+    /**
+     * @see com.centauri.equations.activity.ImageFormulaActivity#getFragment()
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, new QuadraticFormulaFragment())
-                .commit();
-        setupActionBar();
+    protected Fragment getFragment() {
+        return new QuadraticFormulaFragment();
     }
 
-    protected void setupActionBar() {
-        getSupportActionBar().setNavigationMode(
-                ActionBar.NAVIGATION_MODE_STANDARD);
-        getSupportActionBar().setTitle(R.string.quad_formula);
-        getSupportActionBar().setSubtitle(
-                getResources().getStringArray(R.array.categories)[0]);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public static class QuadraticFormulaFragment extends FormulaFragment
+    public static class QuadraticFormulaFragment extends ImageFormulaFragment
             implements OnClickListener {
 
         private EditText a_txt, b_txt, c_txt;
@@ -57,9 +46,6 @@ public class QuadraticFormulaActivity extends FormulaActivity {
             a_txt = (EditText) getView().findViewById(R.id.area_a);
             b_txt = (EditText) getView().findViewById(R.id.area_b);
             c_txt = (EditText) getView().findViewById(R.id.area_c);
-
-            ((ImageView) getView().findViewById(R.id.img_area))
-                    .setImageResource(R.drawable.img_alg_quadratic);
 
             a_txt.setHint(R.string.a);
             b_txt.setHint(R.string.b);
@@ -117,19 +103,20 @@ public class QuadraticFormulaActivity extends FormulaActivity {
             Iterator<Complex> iterator = roots.iterator();
 
             // If complex number, do special complex number formatting
+            // TODO: Do this in Complex!
             if (discriminant < 0) {
                 Complex result = iterator.next();
                 if (result.real() == 0 && result.imag() == 1)
-                    text.append("ï¿½i");
+                    text.append("±i");
                 else if (result.real() == 0) {
                     if (result.imag() == 1)
-                        text.append("ï¿½i");
+                        text.append("±i");
                     else
-                        text.append("ï¿½" + style.format(result.imag()) + "i");
+                        text.append("±" + style.format(result.imag()) + "i");
                 } else if (result.imag() == 1)
-                    text.append(style.format(result.real()) + "ï¿½i");
+                    text.append(style.format(result.real()) + "±i");
                 else
-                    text.append(style.format(result.real()) + "ï¿½"
+                    text.append(style.format(result.real()) + "±"
                             + style.format(result.imag()) + "i");
 
                 // Non complex roots
@@ -172,14 +159,12 @@ public class QuadraticFormulaActivity extends FormulaActivity {
             return R.layout.variable;
         }
 
-        /*
-         * (non-Javadoc)
-         * @see FormulaActivity#getID()
+        /**
+         * @see com.centauri.equations.activity.ImageFormulaActivity.ImageFormulaFragment#getID()
          */
         @Override
         protected long getID() {
-            return FormulaMap
-                    .getId(this, getActivity().getIntent().getAction());
+            return getArguments().getLong(Formula._ID);
         }
 
     }
