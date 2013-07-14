@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Equations</string>
-    <string name="app_version">1.4.1</string>
+    <string name="app_version">1.4.5</string>
 
     <string-array name="polygon2D">
         <item>Triangle</item>

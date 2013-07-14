@@ -8,20 +8,20 @@ public class Quadrilateral {
     private double width;
 
     public Quadrilateral(double lenght) {
-	this.lenght = this.width = lenght;
+        this.lenght = this.width = lenght;
     }
 
     public Quadrilateral(double width, double lenght) {
-	this.lenght = lenght;
-	this.width = width;
+        this.lenght = lenght;
+        this.width = width;
     }
 
     public Complex area() {
-	return new Complex(lenght * width);
+        return new Complex(lenght * width);
     }
 
     public Complex perimeter() {
-	return new Complex(2 * lenght + 2 * width);
+        return new Complex(2 * lenght + 2 * width);
     }
 
 }

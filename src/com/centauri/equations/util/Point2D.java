@@ -5,6 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 public class Point2D {
+
     double x;
     double y;
 
@@ -17,39 +18,39 @@ public class Point2D {
      *            The default Y coordinate
      */
     public Point2D(double x, double y) {
-	this.x = x;
-	this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public void setPoint(double x, double y) {
-	this.x = x;
-	this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public void setPoint(Point2D point) {
-	this.x = point.getX();
-	this.y = point.getY();
+        this.x = point.getX();
+        this.y = point.getY();
     }
 
     public Complex distance(Point2D point) {
-	double deltaX = point.getX() - this.getX();
-	double deltaY = point.getY() - this.getY();
+        double deltaX = point.getX() - this.getX();
+        double deltaY = point.getY() - this.getY();
 
-	return new Complex(Math.sqrt((deltaX * deltaX) + (deltaY * deltaY)));
+        return new Complex(Math.sqrt((deltaX * deltaX) + (deltaY * deltaY)));
     }
 
     public Complex slope(Point2D point) {
-	double deltaX = point.getX() - this.getX();
-	double deltaY = point.getY() - this.getY();
+        double deltaX = point.getX() - this.getX();
+        double deltaY = point.getY() - this.getY();
 
-	return new Complex(deltaY / deltaX);
+        return new Complex(deltaY / deltaX);
     }
 
     /**
      * @return the x
      */
     public double getX() {
-	return x;
+        return x;
     }
 
     /**
@@ -57,14 +58,14 @@ public class Point2D {
      *            the x to set
      */
     public void setX(double x) {
-	this.x = x;
+        this.x = x;
     }
 
     /**
      * @return the y
      */
     public double getY() {
-	return y;
+        return y;
     }
 
     /**
@@ -72,17 +73,17 @@ public class Point2D {
      *            the y to set
      */
     public void setY(double y) {
-	this.y = y;
+        this.y = y;
     }
 
     @Override
     public String toString() {
-	NumberFormat format = NumberFormat.getInstance();
-	DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-	if (format instanceof DecimalFormat) {
-	    symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
-	}
-	DecimalFormat style = new DecimalFormat("0.##########", symbols);
-	return "(" + style.format(x) + "; " + style.format(y) + ")";
+        NumberFormat format = NumberFormat.getInstance();
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        if (format instanceof DecimalFormat) {
+            symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
+        }
+        DecimalFormat style = new DecimalFormat("0.##########", symbols);
+        return "(" + style.format(x) + "; " + style.format(y) + ")";
     }
 }

@@ -4,7 +4,7 @@
         android:id="@+id/menu_search"
         android:title="@string/search_hint"
         android:icon="@drawable/ic_menu_search_light"
-        android:showAsAction="ifRoom">
+        android:showAsAction="always" >
     </item>
 
     <item 

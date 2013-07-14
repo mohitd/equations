@@ -23,8 +23,8 @@ public class Complex {
      * The default constructor that creates 0 + 0<i>i</i>
      */
     public Complex() {
-	real = 0;
-	imag = 0;
+        real = 0;
+        imag = 0;
     }
 
     /**
@@ -34,8 +34,8 @@ public class Complex {
      *            The complex number to be copied
      */
     public Complex(Complex z) {
-	this.real = z.real();
-	this.imag = z.imag();
+        this.real = z.real();
+        this.imag = z.imag();
     }
 
     /**
@@ -45,8 +45,8 @@ public class Complex {
      *            The real number
      */
     public Complex(double real) {
-	this.real = real;
-	imag = 0;
+        this.real = real;
+        imag = 0;
     }
 
     /**
@@ -58,8 +58,8 @@ public class Complex {
      *            The imaginary, coefficient of <i>i</i> part.
      */
     public Complex(double real, double imag) {
-	this.real = real;
-	this.imag = imag;
+        this.real = real;
+        this.imag = imag;
     }
 
     /**
@@ -70,7 +70,7 @@ public class Complex {
      * @return The addition of {@code this} and {@code z}
      */
     public Complex add(Complex z) {
-	return new Complex(this.real + z.real(), this.imag + z.imag());
+        return new Complex(this.real + z.real(), this.imag + z.imag());
     }
 
     /**
@@ -81,7 +81,7 @@ public class Complex {
      * @return The subtraction of {@code this} and {@code z}
      */
     public Complex sub(Complex z) {
-	return new Complex(this.real - z.real(), this.imag + z.imag());
+        return new Complex(this.real - z.real(), this.imag + z.imag());
     }
 
     /**
@@ -92,8 +92,8 @@ public class Complex {
      * @return The multiplication of {@code this} and {@code z}
      */
     public Complex mul(Complex z) {
-	return new Complex(this.real * z.real() - this.imag * z.imag(),
-		this.imag * z.real() + this.real * z.imag());
+        return new Complex(this.real * z.real() - this.imag * z.imag(),
+                this.imag * z.real() + this.real * z.imag());
     }
 
     /**
@@ -104,13 +104,13 @@ public class Complex {
      * @return The division of {@code this} and {@code z}
      */
     public Complex div(Complex z) {
-	double den = 0;
-	if (z.real() != 0 || z.imag() != 0) {
-	    den = z.real() * z.real() + z.imag() * z.imag();
-	}
+        double den = 0;
+        if (z.real() != 0 || z.imag() != 0) {
+            den = z.real() * z.real() + z.imag() * z.imag();
+        }
 
-	return new Complex((this.real * z.real() - this.imag * z.imag()) / den,
-		(this.imag * z.real() + this.real * z.imag()) / den);
+        return new Complex((this.real * z.real() - this.imag * z.imag()) / den,
+                (this.imag * z.real() + this.real * z.imag()) / den);
     }
 
     /**
@@ -119,21 +119,21 @@ public class Complex {
      * @return The conjugate of {@code this}
      */
     public Complex conj() {
-	return new Complex(this.real, -(this.imag));
+        return new Complex(this.real, -(this.imag));
     }
 
     /**
      * @return The real part
      */
     public double real() {
-	return real;
+        return real;
     }
 
     /**
      * @return The imaginary part
      */
     public double imag() {
-	return imag;
+        return imag;
     }
 
     /**
@@ -141,31 +141,31 @@ public class Complex {
      */
     @Override
     public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	NumberFormat format = NumberFormat.getInstance();
-	DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-	if (format instanceof DecimalFormat) {
-	    symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
-	}
-	DecimalFormat style = new DecimalFormat("0.##########", symbols);
+        StringBuilder buffer = new StringBuilder();
+        NumberFormat format = NumberFormat.getInstance();
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        if (format instanceof DecimalFormat) {
+            symbols = ((DecimalFormat) format).getDecimalFormatSymbols();
+        }
+        DecimalFormat style = new DecimalFormat("0.##########", symbols);
 
-	if (imag == 0) {
-	    buffer.append(style.format(real));
-	} else if (imag != 0) {
-	    if (imag < 0) {
-		buffer.append("(").append(style.format(real)).append("-")
-			.append(style.format(-imag)).append("i)");
-	    } else if (imag > 0) {
-		buffer.append("(").append(style.format(real)).append("+")
-			.append(style.format(+imag)).append("i)");
-	    }
-	}
+        if (imag == 0) {
+            buffer.append(style.format(real));
+        } else if (imag != 0) {
+            if (imag < 0) {
+                buffer.append("(").append(style.format(real)).append("-")
+                        .append(style.format(-imag)).append("i)");
+            } else if (imag > 0) {
+                buffer.append("(").append(style.format(real)).append("+")
+                        .append(style.format(+imag)).append("i)");
+            }
+        }
 
-	return buffer.toString();
+        return buffer.toString();
     }
 
     public double abs() {
-	return Math.sqrt(real * real + imag * imag);
+        return Math.sqrt(real * real + imag * imag);
     }
 
 }

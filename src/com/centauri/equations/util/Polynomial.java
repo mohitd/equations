@@ -1,24 +1,17 @@
 /*
- *   Polynomial  -- A class that represents a polynomial equation.
- *
- *   Copyright (C) 2000-2004 by Joseph A. Huwaldt
- *   All rights reserved.
- *   
- *   This library is free software; you can redistribute it and/or
- *   modify it under the terms of the GNU Lesser General Public
- *   License as published by the Free Software Foundation; either
- *   version 2 of the License, or (at your option) any later version.
- *   
- *   This library is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *   Lesser General Public License for more details.
- *
- *   You should have received a copy of the GNU Lesser General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- *   Or visit:  http://www.gnu.org/licenses/lgpl.html
- **/
+ * Polynomial -- A class that represents a polynomial equation. Copyright (C)
+ * 2000-2004 by Joseph A. Huwaldt All rights reserved. This library is free
+ * software; you can redistribute it and/or modify it under the terms of the GNU
+ * Lesser General Public License as published by the Free Software Foundation;
+ * either version 2 of the License, or (at your option) any later version. This
+ * library is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details. You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. Or
+ * visit: http://www.gnu.org/licenses/lgpl.html
+ */
 package com.centauri.equations.util;
 
 /**
@@ -74,7 +67,7 @@ public class Polynomial implements Cloneable {
     // The smallest number that can be represented. Fortran code:
     // (BASE**(N+3))/BASE**3
     private static final double SMALNO = Math.pow(BASE, kN + 3)
-	    / Math.pow(BASE, 3);
+            / Math.pow(BASE, 3);
 
     // Error bounds on complex addition.
     private static final double ARE = ETA;
@@ -111,7 +104,7 @@ public class Polynomial implements Cloneable {
      *            An array of complex coefficients in order of increasing power.
      **/
     public Polynomial(Complex[] coefficients) {
-	coef = (Complex[]) coefficients.clone();
+        coef = (Complex[]) coefficients.clone();
     }
 
     /**
@@ -124,15 +117,15 @@ public class Polynomial implements Cloneable {
      **/
     public Polynomial(double[] coefficients) {
 
-	int length = coefficients.length;
+        int length = coefficients.length;
 
-	// Allocate memory for complex representation of coefficients.
-	coef = new Complex[length];
+        // Allocate memory for complex representation of coefficients.
+        coef = new Complex[length];
 
-	// Create a complex coefficient with only a real part for each
-	// coefficient.
-	for (int i = 0; i < length; ++i)
-	    coef[i] = new Complex(coefficients[i]);
+        // Create a complex coefficient with only a real part for each
+        // coefficient.
+        for (int i = 0; i < length; ++i)
+            coef[i] = new Complex(coefficients[i]);
 
     }
 
@@ -146,7 +139,7 @@ public class Polynomial implements Cloneable {
      *            An array of complex coefficients in order of increasing power.
      **/
     public void setCoefficients(Complex[] coefficients) {
-	coef = (Complex[]) coefficients.clone();
+        coef = (Complex[]) coefficients.clone();
     }
 
     /**
@@ -159,15 +152,15 @@ public class Polynomial implements Cloneable {
      **/
     public void setCoefficients(double[] coefficients) {
 
-	int length = coefficients.length;
+        int length = coefficients.length;
 
-	// Allocate memory for complex representation of coefficients.
-	coef = new Complex[length];
+        // Allocate memory for complex representation of coefficients.
+        coef = new Complex[length];
 
-	// Create a complex coefficient with only a real part for each
-	// coefficient.
-	for (int i = 0; i < length; ++i)
-	    coef[i] = new Complex(coefficients[i]);
+        // Create a complex coefficient with only a real part for each
+        // coefficient.
+        for (int i = 0; i < length; ++i)
+            coef[i] = new Complex(coefficients[i]);
 
     }
 
@@ -181,7 +174,7 @@ public class Polynomial implements Cloneable {
      *          decreasing power.
      **/
     public Complex[] getCoefficients() {
-	return coef;
+        return coef;
     }
 
     /**
@@ -194,7 +187,7 @@ public class Polynomial implements Cloneable {
      * @returns The evaluation of this polynomial at x.
      **/
     public Complex evaluate(Complex x) {
-	return evaluate(x.real(), x.imag());
+        return evaluate(x.real(), x.imag());
     }
 
     /**
@@ -206,7 +199,7 @@ public class Polynomial implements Cloneable {
      * @returns The evaluation of this polynomial at x.
      **/
     public Complex evaluate(double x) {
-	return evaluate(x, 0.);
+        return evaluate(x, 0.);
     }
 
     /**
@@ -222,23 +215,22 @@ public class Polynomial implements Cloneable {
      * @returns The evaluation of this polynomial at the complex x.
      **/
     public Complex evaluate(double xr, double xi) {
-	if (coef == null)
-	    return new Complex(0., 0.);
+        if (coef == null) return new Complex(0., 0.);
 
-	int NN = coef.length;
+        int NN = coef.length;
 
-	// Begin evaluation.
-	double pvr = coef[NN - 1].real();
-	double pvi = coef[NN - 1].imag();
-	for (int i = NN - 2; i >= 0; --i) {
-	    // real: pv = pv*x + c[i]
-	    // Complex: pv = pv.mul(x).add(coef[i]);
-	    double temp = pvr;
-	    pvr = pvr * xr - pvi * xi + coef[i].real();
-	    pvi = temp * xi + pvi * xr + coef[i].imag();
-	}
+        // Begin evaluation.
+        double pvr = coef[NN - 1].real();
+        double pvi = coef[NN - 1].imag();
+        for (int i = NN - 2; i >= 0; --i) {
+            // real: pv = pv*x + c[i]
+            // Complex: pv = pv.mul(x).add(coef[i]);
+            double temp = pvr;
+            pvr = pvr * xr - pvi * xi + coef[i].real();
+            pvi = temp * xi + pvi * xr + coef[i].imag();
+        }
 
-	return new Complex(pvr, pvi);
+        return new Complex(pvr, pvi);
     }
 
     /**
@@ -251,7 +243,7 @@ public class Polynomial implements Cloneable {
      * @returns The slope "dP(x)/dx" of this polynomial at the complex x.
      **/
     public Complex slope(Complex x) {
-	return slope(x.real(), x.imag());
+        return slope(x.real(), x.imag());
     }
 
     /**
@@ -263,7 +255,7 @@ public class Polynomial implements Cloneable {
      * @returns The slope "dP(x)/dx" of this polynomial at the complex x.
      **/
     public Complex slope(double x) {
-	return slope(x, 0.);
+        return slope(x, 0.);
     }
 
     /**
@@ -280,22 +272,21 @@ public class Polynomial implements Cloneable {
      * @returns The slope "dP(x)/dx" of this polynomial at the complex x.
      **/
     public Complex slope(double xr, double xi) {
-	if (coef == null)
-	    return new Complex(0., 0.);
+        if (coef == null) return new Complex(0., 0.);
 
-	int NN = coef.length;
+        int NN = coef.length;
 
-	// Begin evaluation.
-	double dpr = coef[NN - 1].real() * (NN - 1);
-	double dpi = coef[NN - 1].imag() * (NN - 1);
-	for (int i = NN - 2; i >= 1; --i) {
-	    // real: dp = dp*x + p
-	    double temp = dpr;
-	    dpr = dpr * xr - dpi * xi + i * coef[i].real();
-	    dpi = temp * xi + dpi * xr + i * coef[i].imag();
-	}
+        // Begin evaluation.
+        double dpr = coef[NN - 1].real() * (NN - 1);
+        double dpi = coef[NN - 1].imag() * (NN - 1);
+        for (int i = NN - 2; i >= 1; --i) {
+            // real: dp = dp*x + p
+            double temp = dpr;
+            dpr = dpr * xr - dpi * xi + i * coef[i].real();
+            dpi = temp * xi + dpi * xr + i * coef[i].imag();
+        }
 
-	return new Complex(dpr, dpi);
+        return new Complex(dpr, dpi);
     }
 
     /**
@@ -314,23 +305,23 @@ public class Polynomial implements Cloneable {
      *        polynomial.
      **/
     public Complex[] zeros() throws Exception {
-	Complex[] zeros = null;
+        Complex[] zeros = null;
 
-	if (coef != null && coef.length > 0) {
-	    // Create arrays of coefficients required by the root finder.
-	    int NN = coef.length;
-	    double[] Pr = new double[NN];
-	    double[] Pi = new double[NN];
-	    for (int i = 0; i < NN; ++i) {
-		Pr[i] = coef[NN - 1 - i].real();
-		Pi[i] = coef[NN - 1 - i].imag();
-	    }
+        if (coef != null && coef.length > 0) {
+            // Create arrays of coefficients required by the root finder.
+            int NN = coef.length;
+            double[] Pr = new double[NN];
+            double[] Pi = new double[NN];
+            for (int i = 0; i < NN; ++i) {
+                Pr[i] = coef[NN - 1 - i].real();
+                Pi[i] = coef[NN - 1 - i].imag();
+            }
 
-	    // Call the Jacob & Traub zero finder.
-	    zeros = cpoly(Pr, Pi);
-	}
+            // Call the Jacob & Traub zero finder.
+            zeros = cpoly(Pr, Pi);
+        }
 
-	return zeros;
+        return zeros;
     }
 
     /**
@@ -345,47 +336,42 @@ public class Polynomial implements Cloneable {
      **/
     public boolean equals(Object obj) {
 
-	if (obj == this)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
+        if (obj == this) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
 
-	// Check for either/both coefficient arrays being "null".
-	Polynomial newObj = (Polynomial) obj;
-	if (coef == newObj.coef)
-	    return true;
-	if (coef == null) {
-	    if (newObj.coef.length == 1 && newObj.coef[0].real() == 0
-		    && newObj.coef[0].imag() == 0)
-		return true;
-	    else
-		return false;
-	}
-	if (newObj.coef == null) {
-	    if (coef.length == 1 && newObj.coef[0].real() == 0
-		    && newObj.coef[0].imag() == 0)
-		return true;
-	    else
-		return false;
-	}
+        // Check for either/both coefficient arrays being "null".
+        Polynomial newObj = (Polynomial) obj;
+        if (coef == newObj.coef) return true;
+        if (coef == null) {
+            if (newObj.coef.length == 1 && newObj.coef[0].real() == 0
+                    && newObj.coef[0].imag() == 0)
+                return true;
+            else
+                return false;
+        }
+        if (newObj.coef == null) {
+            if (coef.length == 1 && newObj.coef[0].real() == 0
+                    && newObj.coef[0].imag() == 0)
+                return true;
+            else
+                return false;
+        }
 
-	// Compare coefficient array lengths.
-	int length = coef.length;
-	if (length != newObj.coef.length)
-	    return false;
+        // Compare coefficient array lengths.
+        int length = coef.length;
+        if (length != newObj.coef.length) return false;
 
-	// Compare each coefficient.
-	boolean retVal = true;
-	for (int i = 0; i < length; ++i) {
-	    if (!coef[i].equals(newObj.coef[i])) {
-		retVal = false;
-		break;
-	    }
-	}
+        // Compare each coefficient.
+        boolean retVal = true;
+        for (int i = 0; i < length; ++i) {
+            if (!coef[i].equals(newObj.coef[i])) {
+                retVal = false;
+                break;
+            }
+        }
 
-	return retVal;
+        return retVal;
     }
 
     /**
@@ -394,51 +380,51 @@ public class Polynomial implements Cloneable {
      * @return The String representation of this object.
      **/
     public String toString() {
-	StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
 
-	if (coef != null) {
-	    int NN = coef.length;
+        if (coef != null) {
+            int NN = coef.length;
 
-	    if (NN > 1) {
+            if (NN > 1) {
 
-		// Output higher terms.
-		for (int i = NN; i > 2; i--) {
-		    if (coef[i - 1].abs() > 0.) {
-			if (coef[i - 1].imag() != 0.)
-			    buffer.append(coef[i - 1].toString());
-			else
-			    buffer.append(coef[i - 1].real());
-			buffer.append("x^");
-			buffer.append(i - 1);
-		    }
-		}
+                // Output higher terms.
+                for (int i = NN; i > 2; i--) {
+                    if (coef[i - 1].abs() > 0.) {
+                        if (coef[i - 1].imag() != 0.)
+                            buffer.append(coef[i - 1].toString());
+                        else
+                            buffer.append(coef[i - 1].real());
+                        buffer.append("x^");
+                        buffer.append(i - 1);
+                    }
+                }
 
-		// Output term times X.
-		if (coef[1].abs() > 0.) {
-		    buffer.append(" + ");
-		    if (coef[1].imag() != 0.)
-			buffer.append(coef[1].toString());
-		    else
-			buffer.append(coef[1].real());
-		    buffer.append("x");
-		    buffer.append(" + ");
-		}
+                // Output term times X.
+                if (coef[1].abs() > 0.) {
+                    buffer.append(" + ");
+                    if (coef[1].imag() != 0.)
+                        buffer.append(coef[1].toString());
+                    else
+                        buffer.append(coef[1].real());
+                    buffer.append("x");
+                    buffer.append(" + ");
+                }
 
-	    }
+            }
 
-	    // Output constant.
-	    if (coef[0].abs() > 0.) {
-		if (coef[0].imag() != 0.)
-		    buffer.append(coef[0].toString());
-		else
-		    buffer.append(coef[0].real());
-	    }
+            // Output constant.
+            if (coef[0].abs() > 0.) {
+                if (coef[0].imag() != 0.)
+                    buffer.append(coef[0].toString());
+                else
+                    buffer.append(coef[0].real());
+            }
 
-	} else
-	    // No coefficients, so polynomial == 0.
-	    buffer.append("0.");
+        } else
+            // No coefficients, so polynomial == 0.
+            buffer.append("0.");
 
-	return buffer.toString();
+        return buffer.toString();
     }
 
     /**
@@ -447,27 +433,27 @@ public class Polynomial implements Cloneable {
      * @return Returns a clone of this Polynomial object.
      **/
     public Object clone() {
-	Polynomial newObject = null;
+        Polynomial newObject = null;
 
-	try {
-	    // Make a shallow copy of this object.
-	    newObject = (Polynomial) super.clone();
+        try {
+            // Make a shallow copy of this object.
+            newObject = (Polynomial) super.clone();
 
-	    // Now make a deep copy of the data contained in this object.
-	    // The class Complex does not have a publicly accessible clone()
-	    // method, so we have to create new Complex objects from scratch.
-	    int length = coef.length;
-	    newObject.coef = new Complex[length];
-	    for (int i = 0; i < length; ++i)
-		newObject.coef[i] = new Complex(coef[i].real(), coef[i].imag());
+            // Now make a deep copy of the data contained in this object.
+            // The class Complex does not have a publicly accessible clone()
+            // method, so we have to create new Complex objects from scratch.
+            int length = coef.length;
+            newObject.coef = new Complex[length];
+            for (int i = 0; i < length; ++i)
+                newObject.coef[i] = new Complex(coef[i].real(), coef[i].imag());
 
-	} catch (CloneNotSupportedException e) {
-	    // Can't happen.
-	    e.printStackTrace();
-	}
+        } catch (CloneNotSupportedException e) {
+            // Can't happen.
+            e.printStackTrace();
+        }
 
-	// Output the newly cloned object.
-	return newObject;
+        // Output the newly cloned object.
+        return newObject;
     }
 
     // -----------------------------------------------------------------------------------
@@ -514,115 +500,115 @@ public class Polynomial implements Cloneable {
      *             if this routine was unable to locate the polynomial's zeros.
      **/
     protected Complex[] cpoly(double[] Pr, double[] Pi) throws Exception {
-	int NN = Pr.length;
-	int degree = NN - 1;
+        int NN = Pr.length;
+        int degree = NN - 1;
 
-	// Algorithm fails if the leading coefficient is zero.
-	if (Pr[0] == 0. && Pi[0] == 0.)
-	    throw new Exception("Leading coefficient is zero.");
+        // Algorithm fails if the leading coefficient is zero.
+        if (Pr[0] == 0. && Pi[0] == 0.)
+            throw new Exception("Leading coefficient is zero.");
 
-	// Allocate memory for arrays used by this method.
-	double[] Hr = new double[NN];
-	double[] Hi = new double[NN];
-	double[] QPr = new double[NN];
-	double[] QPi = new double[NN];
-	double[] QHr = new double[NN];
-	double[] QHi = new double[NN];
-	double[] SHr = new double[NN];
-	double[] SHi = new double[NN];
-	Complex[] zeros = new Complex[degree];
+        // Allocate memory for arrays used by this method.
+        double[] Hr = new double[NN];
+        double[] Hi = new double[NN];
+        double[] QPr = new double[NN];
+        double[] QPi = new double[NN];
+        double[] QHr = new double[NN];
+        double[] QHi = new double[NN];
+        double[] SHr = new double[NN];
+        double[] SHi = new double[NN];
+        Complex[] zeros = new Complex[degree];
 
-	// Initialization of variables.
-	double XX = Math.sqrt(2.) / 2.;
-	double YY = -XX;
-	int idNN2 = 0;
+        // Initialization of variables.
+        double XX = Math.sqrt(2.) / 2.;
+        double YY = -XX;
+        int idNN2 = 0;
 
-	// Remove zeros at the origin, if any.
-	while (Pr[NN - 1] == 0. && Pi[NN - 1] == 0.) {
-	    idNN2 = degree - NN + 1;
-	    zeros[idNN2] = new Complex(0., 0.);
-	    --NN;
-	}
+        // Remove zeros at the origin, if any.
+        while (Pr[NN - 1] == 0. && Pi[NN - 1] == 0.) {
+            idNN2 = degree - NN + 1;
+            zeros[idNN2] = new Complex(0., 0.);
+            --NN;
+        }
 
-	// Calculate the modulus of the coefficients.
-	for (int i = 0; i < NN; ++i)
-	    SHr[i] = cmod(Pr[i], Pi[i]);
+        // Calculate the modulus of the coefficients.
+        for (int i = 0; i < NN; ++i)
+            SHr[i] = cmod(Pr[i], Pi[i]);
 
-	// Scale the polynomial if needed.
-	double bound = scale(NN, SHr);
-	if (bound != 1.0) {
-	    for (int i = 0; i < NN; ++i) {
-		Pr[i] *= bound;
-		Pi[i] *= bound;
-	    }
-	}
+        // Scale the polynomial if needed.
+        double bound = scale(NN, SHr);
+        if (bound != 1.0) {
+            for (int i = 0; i < NN; ++i) {
+                Pr[i] *= bound;
+                Pi[i] *= bound;
+            }
+        }
 
-	// Start the algorithm for one zero.
-	out: while (true) {
-	    if (NN <= 2) {
-		// Calculate the final zero and return.
-		cdiv(-Pr[1], -Pi[1], Pr[0], Pi[0]); // Outputs Tr, Ti.
-		zeros[degree - 1] = new Complex(Tr, Ti);
-		return zeros;
-	    }
+        // Start the algorithm for one zero.
+        out: while (true) {
+            if (NN <= 2) {
+                // Calculate the final zero and return.
+                cdiv(-Pr[1], -Pi[1], Pr[0], Pi[0]); // Outputs Tr, Ti.
+                zeros[degree - 1] = new Complex(Tr, Ti);
+                return zeros;
+            }
 
-	    // Calculate a lower bound on the modulus of the zeros.
-	    for (int i = 0; i < NN; ++i)
-		SHr[i] = cmod(Pr[i], Pi[i]);
+            // Calculate a lower bound on the modulus of the zeros.
+            for (int i = 0; i < NN; ++i)
+                SHr[i] = cmod(Pr[i], Pi[i]);
 
-	    bound = cauchy(NN, SHr, SHi);
+            bound = cauchy(NN, SHr, SHi);
 
-	    // Outer loop to control 2 major passes with different sequences of
-	    // shifts.
-	    for (int cnt1 = 0; cnt1 < 2; ++cnt1) {
+            // Outer loop to control 2 major passes with different sequences of
+            // shifts.
+            for (int cnt1 = 0; cnt1 < 2; ++cnt1) {
 
-		// First stage calculation, no shift.
-		noShift(NN, 5, Pr, Pi, Hr, Hi);
+                // First stage calculation, no shift.
+                noShift(NN, 5, Pr, Pi, Hr, Hi);
 
-		// Inner loop to select a shift.
-		for (int cnt2 = 0; cnt2 < 9; ++cnt2) {
-		    // Shift is chosen with a modulus bound and amplitude
-		    // rotated
-		    // by 94 degrees from the previous shift.
-		    double XXX = COSR * XX - SINR * YY;
-		    YY = SINR * XX - COSR * YY;
-		    XX = XXX;
-		    Sr = bound * XX;
-		    Si = bound * YY;
+                // Inner loop to select a shift.
+                for (int cnt2 = 0; cnt2 < 9; ++cnt2) {
+                    // Shift is chosen with a modulus bound and amplitude
+                    // rotated
+                    // by 94 degrees from the previous shift.
+                    double XXX = COSR * XX - SINR * YY;
+                    YY = SINR * XX - COSR * YY;
+                    XX = XXX;
+                    Sr = bound * XX;
+                    Si = bound * YY;
 
-		    // Second stage calculation, fixed shift.
-		    boolean conv = fxShift(NN, 10 * cnt2, Pr, Pi, QPr, QPi, Hr,
-			    Hi, QHr, QHi, SHr, SHi); // Outputs Zr, Zi.
-		    if (conv == true) {
-			// If successful the zero is stored and the polynomial
-			// deflated.
-			idNN2 = degree - NN + 1;
-			zeros[idNN2] = new Complex(Zr, Zi);
-			--NN;
-			for (int i = 0; i < NN; ++i) {
-			    Pr[i] = QPr[i];
-			    Pi[i] = QPi[i];
-			}
+                    // Second stage calculation, fixed shift.
+                    boolean conv = fxShift(NN, 10 * cnt2, Pr, Pi, QPr, QPi, Hr,
+                            Hi, QHr, QHi, SHr, SHi); // Outputs Zr, Zi.
+                    if (conv == true) {
+                        // If successful the zero is stored and the polynomial
+                        // deflated.
+                        idNN2 = degree - NN + 1;
+                        zeros[idNN2] = new Complex(Zr, Zi);
+                        --NN;
+                        for (int i = 0; i < NN; ++i) {
+                            Pr[i] = QPr[i];
+                            Pi[i] = QPi[i];
+                        }
 
-			// The 2nd stage jumps directly back to 3rd stage
-			// iteration.
-			continue out;
-		    }
+                        // The 2nd stage jumps directly back to 3rd stage
+                        // iteration.
+                        continue out;
+                    }
 
-		    // If iteration is unsuccessful, another shift is chosen.
-		}
+                    // If iteration is unsuccessful, another shift is chosen.
+                }
 
-		// If 9 shifts fail, the outer loop is repeated with another
-		// sequence of shifts.
-	    }
+                // If 9 shifts fail, the outer loop is repeated with another
+                // sequence of shifts.
+            }
 
-	    // The zero finder has failed on two major passes. Return empty
-	    // handed.
-	    throw new Exception("Found fewer than " + degree + " zeros.");
-	}
+            // The zero finder has failed on two major passes. Return empty
+            // handed.
+            throw new Exception("Found fewer than " + degree + " zeros.");
+        }
 
-	// We can never get here.
-	// return null;
+        // We can never get here.
+        // return null;
     }
 
     /**
@@ -646,23 +632,23 @@ public class Polynomial implements Cloneable {
      *            , Qi Arrays to contain partial sums.
      **/
     private void polyEv(int NN, double Sr, double Si, double[] Pr, double[] Pi,
-	    double[] Qr, double[] Qi) {
-	// Begin evaluation.
-	double pvr = Qr[0] = Pr[0];
-	double pvi = Qi[0] = Pi[0];
+            double[] Qr, double[] Qi) {
+        // Begin evaluation.
+        double pvr = Qr[0] = Pr[0];
+        double pvi = Qi[0] = Pi[0];
 
-	for (int i = 1; i < NN; ++i) {
-	    double temp = pvr;
-	    pvr = pvr * Sr - pvi * Si + Pr[i];
-	    pvi = temp * Si + pvi * Sr + Pi[i];
+        for (int i = 1; i < NN; ++i) {
+            double temp = pvr;
+            pvr = pvr * Sr - pvi * Si + Pr[i];
+            pvi = temp * Si + pvi * Sr + Pi[i];
 
-	    Qr[i] = pvr;
-	    Qi[i] = pvi;
-	}
+            Qr[i] = pvr;
+            Qi[i] = pvi;
+        }
 
-	// Use a class variable to pass results back when doing root finding.
-	PVr = pvr;
-	PVi = pvi;
+        // Use a class variable to pass results back when doing root finding.
+        PVr = pvr;
+        PVi = pvi;
     }
 
     /**
@@ -685,12 +671,12 @@ public class Polynomial implements Cloneable {
      *            Error bounds on complex multiplication.
      **/
     private static double errEv(int NN, double[] Qr, double[] Qi, double MS,
-	    double MP, double ARE, double MRE) {
-	double E = cmod(Qr[0], Qi[0]) * MRE / (ARE + MRE);
-	for (int i = 0; i < NN; ++i)
-	    E = E * MS + cmod(Qr[i], Qi[i]);
+            double MP, double ARE, double MRE) {
+        double E = cmod(Qr[0], Qi[0]) * MRE / (ARE + MRE);
+        for (int i = 0; i < NN; ++i)
+            E = E * MS + cmod(Qr[i], Qi[i]);
 
-	return (E * (ARE + MRE) - MP * MRE);
+        return (E * (ARE + MRE) - MP * MRE);
     }
 
     /**
@@ -704,46 +690,44 @@ public class Polynomial implements Cloneable {
      *            Array filled in on output.
      **/
     private static double cauchy(int NN, double[] PT, double[] Q) {
-	int NNm1 = NN - 1;
+        int NNm1 = NN - 1;
 
-	PT[NNm1] = -PT[NNm1];
+        PT[NNm1] = -PT[NNm1];
 
-	// Compute the upper estimate of bound.
-	int N = NN - 1;
-	int Nm1 = N - 1;
-	double X = Math.exp((Math.log(-PT[NNm1]) - Math.log(PT[0])) / N);
-	if (PT[Nm1] != 0.) {
-	    // If newton step at the origin is better, use it.
-	    double XM = -PT[NNm1] / PT[Nm1];
-	    if (XM < X)
-		X = XM;
-	}
-	// Chop the interval (0,X) until F <= 0.
-	while (true) {
-	    double XM = X * 0.1;
-	    double F = PT[0];
-	    for (int i = 1; i < NN; ++i)
-		F = F * XM + PT[i];
-	    if (F <= 0.)
-		break;
-	    X = XM;
-	}
-	double DX = X;
+        // Compute the upper estimate of bound.
+        int N = NN - 1;
+        int Nm1 = N - 1;
+        double X = Math.exp((Math.log(-PT[NNm1]) - Math.log(PT[0])) / N);
+        if (PT[Nm1] != 0.) {
+            // If newton step at the origin is better, use it.
+            double XM = -PT[NNm1] / PT[Nm1];
+            if (XM < X) X = XM;
+        }
+        // Chop the interval (0,X) until F <= 0.
+        while (true) {
+            double XM = X * 0.1;
+            double F = PT[0];
+            for (int i = 1; i < NN; ++i)
+                F = F * XM + PT[i];
+            if (F <= 0.) break;
+            X = XM;
+        }
+        double DX = X;
 
-	// Do newton iteration until X converges to two decimal places.
-	while (Math.abs(DX / X) > 0.005) {
-	    Q[0] = PT[0];
-	    for (int i = 1; i < NN; ++i)
-		Q[i] = Q[i - 1] * X + PT[i];
-	    double F = Q[NNm1];
-	    double DF = Q[0];
-	    for (int i = 1; i < N; ++i)
-		DF = DF * X + Q[i];
-	    DX = F / DF;
-	    X = X - DX;
-	}
+        // Do newton iteration until X converges to two decimal places.
+        while (Math.abs(DX / X) > 0.005) {
+            Q[0] = PT[0];
+            for (int i = 1; i < NN; ++i)
+                Q[i] = Q[i - 1] * X + PT[i];
+            double F = Q[NNm1];
+            double DF = Q[0];
+            for (int i = 1; i < N; ++i)
+                DF = DF * X + Q[i];
+            DX = F / DF;
+            X = X - DX;
+        }
 
-	return X;
+        return X;
     }
 
     /**
@@ -758,37 +742,33 @@ public class Polynomial implements Cloneable {
      *            The modulus of the coefficients of the polynomial.
      **/
     private static double scale(int NN, double[] PT) {
-	// Find the largest and the smallest moduli of coefficients.
-	double hi = Math.sqrt(INFIN);
-	double lo = SMALNO / ETA;
-	double max = 0.;
-	double min = INFIN;
-	double X, sc;
-	for (int i = 0; i < NN; ++i) {
-	    X = PT[i];
-	    if (X > max)
-		max = X;
-	    if (X != 0. && X < min)
-		min = X;
-	}
+        // Find the largest and the smallest moduli of coefficients.
+        double hi = Math.sqrt(INFIN);
+        double lo = SMALNO / ETA;
+        double max = 0.;
+        double min = INFIN;
+        double X, sc;
+        for (int i = 0; i < NN; ++i) {
+            X = PT[i];
+            if (X > max) max = X;
+            if (X != 0. && X < min) min = X;
+        }
 
-	// Scale only if there are very large or very small components.
-	double scale = 1.;
-	if (min >= lo && max <= hi)
-	    return scale;
+        // Scale only if there are very large or very small components.
+        double scale = 1.;
+        if (min >= lo && max <= hi) return scale;
 
-	X = lo / min;
-	if (X > 1.) {
-	    sc = X;
-	    if (INFIN / sc > max)
-		sc = 1.;
-	} else
-	    sc = 1. / Math.sqrt(max * min);
+        X = lo / min;
+        if (X > 1.) {
+            sc = X;
+            if (INFIN / sc > max) sc = 1.;
+        } else
+            sc = 1. / Math.sqrt(max * min);
 
-	double L = Math.log(sc) / Math.log(BASE) + 0.5;
-	scale = Math.pow(BASE, L);
+        double L = Math.log(sc) / Math.log(BASE) + 0.5;
+        scale = Math.pow(BASE, L);
 
-	return scale;
+        return scale;
     }
 
     /**
@@ -806,25 +786,25 @@ public class Polynomial implements Cloneable {
      *            The imaginary part of the complex denominator.
      **/
     private void cdiv(double Ar, double Ai, double Br, double Bi) {
-	if (Br == 0. && Bi == 0.) {
-	    // Division by zero, result = infinity.
-	    Tr = INFIN;
-	    Ti = INFIN;
-	    return;
-	}
+        if (Br == 0. && Bi == 0.) {
+            // Division by zero, result = infinity.
+            Tr = INFIN;
+            Ti = INFIN;
+            return;
+        }
 
-	if (Math.abs(Br) >= Math.abs(Bi)) {
-	    double R = Bi / Br;
-	    double D = Br + R * Bi;
-	    Tr = (Ar + Ai * R) / D;
-	    Ti = (Ai - Ar * R) / D;
+        if (Math.abs(Br) >= Math.abs(Bi)) {
+            double R = Bi / Br;
+            double D = Br + R * Bi;
+            Tr = (Ar + Ai * R) / D;
+            Ti = (Ai - Ar * R) / D;
 
-	} else {
-	    double R = Br / Bi;
-	    double D = Bi + R * Br;
-	    Tr = (Ar * R + Ai) / D;
-	    Ti = (Ai * R - Ar) / D;
-	}
+        } else {
+            double R = Br / Bi;
+            double D = Bi + R * Br;
+            Tr = (Ar * R + Ai) / D;
+            Ti = (Ai * R - Ar) / D;
+        }
 
     }
 
@@ -843,26 +823,26 @@ public class Polynomial implements Cloneable {
      *            The imaginary part of the complex number.
      **/
     private static double cmod(double re, double im) {
-	double ans = 0.;
-	re = Math.abs(re);
-	im = Math.abs(im);
+        double ans = 0.;
+        re = Math.abs(re);
+        im = Math.abs(im);
 
-	if (re == 0.0)
-	    ans = im;
+        if (re == 0.0)
+            ans = im;
 
-	else if (im == 0.0)
-	    ans = re;
+        else if (im == 0.0)
+            ans = re;
 
-	else if (re > im) {
-	    double temp = im / re;
-	    ans = re * Math.sqrt(1. + temp * temp);
+        else if (re > im) {
+            double temp = im / re;
+            ans = re * Math.sqrt(1. + temp * temp);
 
-	} else {
-	    double temp = re / im;
-	    ans = im * Math.sqrt(1. + temp * temp);
-	}
+        } else {
+            double temp = re / im;
+            ans = im * Math.sqrt(1. + temp * temp);
+        }
 
-	return ans;
+        return ans;
     }
 
     /**
@@ -879,43 +859,43 @@ public class Polynomial implements Cloneable {
      *            , Hi Arrays containing output ?
      **/
     private void noShift(int NN, int L1, double[] Pr, double[] Pi, double[] Hr,
-	    double[] Hi) {
-	int N = NN - 1;
-	int Nm1 = N - 1;
-	int NNm1 = NN - 1;
+            double[] Hi) {
+        int N = NN - 1;
+        int Nm1 = N - 1;
+        int NNm1 = NN - 1;
 
-	for (int i = 0; i < N; ++i) {
-	    double XNi = NNm1 - i;
-	    Hr[i] = XNi * Pr[i] / N;
-	    Hi[i] = XNi * Pi[i] / N;
-	}
+        for (int i = 0; i < N; ++i) {
+            double XNi = NNm1 - i;
+            Hr[i] = XNi * Pr[i] / N;
+            Hi[i] = XNi * Pi[i] / N;
+        }
 
-	for (int jj = 0; jj < L1; ++jj) {
-	    if (cmod(Hr[Nm1], Hi[Nm1]) > ETA * 10. * cmod(Pr[Nm1], Pi[Nm1])) {
-		// Divide the negative coefficient by the derivative.
-		cdiv(-Pr[NNm1], -Pi[NNm1], Hr[Nm1], Hi[Nm1]); // Outputs Tr, Ti.
-		for (int i = 1; i <= Nm1; ++i) {
-		    int j = NNm1 - i;
-		    double T1 = Hr[j - 1];
-		    double T2 = Hi[j - 1];
-		    Hr[j] = Tr * T1 - Ti * T2 + Pr[j];
-		    Hi[j] = Tr * T2 + Ti * T1 + Pi[j];
-		}
-		Hr[0] = Pr[0];
-		Hi[0] = Pi[0];
+        for (int jj = 0; jj < L1; ++jj) {
+            if (cmod(Hr[Nm1], Hi[Nm1]) > ETA * 10. * cmod(Pr[Nm1], Pi[Nm1])) {
+                // Divide the negative coefficient by the derivative.
+                cdiv(-Pr[NNm1], -Pi[NNm1], Hr[Nm1], Hi[Nm1]); // Outputs Tr, Ti.
+                for (int i = 1; i <= Nm1; ++i) {
+                    int j = NNm1 - i;
+                    double T1 = Hr[j - 1];
+                    double T2 = Hi[j - 1];
+                    Hr[j] = Tr * T1 - Ti * T2 + Pr[j];
+                    Hi[j] = Tr * T2 + Ti * T1 + Pi[j];
+                }
+                Hr[0] = Pr[0];
+                Hi[0] = Pi[0];
 
-	    } else {
-		// If the constant term is essentially zero, shift H
-		// coefficients.
-		for (int i = 1; i <= Nm1; ++i) {
-		    int j = NNm1 - i;
-		    Hr[j] = Hr[j - 1];
-		    Hi[j] = Hi[j - 1];
-		}
-		Hr[0] = 0.;
-		Hi[0] = 0.;
-	    }
-	}
+            } else {
+                // If the constant term is essentially zero, shift H
+                // coefficients.
+                for (int i = 1; i <= Nm1; ++i) {
+                    int j = NNm1 - i;
+                    Hr[j] = Hr[j - 1];
+                    Hi[j] = Hi[j - 1];
+                }
+                Hr[0] = 0.;
+                Hi[0] = 0.;
+            }
+        }
 
     }
 
@@ -937,29 +917,29 @@ public class Polynomial implements Cloneable {
      * @return True if H(S) is essentially zero.
      **/
     private boolean calcT(int NN, double Sr, double Si, double[] Hr,
-	    double[] Hi, double[] QHr, double[] QHi) {
-	int N = NN - 1;
-	int Nm1 = N - 1;
+            double[] Hi, double[] QHr, double[] QHi) {
+        int N = NN - 1;
+        int Nm1 = N - 1;
 
-	// Evaluate H(S).
-	double tempR = PVr;
-	double tempI = PVi;
-	polyEv(N, Sr, Si, Hr, Hi, QHr, QHi);
-	double HVr = PVr;
-	double HVi = PVi;
-	PVr = tempR;
-	PVi = tempI;
+        // Evaluate H(S).
+        double tempR = PVr;
+        double tempI = PVi;
+        polyEv(N, Sr, Si, Hr, Hi, QHr, QHi);
+        double HVr = PVr;
+        double HVi = PVi;
+        PVr = tempR;
+        PVi = tempI;
 
-	// Is H(S) essentially zero?
-	boolean bool = cmod(HVr, HVi) <= ARE * 10. * cmod(Hr[Nm1], Hi[Nm1]);
-	if (bool) {
-	    Tr = 0.;
-	    Ti = 0.;
+        // Is H(S) essentially zero?
+        boolean bool = cmod(HVr, HVi) <= ARE * 10. * cmod(Hr[Nm1], Hi[Nm1]);
+        if (bool) {
+            Tr = 0.;
+            Ti = 0.;
 
-	} else
-	    cdiv(-PVr, -PVi, HVr, HVi); // Outputs Tr, Ti.
+        } else
+            cdiv(-PVr, -PVi, HVr, HVi); // Outputs Tr, Ti.
 
-	return bool;
+        return bool;
     }
 
     /**
@@ -977,28 +957,28 @@ public class Polynomial implements Cloneable {
      *            , QHi
      **/
     private void nextH(int NN, boolean bool, double[] Hr, double[] Hi,
-	    double[] QPr, double[] QPi, double[] QHr, double[] QHi) {
-	int N = NN - 1;
+            double[] QPr, double[] QPi, double[] QHr, double[] QHi) {
+        int N = NN - 1;
 
-	if (!bool) {
-	    for (int j = 1; j < N; ++j) {
-		double T1 = QHr[j - 1];
-		double T2 = QHi[j - 1];
-		Hr[j] = Tr * T1 - Ti * T2 + QPr[j];
-		Hi[j] = Tr * T2 + Ti * T1 + QPi[j];
-	    }
-	    Hr[0] = QPr[0];
-	    Hi[0] = QPi[0];
+        if (!bool) {
+            for (int j = 1; j < N; ++j) {
+                double T1 = QHr[j - 1];
+                double T2 = QHi[j - 1];
+                Hr[j] = Tr * T1 - Ti * T2 + QPr[j];
+                Hi[j] = Tr * T2 + Ti * T1 + QPi[j];
+            }
+            Hr[0] = QPr[0];
+            Hi[0] = QPi[0];
 
-	} else {
-	    // If H(S) is zero, replace H with QH.
-	    for (int j = 1; j < N; ++j) {
-		Hr[j] = QHr[j - 1];
-		Hi[j] = QHi[j - 1];
-	    }
-	    Hr[0] = 0.;
-	    Hi[0] = 0.;
-	}
+        } else {
+            // If H(S) is zero, replace H with QH.
+            for (int j = 1; j < N; ++j) {
+                Hr[j] = QHr[j - 1];
+                Hi[j] = QHi[j - 1];
+            }
+            Hr[0] = 0.;
+            Hi[0] = 0.;
+        }
 
     }
 
@@ -1022,80 +1002,78 @@ public class Polynomial implements Cloneable {
      * @return True if iteration converges.
      **/
     private boolean vrShift(int NN, int L3, double[] Pr, double[] Pi,
-	    double QPr[], double QPi[], double Hr[], double Hi[], double QHr[],
-	    double QHi[]) {
-	boolean conv = false;
-	boolean B = false;
-	boolean bool = false;
-	double OMP = 0., RelSTP = 0.;
+            double QPr[], double QPi[], double Hr[], double Hi[], double QHr[],
+            double QHi[]) {
+        boolean conv = false;
+        boolean B = false;
+        boolean bool = false;
+        double OMP = 0., RelSTP = 0.;
 
-	Sr = Zr;
-	Si = Zi;
+        Sr = Zr;
+        Si = Zi;
 
-	// Main loop for stage three.
-	for (int i = 0; i < L3; ++i) {
-	    // Evaluate P at S and test for convergence.
-	    polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
+        // Main loop for stage three.
+        for (int i = 0; i < L3; ++i) {
+            // Evaluate P at S and test for convergence.
+            polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
 
-	    double MP = cmod(PVr, PVi);
-	    double MS = cmod(Sr, Si);
-	    if (MP <= 20 * errEv(NN, QPr, QPi, MS, MP, ARE, MRE)) {
-		// Polynomial value is smaller in value than a bound on the
-		// error
-		// in evaluating P, terminate the iteration.
-		Zr = Sr;
-		Zi = Si;
-		return true;
+            double MP = cmod(PVr, PVi);
+            double MS = cmod(Sr, Si);
+            if (MP <= 20 * errEv(NN, QPr, QPi, MS, MP, ARE, MRE)) {
+                // Polynomial value is smaller in value than a bound on the
+                // error
+                // in evaluating P, terminate the iteration.
+                Zr = Sr;
+                Zi = Si;
+                return true;
 
-	    }
+            }
 
-	    if (i == 0) {
-		OMP = MP;
+            if (i == 0) {
+                OMP = MP;
 
-	    } else {
-		if (!B && MP >= OMP && RelSTP < 0.05) {
-		    // Iteration has stalled. Probably a cluster of zeros. Do 5
-		    // fixed
-		    // shift steps into the cluster to force one zero to
-		    // dominate.
-		    double TP = RelSTP;
-		    B = true;
-		    if (RelSTP < ETA)
-			TP = ETA;
-		    double R1 = Math.sqrt(TP);
-		    double R2 = Sr * (1. + R1) - Si * R1;
-		    Si = Sr * R1 + Si * (1. + R1);
-		    Sr = R2;
-		    polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
+            } else {
+                if (!B && MP >= OMP && RelSTP < 0.05) {
+                    // Iteration has stalled. Probably a cluster of zeros. Do 5
+                    // fixed
+                    // shift steps into the cluster to force one zero to
+                    // dominate.
+                    double TP = RelSTP;
+                    B = true;
+                    if (RelSTP < ETA) TP = ETA;
+                    double R1 = Math.sqrt(TP);
+                    double R2 = Sr * (1. + R1) - Si * R1;
+                    Si = Sr * R1 + Si * (1. + R1);
+                    Sr = R2;
+                    polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
 
-		    for (int j = 0; j < 5; ++j) {
-			bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs
-								    // Tr, Ti.
-			nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
-		    }
+                    for (int j = 0; j < 5; ++j) {
+                        bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs
+                        // Tr, Ti.
+                        nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
+                    }
 
-		    OMP = INFIN;
+                    OMP = INFIN;
 
-		} else {
-		    // Exit if polynomial value increases significantly.
-		    if (MP * 0.1 > OMP)
-			return conv;
-		    OMP = MP;
-		}
-	    }
+                } else {
+                    // Exit if polynomial value increases significantly.
+                    if (MP * 0.1 > OMP) return conv;
+                    OMP = MP;
+                }
+            }
 
-	    // Calculate next iteration.
-	    bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
-	    nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
-	    bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
-	    if (!bool) {
-		RelSTP = cmod(Tr, Ti) / cmod(Sr, Si);
-		Sr = Sr + Tr;
-		Si = Si + Ti;
-	    }
-	}
+            // Calculate next iteration.
+            bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
+            nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
+            bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
+            if (!bool) {
+                RelSTP = cmod(Tr, Ti) / cmod(Sr, Si);
+                Sr = Sr + Tr;
+                Si = Si + Ti;
+            }
+        }
 
-	return conv;
+        return conv;
     }
 
     /**
@@ -1119,80 +1097,79 @@ public class Polynomial implements Cloneable {
      * @return True if convergence of stage 3 iteration is successfull.
      **/
     private boolean fxShift(int NN, int L2, double[] Pr, double[] Pi,
-	    double QPr[], double QPi[], double Hr[], double Hi[], double QHr[],
-	    double QHi[], double SHr[], double SHi[]) {
-	boolean conv = false;
-	int N = NN - 1;
+            double QPr[], double QPi[], double Hr[], double Hi[], double QHr[],
+            double QHi[], double SHr[], double SHi[]) {
+        boolean conv = false;
+        int N = NN - 1;
 
-	// Evaluate Polynomial at S.
-	polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
-	boolean test = true;
-	boolean pasd = false;
+        // Evaluate Polynomial at S.
+        polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr, PVi.
+        boolean test = true;
+        boolean pasd = false;
 
-	// Calculate 1st T = -P(S)/H(S).
-	boolean bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
+        // Calculate 1st T = -P(S)/H(S).
+        boolean bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
 
-	// Main loop for one 2nd stage step.
-	for (int j = 0; j < L2; ++j) {
-	    double OTr = Tr;
-	    double OTi = Ti;
+        // Main loop for one 2nd stage step.
+        for (int j = 0; j < L2; ++j) {
+            double OTr = Tr;
+            double OTi = Ti;
 
-	    // Compute next H polynomial and new T.
-	    nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
-	    bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
-	    Zr = Sr + Tr;
-	    Zi = Si + Ti;
+            // Compute next H polynomial and new T.
+            nextH(NN, bool, Hr, Hi, QPr, QPi, QHr, QHi);
+            bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs Tr, Ti.
+            Zr = Sr + Tr;
+            Zi = Si + Ti;
 
-	    // Test for convergence unless stage 3 has failed once or
-	    // this is the last H polynomial.
-	    if (!bool && test && j != L2 - 1) {
-		if (cmod(Tr - OTr, Ti - OTi) < 0.5 * cmod(Zr, Zi)) {
-		    if (pasd) {
-			// The weak convergence test has been passed twice,
-			// start
-			// the third stage iteration, after saving the current H
-			// polynomial and shift.
-			for (int i = 0; i < N; ++i) {
-			    SHr[i] = Hr[i];
-			    SHi[i] = Hi[i];
-			}
-			double SVSr = Sr;
-			double SVSi = Si;
-			conv = vrShift(NN, 10, Pr, Pi, QPr, QPi, Hr, Hi, QHr,
-				QHi); // Outputs Zr, Zi.
-			if (conv)
-			    return conv;
+            // Test for convergence unless stage 3 has failed once or
+            // this is the last H polynomial.
+            if (!bool && test && j != L2 - 1) {
+                if (cmod(Tr - OTr, Ti - OTi) < 0.5 * cmod(Zr, Zi)) {
+                    if (pasd) {
+                        // The weak convergence test has been passed twice,
+                        // start
+                        // the third stage iteration, after saving the current H
+                        // polynomial and shift.
+                        for (int i = 0; i < N; ++i) {
+                            SHr[i] = Hr[i];
+                            SHi[i] = Hi[i];
+                        }
+                        double SVSr = Sr;
+                        double SVSi = Si;
+                        conv = vrShift(NN, 10, Pr, Pi, QPr, QPi, Hr, Hi, QHr,
+                                QHi); // Outputs Zr, Zi.
+                        if (conv) return conv;
 
-			// The iteration failed to converge. Turn off testing
-			// and
-			// restore H, S, PV and T.
-			test = false;
-			for (int i = 0; i < N; ++i) {
-			    Hr[i] = SHr[i];
-			    Hi[i] = SHi[i];
-			}
-			Sr = SVSr;
-			Si = SVSi;
+                        // The iteration failed to converge. Turn off testing
+                        // and
+                        // restore H, S, PV and T.
+                        test = false;
+                        for (int i = 0; i < N; ++i) {
+                            Hr[i] = SHr[i];
+                            Hi[i] = SHi[i];
+                        }
+                        Sr = SVSr;
+                        Si = SVSi;
 
-			polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr,
-							      // PVi.
-			bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs
-								    // Tr, Ti.
+                        polyEv(NN, Sr, Si, Pr, Pi, QPr, QPi); // Outputs PVr,
+                        // PVi.
+                        bool = calcT(NN, Sr, Si, Hr, Hi, QHr, QHi); // Outputs
+                        // Tr, Ti.
 
-		    } else {
-			pasd = true;
-		    }
-		} else {
-		    pasd = false;
-		}
-	    }
-	}
+                    } else {
+                        pasd = true;
+                    }
+                } else {
+                    pasd = false;
+                }
+            }
+        }
 
-	// Attempt an iteration with final H polynomial from second stage.
-	conv = vrShift(NN, 10, Pr, Pi, QPr, QPi, Hr, Hi, QHr, QHi); // Outputs
-								    // Zr, Zi.
+        // Attempt an iteration with final H polynomial from second stage.
+        conv = vrShift(NN, 10, Pr, Pi, QPr, QPi, Hr, Hi, QHr, QHi); // Outputs
+        // Zr, Zi.
 
-	return conv;
+        return conv;
     }
 
 }
