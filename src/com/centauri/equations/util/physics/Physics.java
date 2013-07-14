@@ -17,49 +17,6 @@ public final class Physics {
     private static final double G = GRAVITATIONAL_CONSTANT;
     private static final double g = GRAVITATIONAL_ACCELERATION;
 
-    public static Complex velocity(double v, double u, double a, double s) {
-        double result = 0;
-        if (v == Double.NEGATIVE_INFINITY) {
-            result = Math.sqrt((u * u) + (2 * a * s));
-        } else if (u == Double.NEGATIVE_INFINITY) {
-            result = Math.sqrt((v * v) - (2 * a * s));
-        } else if (a == Double.NEGATIVE_INFINITY) {
-            result = (((v * v) - (u * u)) / (2 * s));
-        } else if (s == Double.NEGATIVE_INFINITY) {
-            result = (((v * v) - (u * u)) / (2 * a));
-        }
-
-        return new Complex(result);
-    }
-
-    public static Complex force(double f, double m, double a) {
-        double result = 0;
-        if (f == Double.NEGATIVE_INFINITY) {
-            result = m * a;
-        } else if (m == Double.NEGATIVE_INFINITY) {
-            result = a / f;
-        } else if (a == Double.NEGATIVE_INFINITY) {
-            result = m / f;
-        }
-
-        return new Complex(result);
-    }
-
-    public static Complex torque(double t, double r, double f, double a) {
-        double result = 0;
-        if (t == Double.NEGATIVE_INFINITY) {
-            result = r * f * Math.sin(a);
-        } else if (r == Double.NEGATIVE_INFINITY) {
-            result = (t / (f * Math.sin(a)));
-        } else if (f == Double.NEGATIVE_INFINITY) {
-            result = (t / (r * Math.sin(a)));
-        } else if (a == Double.NEGATIVE_INFINITY) {
-            result = Math.asin(t / (r * f));
-        }
-
-        return new Complex(result);
-    }
-
     public static Complex centripetalForce(double f, double m, double v,
             double r) {
         double result = 0;
@@ -154,45 +111,6 @@ public final class Physics {
             result = (v * v * r) / (2 * G);
         } else if (r == Double.NEGATIVE_INFINITY) {
             result = (2 * G * m) / (v * v);
-        }
-
-        return new Complex(result);
-    }
-
-    public static Complex momentum(double p, double m, double v) {
-        double result = 0;
-        if (p == Double.NEGATIVE_INFINITY) {
-            result = m * v;
-        } else if (m == Double.NEGATIVE_INFINITY) {
-            result = p / v;
-        } else if (v == Double.NEGATIVE_INFINITY) {
-            result = p / m;
-        }
-
-        return new Complex(result);
-    }
-
-    public static Complex work(double w, double f, double d) {
-        double result = 0;
-        if (w == Double.NEGATIVE_INFINITY) {
-            result = f * d;
-        } else if (f == Double.NEGATIVE_INFINITY) {
-            result = w / d;
-        } else if (d == Double.NEGATIVE_INFINITY) {
-            result = w / f;
-        }
-
-        return new Complex(result);
-    }
-
-    public static Complex ohmsLaw(double I, double V, double R) {
-        double result = 0;
-        if (I == Double.NEGATIVE_INFINITY) {
-            result = V / R;
-        } else if (V == Double.NEGATIVE_INFINITY) {
-            result = I * R;
-        } else if (R == Double.NEGATIVE_INFINITY) {
-            result = V / I;
         }
 
         return new Complex(result);
