@@ -3,13 +3,15 @@
     <item 
         android:id="@+id/menu_search"
         android:title="@string/search_hint"
-        android:icon="@drawable/ic_menu_search_light" >
+        android:icon="@drawable/ic_menu_search_light"
+        android:showAsAction="always" >
     </item>
 
     <item 
         android:id="@+id/menu_settings"
         android:title="@string/menu_preferences"
-        android:icon="@drawable/ic_menu_settings_light">
+        android:icon="@drawable/ic_menu_settings_light"
+        android:showAsAction="never">
     </item>
 
 </menu>

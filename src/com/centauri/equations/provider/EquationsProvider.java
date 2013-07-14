@@ -18,13 +18,18 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.centauri.equations.BuildConfig;
 
 public class EquationsProvider extends ContentProvider {
+
+    private static final String TAG = EquationsProvider.class.getSimpleName();
 
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -68,6 +73,7 @@ public class EquationsProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            if (BuildConfig.DEBUG) Log.w(TAG, "Recreating the database...");
             try {
                 DbUtils.executeSqlScript(context, db, "Equations.sql");
             } catch (IOException e) {

@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.centauri.equations.BuildConfig;
 import com.centauri.equations.provider.Equations;
+import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.provider.EquationsProvider;
 
 public class SearchActivity extends ListActivity {
@@ -43,9 +44,10 @@ public class SearchActivity extends ListActivity {
             Cursor formulaCursor = getContentResolver().query(data, PROJECTION,
                     null, null, null);
             formulaCursor.moveToFirst();
-            int id = formulaCursor.getInt(formulaCursor
+            long id = formulaCursor.getLong(formulaCursor
                     .getColumnIndex(Equations.Formula._ID));
-            startActivity(FormulaMap.getIntent(id));
+            if (BuildConfig.DEBUG) Log.v("Search", "This id is " + id);
+            startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
         }
 
         finish();

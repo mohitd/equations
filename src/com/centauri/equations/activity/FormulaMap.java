@@ -150,6 +150,45 @@ public class FormulaMap {
         imageMap.put(82, R.drawable.img_alg_euler_formula);
         imageMap.put(83, R.drawable.img_trig_trig_form);
         imageMap.put(84, R.drawable.img_alg_vector_proj);
+        imageMap.put(85, R.drawable.img_phy_angular_momentum);
+        imageMap.put(86, R.drawable.img_phy_beat_frequency);
+        imageMap.put(87, R.drawable.img_phy_boltzmanns_constant);
+        imageMap.put(88, R.drawable.img_phy_buoyant_force);
+        imageMap.put(89, R.drawable.img_phy_carnot_efficiency);
+        imageMap.put(90, R.drawable.img_phy_center_of_gravity);
+        imageMap.put(91, R.drawable.img_phy_continuity_equation);
+        imageMap.put(92, R.drawable.img_phy_coulombs_constant);
+        imageMap.put(93, R.drawable.img_phy_current);
+        imageMap.put(94, R.drawable.img_phy_decibels);
+        imageMap.put(95, R.drawable.img_phy_doppler_effect);
+        imageMap.put(96, R.drawable.img_phy_electric_flux);
+        imageMap.put(97, R.drawable.img_phy_electric_potential);
+        imageMap.put(98, R.drawable.img_phy_electrical_field);
+        imageMap.put(99, R.drawable.img_phy_electrical_potential_energy);
+        imageMap.put(100, R.drawable.img_phy_electrical_power);
+        imageMap.put(101, R.drawable.img_phy_entropy);
+        imageMap.put(102, R.drawable.img_phy_first_law_thermodynamics);
+        imageMap.put(103, R.drawable.img_phy_fluid_pressure);
+        imageMap.put(104, R.drawable.img_phy_gauss_law);
+        imageMap.put(105, R.drawable.img_phy_heat_engine_efficiency);
+        imageMap.put(106, R.drawable.img_phy_heat_engine_work);
+        imageMap.put(107, R.drawable.img_phy_heat_transfer);
+        imageMap.put(108, R.drawable.img_phy_heat);
+        imageMap.put(109, R.drawable.img_phy_intensity);
+        imageMap.put(110, R.drawable.img_phy_internal_energy);
+        imageMap.put(111, R.drawable.img_phy_latent_heat);
+        imageMap.put(112, R.drawable.img_phy_pascals_principle);
+        imageMap.put(113, R.drawable.img_phy_period_pendulum);
+        imageMap.put(114, R.drawable.img_phy_period_spring);
+        imageMap.put(115, R.drawable.img_phy_period);
+        imageMap.put(116, R.drawable.img_phy_rot_kinetic_energy);
+        imageMap.put(117, R.drawable.img_phy_speed_of_wave_on_string);
+        imageMap.put(118, R.drawable.img_phy_stefan_boltzmann_constant);
+        imageMap.put(119, R.drawable.img_phy_stefans_law);
+        imageMap.put(120, R.drawable.img_phy_thermal_expansion);
+        imageMap.put(121, R.drawable.img_phy_volumetric_expansion);
+        imageMap.put(122, R.drawable.img_phy_wave_speed);
+        imageMap.put(123, R.drawable.img_phy_work_on_gas);
     }
 
     private FormulaMap() {

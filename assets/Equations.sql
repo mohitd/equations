@@ -1,5 +1,5 @@
 -- Create the table
-CREATE TABLE IF NOT EXISTS formula (id INTEGER PRIMARY KEY AUTOINCREMENT, suggest_text_1 TEXT NOT NULL, category TEXT NOT NULL, favorite INTEGER);
+CREATE TABLE IF NOT EXISTS formula (_id INTEGER PRIMARY KEY AUTOINCREMENT, suggest_text_1 TEXT NOT NULL, category TEXT NOT NULL, favorite INTEGER);
 
 -- Start inserting comments
 INSERT INTO formula (suggest_text_1, category) VALUES ('Quadratic Formula', 'Algebra');
@@ -66,7 +66,7 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Gravitational Accelerati
 
 INSERT INTO formula (suggest_text_1, category) VALUES ('Acid/Base Equations', 'Chemistry');
 	
-	-- Version 2
+-- Version 2
 INSERT INTO formula (suggest_text_1, category) VALUES ('Angular Speed', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Average Acceleration', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Average Angular Acceleration', 'Physics');
@@ -87,17 +87,57 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Tangential Speed', 'Phys
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Components', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Velocity Equations', 'Physics');
 	
-	-- Version 3
+-- Version 3
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Addition and Subtraction', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Definition', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Dot Product', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Properties', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Scalar Multiplication', 'Algebra');
 
-	-- Version 4
+-- Version 4
 INSERT INTO formula (suggest_text_1, category) VALUES ('De Moivre''s Theorem', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Dot Properties', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Euler''s Formula', 'Algebra');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Trigonometric Form', 'Trigonometry');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Projection', 'Algebra');
-	
+
+-- Version 5
+INSERT INTO formula (suggest_text_1, category) VALUES ('Angular Momentum', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Beat Frequency', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Boltzmann Constant', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Buoyant Force', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Carnot Efficiency', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Center of Gravity', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Continuity Equation', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Coulomb''s Constant', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Current', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Decibel', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Doppler Effect', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Electric Flux', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Electric Potential', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Electrical Field', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Electrical Potential Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Electrical Power', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Entropy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('First Law of Thermodynamics', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Fluid Pressure', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gauss''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Heat Engine Efficiency', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Heat Engine Work', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Heat Transfer', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Heat', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Intensity', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Internal Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Latent Heat', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Pascal''s Principle', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Period of a Pendulum', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Period of a Spring', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Period', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Rotational Kinetic Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Speed of a Wave on a String', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Stefan-Boltzmann Constant', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Stefan''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Linear Thermal Expansion', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Volumetric Thermal Expansion', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Wave Speed', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Work on a Gas', 'Physics');
