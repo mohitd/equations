@@ -1,0 +1,103 @@
+-- Create the table
+CREATE TABLE IF NOT EXISTS formula (id INTEGER PRIMARY KEY AUTOINCREMENT, suggest_text_1 TEXT NOT NULL, category TEXT NOT NULL, favorite INTEGER);
+
+-- Start inserting comments
+INSERT INTO formula (suggest_text_1, category) VALUES ('Quadratic Formula', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Distance Formula', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Radicand Simplify', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Slope', 'Algebra');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Area', 'Geometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Pythagorean Theorem', 'Geometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Heron''s Formula', 'Geometry');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Law of Sines', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Law of Cosines', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Law of Tangents', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Product to Sum Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Sum to Product Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Power Reduction Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Sum and Difference Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Even and Odd Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Cofunction Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Pythagorean Identities', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Quotient Formulas', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Right Triangle Definition', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Reciprocal Identities', 'Trigonometry');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Ideal Gas Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Ideal Gas Constant', 'Physics');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Functional Groups', 'Chemistry');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Logarithm Definition', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Logarithm Identities', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Logarithm Properties', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Summation Definition', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Summation Properties', 'Algebra');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('Boyle''s Law', 'Chemistry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Charles'' Law', 'Chemistry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gay Lussac''s Law', 'Chemistry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Dalton''s Law', 'Chemistry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Combined Gas Law', 'Chemistry');
+	
+INSERT INTO formula (suggest_text_1, category) VALUES ('One Dimensional Motion', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Force', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Torque', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Centripetal Force', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Centripetal Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Newton''s Law of Universal Gravitation', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Maximum Height of a Projectile', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Maximum Range of a Projectile', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Coulomb''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Escape Velocity', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Momentum', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Work', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Ohm''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Particle Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Resistance', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Bernoulli''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Planck''s Constant', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Speed of Light', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Permittivity of Free Space', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gravitational Constant', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gravitational Acceleration', 'Physics');
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Acid/Base Equations', 'Chemistry');
+	
+	-- Version 2
+INSERT INTO formula (suggest_text_1, category) VALUES ('Angular Speed', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Average Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Average Angular Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Average Velocity', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Displacement', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gravitational Potential Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Hooke''s Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Impulse', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Instantaneous Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Instantaneous Velocity', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Kepler''s Third Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Kinetic Energy', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Newton''s Third Law', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Power', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Static Friction', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Tangential Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Tangential Speed', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Components', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Velocity Equations', 'Physics');
+	
+	-- Version 3
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Addition and Subtraction', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Definition', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Dot Product', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Properties', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Scalar Multiplication', 'Algebra');
+
+	-- Version 4
+INSERT INTO formula (suggest_text_1, category) VALUES ('De Moivre''s Theorem', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Dot Properties', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Euler''s Formula', 'Algebra');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Trigonometric Form', 'Trigonometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Vector Projection', 'Algebra');
+	
