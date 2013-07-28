@@ -1,13 +1,13 @@
 package com.centauri.equations.util;
 
+import android.annotation.SuppressLint;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.annotation.SuppressLint;
-
-// TODO: Add support for negative square roots. Integrate Complex numbers?
 public class RadicalNumber {
 
     private double coeff;
@@ -47,13 +47,11 @@ public class RadicalNumber {
     }
 
     public RadicalNumber multiply(RadicalNumber number) {
-        return new RadicalNumber(this.coeff * number.coeff, radicand
-                * number.radicand).simplify();
+        return new RadicalNumber(this.coeff * number.coeff, radicand * number.radicand).simplify();
     }
 
     public RadicalNumber divide(RadicalNumber number) {
-        return new RadicalNumber(this.coeff / number.coeff, radicand
-                / number.radicand).simplify();
+        return new RadicalNumber(this.coeff / number.coeff, radicand / number.radicand).simplify();
     }
 
     public double coefficient() {
@@ -64,8 +62,6 @@ public class RadicalNumber {
         return radicand;
     }
 
-    // TODO: Optimize radical simplification. Initialization of unnecessary
-    // List<>s and Map<>s
     @SuppressLint("UseSparseArrays")
     public RadicalNumber simplify() {
         int n = radicand;
@@ -115,14 +111,21 @@ public class RadicalNumber {
 
     @Override
     public String toString() {
-        if (coeff == 1)
-            return "&radic;" + radicand;
-        else if (radicand == 1)
-            return String.valueOf(coeff);
-        else if (coeff == 0 || radicand == 0)
-            return String.valueOf(0.0);
-        else
-            return coeff + "&radic;" + radicand;
+        BigDecimal decimalCoeff = new BigDecimal(coeff);
+        BigDecimal decimalRadicand = new BigDecimal(radicand);
+
+        decimalCoeff.stripTrailingZeros();
+        decimalRadicand.stripTrailingZeros();
+
+        if (coeff == 1) {
+            return "&radic;" + decimalRadicand.toPlainString();
+        } else if (radicand == 1) {
+            return decimalCoeff.toPlainString();
+        } else if (coeff == 0 || radicand == 0) {
+            return String.valueOf(0);
+        } else {
+            return decimalCoeff.toPlainString() + "&radic;" + decimalRadicand.toPlainString();
+        }
     }
 
 }
