@@ -23,15 +23,15 @@ public class Point2D {
     }
 
     public Complex distance(Point2D point) {
-        double deltaX = point.getX() - this.getX();
-        double deltaY = point.getY() - this.getY();
+        double deltaX = point.x - x;
+        double deltaY = point.y - y;
 
         return new Complex(Math.sqrt((deltaX * deltaX) + (deltaY * deltaY)));
     }
 
     public Complex slope(Point2D point) {
-        double deltaX = point.getX() - this.getX();
-        double deltaY = point.getY() - this.getY();
+        double deltaX = point.x - x;
+        double deltaY = point.y - y;
 
         return new Complex(deltaY / deltaX);
     }
@@ -44,26 +44,10 @@ public class Point2D {
     }
 
     /**
-     * @param x
-     *            the x to set
-     */
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    /**
      * @return the y
      */
     public double getY() {
         return y;
-    }
-
-    /**
-     * @param y
-     *            the y to set
-     */
-    public void setY(double y) {
-        this.y = y;
     }
 
     @Override
