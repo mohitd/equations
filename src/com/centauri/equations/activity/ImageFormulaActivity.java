@@ -36,7 +36,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
     public static final String ACTION_VIEW_FORMULA = "com.centauri.equations.action.VIEW_FORMULA";
 
     private static final String[] PROJECTION = { Equations.Formula._ID,
-            Equations.Formula.FORMULA_NAME, Equations.Formula.CATEGORY, };
+        Equations.Formula.FORMULA_NAME, Equations.Formula.CATEGORY, };
 
     /**
      * @see com.centauri.equations.activity.BaseFormulaActivity#onCreate(android.os.Bundle)
@@ -52,12 +52,11 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
             Bundle arguments = new Bundle();
             arguments.putLong(Formula._ID, id);
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment)
+                    .commit();
         }
 
-        Cursor cursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
+        Cursor cursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
                 Equations.Formula._ID + "=" + id, null, null);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -70,8 +69,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         }
         cursor.close();
 
-        getSupportActionBar().setNavigationMode(
-                ActionBar.NAVIGATION_MODE_STANDARD);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -92,7 +90,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
     public static class ImageFormulaFragment extends SherlockFragment {
 
         private static final String[] PROJECTION = { Equations.Formula._ID,
-                Equations.Formula.FAVORITE };
+            Equations.Formula.FAVORITE };
 
         private boolean favorite;
 
@@ -100,13 +98,11 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             if (BuildConfig.DEBUG) Log.d("Base Fragment", "Id is " + getID());
-            Cursor cursor = getActivity().getContentResolver().query(
-                    Equations.Formula.CONTENT_URI, PROJECTION,
-                    Equations.Formula._ID + "=" + getID(), null, null);
+            Cursor cursor = getActivity().getContentResolver().query(Equations.Formula.CONTENT_URI,
+                    PROJECTION, Equations.Formula._ID + "=" + getID(), null, null);
             cursor.moveToFirst();
             if (cursor.getCount() > 0) {
-                favorite = (cursor.getInt(cursor
-                        .getColumnIndexOrThrow(Equations.Formula.FAVORITE)) != 0);
+                favorite = (cursor.getInt(cursor.getColumnIndexOrThrow(Equations.Formula.FAVORITE)) != 0);
             }
             cursor.close();
 
@@ -123,9 +119,9 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         public void onPrepareOptionsMenu(Menu menu) {
             MenuItem item = menu.findItem(R.id.menu_fav);
             if (favorite) {
-                item.setIcon(R.drawable.rate_star_big_on_holo_light);
+                item.setIcon(R.drawable.ic_action_rating_important);
             } else {
-                item.setIcon(R.drawable.rate_star_big_off_holo_light);
+                item.setIcon(R.drawable.ic_action_rating_not_important);
             }
         }
 
@@ -139,30 +135,24 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
             case R.id.menu_fav:
-                Uri uri = ContentUris.withAppendedId(
-                        Equations.Formula.CONTENT_URI, getID());
+                Uri uri = ContentUris.withAppendedId(Equations.Formula.CONTENT_URI, getID());
                 ContentValues values = new ContentValues();
                 if (favorite) {
                     favorite = false;
                     values.put(Equations.Formula.FAVORITE, 0);
 
-                    Toast.makeText(
-                            getActivity(),
-                            getResources().getString(
-                                    R.string.removed_from_favorites),
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.removed_from_favorites),
                             Toast.LENGTH_SHORT).show();
                 } else if (!favorite) {
                     favorite = true;
                     values.put(Equations.Formula.FAVORITE, 1);
 
-                    Toast.makeText(
-                            getActivity(),
-                            getResources().getString(
-                                    R.string.added_to_favorites),
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.added_to_favorites),
                             Toast.LENGTH_SHORT).show();
                 }
-                getActivity().getContentResolver().update(uri, values, null,
-                        null);
+                getActivity().getContentResolver().update(uri, values, null, null);
                 getActivity().invalidateOptionsMenu();
                 return true;
 
@@ -177,8 +167,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         @Override
         public void onStart() {
             super.onStart();
-            ImageView imageView = (ImageView) getView().findViewById(
-                    R.id.img_formula);
+            ImageView imageView = (ImageView) getView().findViewById(R.id.img_formula);
             int imageResource = FormulaMap.getImage(getID());
             if (imageResource != 0) imageView.setImageResource(imageResource);
         }
