@@ -22,10 +22,11 @@ public class Matrix {
     }
 
     public static Matrix identity(int n) {
-        Matrix identity = new Matrix(n, n);
+        double[][] identity = new double[n][n];
         for (int i = 0; i < n; i++)
-            identity.data[i][i] = 1;
-        return identity;
+            for (int j = 0; j < n; j++)
+                identity[i][j] = (i == j) ? 1 : 0;
+        return new Matrix(identity);
     }
 
     public Matrix transpose() {
@@ -38,8 +39,7 @@ public class Matrix {
 
     public Matrix plus(Matrix b) {
         Matrix a = this;
-        if (b.m != a.m || b.n != a.n)
-            throw new RuntimeException("Illegal matrix dimensions.");
+        if (b.m != a.m || b.n != a.n) throw new RuntimeException("Illegal matrix dimensions.");
 
         Matrix c = new Matrix(m, n);
         for (int i = 0; i < m; i++)
@@ -50,8 +50,7 @@ public class Matrix {
 
     public Matrix minus(Matrix b) {
         Matrix a = this;
-        if (b.m != a.m || b.n != a.n)
-            throw new RuntimeException("Illegal matrix dimensions.");
+        if (b.m != a.m || b.n != a.n) throw new RuntimeException("Illegal matrix dimensions.");
 
         Matrix c = new Matrix(m, n);
         for (int i = 0; i < m; i++)
@@ -62,8 +61,7 @@ public class Matrix {
 
     public Matrix times(Matrix b) {
         Matrix a = this;
-        if (a.n != b.m)
-            throw new RuntimeException("Illegal matrix dimensions.");
+        if (a.n != b.m) throw new RuntimeException("Illegal matrix dimensions.");
 
         Matrix c = new Matrix(a.m, b.n);
         for (int i = 0; i < c.m; i++)
@@ -75,8 +73,7 @@ public class Matrix {
 
     public boolean equals(Matrix b) {
         Matrix a = this;
-        if (b.m != a.m || b.n != a.n)
-            throw new RuntimeException("Illegal matrix dimensions.");
+        if (b.m != a.m || b.n != a.n) throw new RuntimeException("Illegal matrix dimensions.");
 
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
@@ -111,7 +108,7 @@ public class Matrix {
                     }
                 }
             }
-            result += arr[0][i] * Math.pow(-1, (int) i) * det(temp);
+            result += arr[0][i] * Math.pow(-1, i) * det(temp);
         }
         return result;
     }

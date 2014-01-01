@@ -6,8 +6,8 @@ import java.text.NumberFormat;
 
 public class Point2D {
 
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     /**
      * The default constructor that sets the initial value of
@@ -22,26 +22,16 @@ public class Point2D {
         this.y = y;
     }
 
-    public void setPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setPoint(Point2D point) {
-        this.x = point.getX();
-        this.y = point.getY();
-    }
-
     public Complex distance(Point2D point) {
-        double deltaX = point.getX() - this.getX();
-        double deltaY = point.getY() - this.getY();
+        double deltaX = point.x - x;
+        double deltaY = point.y - y;
 
         return new Complex(Math.sqrt((deltaX * deltaX) + (deltaY * deltaY)));
     }
 
     public Complex slope(Point2D point) {
-        double deltaX = point.getX() - this.getX();
-        double deltaY = point.getY() - this.getY();
+        double deltaX = point.x - x;
+        double deltaY = point.y - y;
 
         return new Complex(deltaY / deltaX);
     }
@@ -54,26 +44,10 @@ public class Point2D {
     }
 
     /**
-     * @param x
-     *            the x to set
-     */
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    /**
      * @return the y
      */
     public double getY() {
         return y;
-    }
-
-    /**
-     * @param y
-     *            the y to set
-     */
-    public void setY(double y) {
-        this.y = y;
     }
 
     @Override

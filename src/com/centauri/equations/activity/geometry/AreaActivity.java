@@ -1,7 +1,5 @@
 package com.centauri.equations.activity.geometry;
 
-import java.util.Locale;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -22,13 +20,15 @@ import com.centauri.equations.R;
 import com.centauri.equations.activity.ImageFormulaActivity;
 import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
-import com.centauri.equations.util.Polygon;
+import com.centauri.equations.util.Polygon2D;
 import com.centauri.equations.util.shape2d.Ellipse;
 import com.centauri.equations.util.shape2d.NGon;
 import com.centauri.equations.util.shape2d.Quadrilateral;
 import com.centauri.equations.util.shape2d.Sector;
 import com.centauri.equations.util.shape2d.Trapezoid;
 import com.centauri.equations.util.shape2d.Triangle;
+
+import java.util.Locale;
 
 public class AreaActivity extends ImageFormulaActivity {
 
@@ -42,8 +42,8 @@ public class AreaActivity extends ImageFormulaActivity {
         return new AreaFragment();
     }
 
-    public static class AreaFragment extends ImageFormulaFragment implements
-            OnClickListener, OnItemSelectedListener {
+    public static class AreaFragment extends ImageFormulaFragment implements OnClickListener,
+            OnItemSelectedListener {
 
         private ArrayAdapter<CharSequence> adapter;
         private Spinner spinner;
@@ -60,28 +60,24 @@ public class AreaActivity extends ImageFormulaActivity {
             b_txt = ((EditText) getView().findViewById(R.id.area_b));
             c_txt = ((EditText) getView().findViewById(R.id.area_c));
 
-            adapter = ArrayAdapter.createFromResource(getActivity(),
-                    R.array.polygon2D, android.R.layout.simple_spinner_item);
+            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.polygon2D,
+                    android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner = (Spinner) getView().findViewById(R.id.area_polygon);
             spinner.setAdapter(adapter);
 
             spinner.setOnItemSelectedListener(this);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
         }
 
-        public void onItemSelected(AdapterView<?> parent, View view,
-                int position, long id) {
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
             b_txt.setVisibility(View.VISIBLE);
             c_txt.setVisibility(View.GONE);
-            ImageView formula = (ImageView) getView().findViewById(
-                    R.id.img_formula);
+            ImageView formula = (ImageView) getView().findViewById(R.id.img_formula);
 
-            // TODO Seperate the Polygon Enum!!!
-            switch (Polygon.valueOf(adapter.getItem(position).toString()
+            switch (Polygon2D.valueOf(adapter.getItem(position).toString()
                     .toUpperCase(Locale.getDefault()))) {
             case TRIANGLE:
                 setHintA(R.string.base);
@@ -129,24 +125,6 @@ public class AreaActivity extends ImageFormulaActivity {
                 setHintC(R.string.height);
                 formula.setImageResource(R.drawable.img_area_trapezoid);
                 break;
-            case CONE:
-                break;
-            case CUBE:
-                break;
-            case CYLINDER:
-                break;
-            case PYRAMID:
-                break;
-            case RECTANGULAR_PRISM:
-                break;
-            case SPHERE:
-                break;
-            case TRAPEZIODAL_PRISM:
-                break;
-            case TRIANGULAR_PRISM:
-                break;
-            case TRIANGULAR_PYRAMID:
-                break;
             default:
                 break;
             }
@@ -157,12 +135,10 @@ public class AreaActivity extends ImageFormulaActivity {
 
         public void onClick(View v) {
             String polygon = (String) spinner.getSelectedItem();
-            Polygon shape = Polygon.valueOf(polygon.toUpperCase(Locale
-                    .getDefault()));
+            Polygon2D shape = Polygon2D.valueOf(polygon.toUpperCase(Locale.getDefault()));
 
             if (a_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -171,8 +147,7 @@ public class AreaActivity extends ImageFormulaActivity {
             try {
                 a = Double.parseDouble(a_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.number_too_large),
+                Toast.makeText(getActivity(), getResources().getString(R.string.number_too_large),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -180,18 +155,16 @@ public class AreaActivity extends ImageFormulaActivity {
             double b = 0;
             if (b_txt.getVisibility() == View.VISIBLE) {
                 if (b_txt.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(),
-                            getResources().getString(R.string.blank_field),
+                    Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
                     b = Double.parseDouble(b_txt.getText().toString());
                 } catch (NumberFormatException e) {
-                    Toast.makeText(
-                            getActivity(),
-                            getResources().getString(R.string.number_too_large),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.number_too_large), Toast.LENGTH_SHORT)
+                            .show();
                     return;
                 }
             }
@@ -199,18 +172,16 @@ public class AreaActivity extends ImageFormulaActivity {
             double c = 0;
             if (c_txt.getVisibility() == View.VISIBLE) {
                 if (c_txt.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(),
-                            getResources().getString(R.string.blank_field),
+                    Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
                     c = Double.parseDouble(c_txt.getText().toString());
                 } catch (NumberFormatException e) {
-                    Toast.makeText(
-                            getActivity(),
-                            getResources().getString(R.string.number_too_large),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.number_too_large), Toast.LENGTH_SHORT)
+                            .show();
                     return;
                 }
             }
@@ -244,8 +215,7 @@ public class AreaActivity extends ImageFormulaActivity {
                 result = new Trapezoid(a, b, c).area();
                 break;
             default:
-                throw new EnumConstantNotPresentException(Polygon.class,
-                        shape.toString());
+                throw new EnumConstantNotPresentException(Polygon2D.class, shape.toString());
             }
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.centauri.equations"
-    android:versionCode="11"
+    android:versionCode="12"
     android:versionName="@string/app_version"
     android:installLocation="auto">
 
@@ -139,22 +139,6 @@
 
         <!-- Physics formulas -->
 
-        <activity android:name="com.centauri.equations.activity.physics.CentripetalForceActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
-            <intent-filter>
-                <action android:name="com.centauri.equations.action.CENTRIPETAL_FORCE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
-        </activity>
-        <activity android:name="com.centauri.equations.activity.physics.CentripetalAccelActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
-            <intent-filter>
-                <action android:name="com.centauri.equations.action.CENTRIPETAL_ACCEL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
-        </activity>
         <activity android:name="com.centauri.equations.activity.physics.GravitationActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.GRAVITATION" />

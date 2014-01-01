@@ -46,7 +46,7 @@ public class Complex {
      */
     public Complex(double real) {
         this.real = real;
-        imag = 0;
+        this.imag = 0;
     }
 
     /**
@@ -70,7 +70,7 @@ public class Complex {
      * @return The addition of {@code this} and {@code z}
      */
     public Complex add(Complex z) {
-        return new Complex(this.real + z.real(), this.imag + z.imag());
+        return new Complex(real + z.real(), imag + z.imag());
     }
 
     /**
@@ -81,7 +81,7 @@ public class Complex {
      * @return The subtraction of {@code this} and {@code z}
      */
     public Complex sub(Complex z) {
-        return new Complex(this.real - z.real(), this.imag + z.imag());
+        return new Complex(real - z.real(), imag + z.imag());
     }
 
     /**
@@ -92,8 +92,7 @@ public class Complex {
      * @return The multiplication of {@code this} and {@code z}
      */
     public Complex mul(Complex z) {
-        return new Complex(this.real * z.real() - this.imag * z.imag(),
-                this.imag * z.real() + this.real * z.imag());
+        return new Complex(real * z.real() - imag * z.imag(), imag * z.real() + real * z.imag());
     }
 
     /**
@@ -109,8 +108,9 @@ public class Complex {
             den = z.real() * z.real() + z.imag() * z.imag();
         }
 
-        return new Complex((this.real * z.real() - this.imag * z.imag()) / den,
-                (this.imag * z.real() + this.real * z.imag()) / den);
+        return new Complex((real * z.real() - imag * z.imag()) / den, (imag * z.real() + real
+                * z.imag())
+                / den);
     }
 
     /**
@@ -119,7 +119,7 @@ public class Complex {
      * @return The conjugate of {@code this}
      */
     public Complex conj() {
-        return new Complex(this.real, -(this.imag));
+        return new Complex(real, -imag);
     }
 
     /**

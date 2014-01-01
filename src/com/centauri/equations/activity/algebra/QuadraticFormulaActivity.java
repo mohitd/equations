@@ -1,9 +1,5 @@
 package com.centauri.equations.activity.algebra;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -23,6 +19,10 @@ import com.centauri.equations.provider.Equations.Formula;
 import com.centauri.equations.util.Complex;
 import com.centauri.equations.util.Quadratic;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class QuadraticFormulaActivity extends ImageFormulaActivity {
 
     public static final String ACTION_QUADRATIC = "com.centauri.equations.action.QUADRATIC";
@@ -35,8 +35,8 @@ public class QuadraticFormulaActivity extends ImageFormulaActivity {
         return new QuadraticFormulaFragment();
     }
 
-    public static class QuadraticFormulaFragment extends ImageFormulaFragment
-            implements OnClickListener {
+    public static class QuadraticFormulaFragment extends ImageFormulaFragment implements
+            OnClickListener {
 
         private EditText a_txt, b_txt, c_txt;
 
@@ -52,26 +52,19 @@ public class QuadraticFormulaActivity extends ImageFormulaActivity {
             c_txt.setHint(R.string.c);
             c_txt.setVisibility(View.VISIBLE);
 
-            a_txt.setInputType(InputType.TYPE_CLASS_NUMBER
-                    | InputType.TYPE_NUMBER_FLAG_SIGNED);
-            b_txt.setInputType(InputType.TYPE_CLASS_NUMBER
-                    | InputType.TYPE_NUMBER_FLAG_SIGNED);
-            c_txt.setInputType(InputType.TYPE_CLASS_NUMBER
-                    | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            a_txt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            b_txt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            c_txt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
 
-            ((Spinner) getView().findViewById(R.id.area_polygon))
-                    .setVisibility(View.GONE);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((Spinner) getView().findViewById(R.id.area_polygon)).setVisibility(View.GONE);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
         }
 
         public void onClick(View v) {
 
-            if (a_txt.getText().toString().equals("")
-                    || b_txt.getText().toString().equals("")
+            if (a_txt.getText().toString().equals("") || b_txt.getText().toString().equals("")
                     || c_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -84,8 +77,7 @@ public class QuadraticFormulaActivity extends ImageFormulaActivity {
                 b = Double.parseDouble(b_txt.getText().toString());
                 c = Double.parseDouble(c_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.number_too_large),
+                Toast.makeText(getActivity(), getResources().getString(R.string.number_too_large),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -103,21 +95,15 @@ public class QuadraticFormulaActivity extends ImageFormulaActivity {
             Iterator<Complex> iterator = roots.iterator();
 
             // If complex number, do special complex number formatting
-            // TODO: Do this in Complex!
             if (discriminant < 0) {
                 Complex result = iterator.next();
-                if (result.real() == 0 && result.imag() == 1)
-                    text.append("±i");
+                if (result.real() == 0 && result.imag() == 1) text.append("±i");
                 else if (result.real() == 0) {
-                    if (result.imag() == 1)
-                        text.append("±i");
-                    else
-                        text.append("±" + style.format(result.imag()) + "i");
-                } else if (result.imag() == 1)
-                    text.append(style.format(result.real()) + "±i");
-                else
-                    text.append(style.format(result.real()) + "±"
-                            + style.format(result.imag()) + "i");
+                    if (result.imag() == 1) text.append("±i");
+                    else text.append("±" + style.format(result.imag()) + "i");
+                } else if (result.imag() == 1) text.append(style.format(result.real()) + "±i");
+                else text.append(style.format(result.real()) + "±" + style.format(result.imag())
+                        + "i");
 
                 // Non complex roots
             } else {
@@ -152,6 +138,7 @@ public class QuadraticFormulaActivity extends ImageFormulaActivity {
 
         /*
          * (non-Javadoc)
+         * 
          * @see FormulaActivity.FormulaFragment# getFragmentView()
          */
         @Override
