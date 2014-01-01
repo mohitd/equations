@@ -1,8 +1,5 @@
 package com.centauri.equations.provider;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.ContentProvider;
@@ -22,6 +19,9 @@ import android.util.Log;
 
 import com.centauri.equations.BuildConfig;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 public class EquationsProvider extends ContentProvider {
 
     private static final String TAG = EquationsProvider.class.getSimpleName();
@@ -29,7 +29,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -43,23 +43,20 @@ public class EquationsProvider extends ContentProvider {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(Equations.AUTHORITY, "formulas", FORMULAS);
         uriMatcher.addURI(Equations.AUTHORITY, "formulas/#", FORMULA_ID);
-        uriMatcher.addURI(Equations.AUTHORITY,
-                SearchManager.SUGGEST_URI_PATH_QUERY, SEARCH_SUGGEST);
-        uriMatcher.addURI(Equations.AUTHORITY,
-                SearchManager.SUGGEST_URI_PATH_QUERY + "/*", SEARCH_SUGGEST);
+        uriMatcher
+                .addURI(Equations.AUTHORITY, SearchManager.SUGGEST_URI_PATH_QUERY, SEARCH_SUGGEST);
+        uriMatcher.addURI(Equations.AUTHORITY, SearchManager.SUGGEST_URI_PATH_QUERY + "/*",
+                SEARCH_SUGGEST);
 
         projectionMap = new HashMap<String, String>();
         projectionMap.put(Equations.Formula._ID, Equations.Formula._ID);
-        projectionMap.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID,
-                "_id AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
+        projectionMap.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID, "_id AS "
+                + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
         projectionMap.put(SearchManager.SUGGEST_COLUMN_SHORTCUT_ID, "_id AS "
                 + SearchManager.SUGGEST_COLUMN_SHORTCUT_ID);
-        projectionMap.put(Equations.Formula.FORMULA_NAME,
-                Equations.Formula.FORMULA_NAME);
-        projectionMap.put(Equations.Formula.CATEGORY,
-                Equations.Formula.CATEGORY);
-        projectionMap.put(Equations.Formula.FAVORITE,
-                Equations.Formula.FAVORITE);
+        projectionMap.put(Equations.Formula.FORMULA_NAME, Equations.Formula.FORMULA_NAME);
+        projectionMap.put(Equations.Formula.CATEGORY, Equations.Formula.CATEGORY);
+        projectionMap.put(Equations.Formula.FAVORITE, Equations.Formula.FAVORITE);
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -111,11 +108,9 @@ public class EquationsProvider extends ContentProvider {
             break;
         case FORMULA_ID:
             String formulaId = uri.getPathSegments().get(1);
-            count = db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID
-                    + "="
-                    + formulaId
-                    + (!TextUtils.isEmpty(selection) ? " AND (" + selection
-                            + ')' : ""), selectionArgs);
+            count = db.delete(FORMULA_TABLE_NAME, Equations.Formula._ID + "=" + formulaId
+                    + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""),
+                    selectionArgs);
             break;
         default:
             throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -143,18 +138,15 @@ public class EquationsProvider extends ContentProvider {
             throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        if (values.getAsString(Equations.Formula.FORMULA_NAME).length() == 0)
-            throw new IllegalArgumentException(
-                    "Cannot have an empty formula name!");
-        if (values.getAsString(Equations.Formula.CATEGORY).length() == 0)
-            throw new IllegalArgumentException(
-                    "Cannot have an empty category name!");
+        if (values.getAsString(Equations.Formula.FORMULA_NAME).length() == 0) throw new IllegalArgumentException(
+                "Cannot have an empty formula name!");
+        if (values.getAsString(Equations.Formula.CATEGORY).length() == 0) throw new IllegalArgumentException(
+                "Cannot have an empty category name!");
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long rowId = db.insert(FORMULA_TABLE_NAME, null, values);
         if (rowId > 0) {
-            Uri formulaUri = ContentUris.withAppendedId(
-                    Equations.Formula.CONTENT_URI, rowId);
+            Uri formulaUri = ContentUris.withAppendedId(Equations.Formula.CONTENT_URI, rowId);
             getContext().getContentResolver().notifyChange(uri, null);
             return formulaUri;
         }
@@ -163,8 +155,8 @@ public class EquationsProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
-            String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+            String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setProjectionMap(projectionMap);
         qb.setTables(FORMULA_TABLE_NAME);
@@ -177,13 +169,11 @@ public class EquationsProvider extends ContentProvider {
         case FORMULA_ID:
             qb.setTables(FORMULA_TABLE_NAME);
             qb.setProjectionMap(projectionMap);
-            qb.appendWhere(Equations.Formula._ID + "="
-                    + uri.getPathSegments().get(1));
+            qb.appendWhere(Equations.Formula._ID + "=" + uri.getPathSegments().get(1));
             break;
         case SEARCH_SUGGEST:
             if (selectionArgs == null) {
-                throw new IllegalArgumentException(
-                        "selectionArgs cannot be null!");
+                throw new IllegalArgumentException("selectionArgs cannot be null!");
             }
             return getSuggestions(selectionArgs[0]);
         default:
@@ -191,8 +181,7 @@ public class EquationsProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = qb.query(db, projection, selection, selectionArgs,
-                null, null, sortOrder);
+        Cursor cursor = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
 
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
@@ -202,33 +191,27 @@ public class EquationsProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = Equations.Formula.FORMULA_NAME + " LIKE ?";
         String[] selectionArgs = { "%" + query + "%" };
-        Cursor cursor = db.query(FORMULA_TABLE_NAME, new String[] {
-                BaseColumns._ID,
-                SearchManager.SUGGEST_COLUMN_TEXT_1,
-                BaseColumns._ID + " AS "
-                        + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID },
-                selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(FORMULA_TABLE_NAME, new String[] { BaseColumns._ID,
+            SearchManager.SUGGEST_COLUMN_TEXT_1,
+            BaseColumns._ID + " AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID }, selection,
+                selectionArgs, null, null, null);
         return cursor;
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
-            String[] selectionArgs) {
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int count;
 
         switch (uriMatcher.match(uri)) {
         case FORMULAS:
-            count = db.update(FORMULA_TABLE_NAME, values, selection,
-                    selectionArgs);
+            count = db.update(FORMULA_TABLE_NAME, values, selection, selectionArgs);
             break;
         case FORMULA_ID:
             String formulaId = uri.getPathSegments().get(1);
-            count = db.update(FORMULA_TABLE_NAME, values, Equations.Formula._ID
-                    + "="
-                    + formulaId
-                    + (!TextUtils.isEmpty(selection) ? " AND (" + selection
-                            + ')' : ""), selectionArgs);
+            count = db.update(FORMULA_TABLE_NAME, values, Equations.Formula._ID + "=" + formulaId
+                    + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""),
+                    selectionArgs);
             break;
         default:
             throw new IllegalArgumentException("Unknown URI: " + uri);

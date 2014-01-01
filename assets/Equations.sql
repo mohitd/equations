@@ -141,3 +141,29 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Linear Thermal Expansion
 INSERT INTO formula (suggest_text_1, category) VALUES ('Volumetric Thermal Expansion', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Wave Speed', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Work on a Gas', 'Physics');
+
+-- Version 8
+DELETE FROM formula WHERE suggest_text_1='Displacement';
+DELETE FROM formula WHERE suggest_text_1='Instantaneous Velocity';
+DELETE FROM formula WHERE suggest_text_1='Instantaneous Acceleration';
+DELETE FROM formula WHERE suggest_text_1='Maximum Height of a Projectile';
+DELETE FROM formula WHERE suggest_text_1='Maximum Range of a Projectile';
+DELETE FROM formula WHERE suggest_text_1='Newton''s Third Law';
+DELETE FROM formula WHERE suggest_text_1='One Dimensional Motion';
+DELETE FROM formula WHERE suggest_text_1='Particle Energy';
+DELETE FROM formula WHERE suggest_text_1='Static Friction';
+DELETE FROM formula WHERE suggest_text_1='Resistance';
+DELETE FROM formula WHERE suggest_text_1='Tangential Acceleration';
+DELETE FROM formula WHERE suggest_text_1='Tangential Speed';
+DELETE FROM formula WHERE suggest_text_1='Vector Components';
+DELETE FROM formula WHERE suggest_text_1='Velocity Equations';
+DELETE FROM formula WHERE suggest_text_1='Average Acceleration';
+DELETE FROM formula WHERE suggest_text_1='Average Angular Acceleration';
+DELETE FROM formula WHERE suggest_text_1='Average Velocity';
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Angular Acceleration', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Friction', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Kinematic Equations', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Rotational Kinematic Equations', 'Physics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Velocity', 'Physics');

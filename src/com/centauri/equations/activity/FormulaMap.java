@@ -14,13 +14,9 @@ import com.centauri.equations.activity.chem.FunctionalGroupsActivity;
 import com.centauri.equations.activity.geometry.AreaActivity;
 import com.centauri.equations.activity.geometry.HeronsFormulaActivity;
 import com.centauri.equations.activity.geometry.PythagoreanActivity;
-import com.centauri.equations.activity.physics.CentripetalAccelActivity;
-import com.centauri.equations.activity.physics.CentripetalForceActivity;
 import com.centauri.equations.activity.physics.CoulombsLawActivity;
 import com.centauri.equations.activity.physics.EscapeVelocityActivity;
 import com.centauri.equations.activity.physics.GravitationActivity;
-import com.centauri.equations.activity.physics.MaxProjectileHeightActivity;
-import com.centauri.equations.activity.physics.MaxProjectileRangeActivity;
 
 public class FormulaMap {
 
@@ -37,39 +33,21 @@ public class FormulaMap {
         formulaMap.put(6, PythagoreanActivity.ACTION_PYTHAGOREAN);
         formulaMap.put(7, HeronsFormulaActivity.ACTION_HERON);
         formulaMap.put(23, FunctionalGroupsActivity.ACTION_FUNCTION_GROUPS);
-        formulaMap.put(37, CentripetalForceActivity.ACTION_CENTRIPETAL_FORCE);
-        formulaMap.put(38, CentripetalAccelActivity.ACTION_CENTRIPETAL_ACCEL);
         formulaMap.put(39, GravitationActivity.ACTION_GRAVITATION);
-        formulaMap.put(40,
-                MaxProjectileHeightActivity.ACTION_MAX_PROJECTILE_HEIGHT);
-        formulaMap.put(41,
-                MaxProjectileRangeActivity.ACTION_MAX_PROJECTILE_RANGE);
         formulaMap.put(42, CoulombsLawActivity.ACTION_COULOMBS_LAW);
         formulaMap.put(43, EscapeVelocityActivity.ACTION_ESCAPE_VELOCITY);
 
-        fragmentMap.put(1,
-                new QuadraticFormulaActivity.QuadraticFormulaFragment());
-        fragmentMap.put(2,
-                new DistanceFormulaActivity.DistanceFormulaFragment());
+        fragmentMap.put(1, new QuadraticFormulaActivity.QuadraticFormulaFragment());
+        fragmentMap.put(2, new DistanceFormulaActivity.DistanceFormulaFragment());
         fragmentMap.put(3, new RadicalActivity.RadicalFragment());
         fragmentMap.put(4, new SlopeActivity.SlopeFragment());
         fragmentMap.put(5, new AreaActivity.AreaFragment());
         fragmentMap.put(6, new PythagoreanActivity.PythagoreanFragment());
         fragmentMap.put(7, new HeronsFormulaActivity.HeronsFormulaFragment());
-        fragmentMap.put(23,
-                new FunctionalGroupsActivity.FunctionalGroupFragment());
-        fragmentMap.put(37,
-                new CentripetalForceActivity.CentripetalForceFragment());
-        fragmentMap.put(38,
-                new CentripetalAccelActivity.CentripetalAccelFragment());
+        fragmentMap.put(23, new FunctionalGroupsActivity.FunctionalGroupFragment());
         fragmentMap.put(39, new GravitationActivity.GravitationFragment());
-        fragmentMap.put(40,
-                new MaxProjectileHeightActivity.MaxProjectileHeightFragment());
-        fragmentMap.put(41,
-                new MaxProjectileRangeActivity.MaxProjectileRangeFragment());
         fragmentMap.put(42, new CoulombsLawActivity.CoulombsLawFragment());
-        fragmentMap
-                .put(43, new EscapeVelocityActivity.EscapeVelocityFragment());
+        fragmentMap.put(43, new EscapeVelocityActivity.EscapeVelocityFragment());
 
         imageMap.put(1, R.drawable.img_alg_quadratic);
         imageMap.put(2, R.drawable.img_alg_distance);
@@ -99,22 +77,16 @@ public class FormulaMap {
         imageMap.put(31, R.drawable.img_chem_gay_lussac);
         imageMap.put(32, R.drawable.img_chem_dalton);
         imageMap.put(33, R.drawable.img_chem_combined_gas);
-        imageMap.put(34, R.drawable.img_phy_1d_motion);
-        imageMap.put(35, R.drawable.img_phy_newtons_laws);
         imageMap.put(36, R.drawable.img_phy_torque);
         imageMap.put(37, R.drawable.img_phy_centripetal_force);
-        imageMap.put(38, R.drawable.img_phy_centripetal_accel);
-        imageMap.put(39, R.drawable.img_phy_gravitation);
-        imageMap.put(40, R.drawable.img_phy_trajectory_height);
-        imageMap.put(41, R.drawable.img_phy_trajectory_distance);
+        imageMap.put(38, R.drawable.img_phy_centripetal_acceleration);
+        imageMap.put(39, R.drawable.img_phy_universal_gravitation);
         imageMap.put(42, R.drawable.img_phy_coulombs_law);
         imageMap.put(43, R.drawable.img_phy_escape_velocity);
         imageMap.put(44, R.drawable.img_phy_momentum);
         imageMap.put(45, R.drawable.img_phy_work);
-        imageMap.put(46, R.drawable.img_phy_ohm);
-        imageMap.put(47, R.drawable.img_phy_energy);
-        imageMap.put(48, R.drawable.img_phy_resistance);
-        imageMap.put(49, R.drawable.img_phy_bernoulli);
+        imageMap.put(46, R.drawable.img_phy_ohms_law);
+        imageMap.put(49, R.drawable.img_phy_bernoullis_law);
         imageMap.put(50, R.drawable.img_phy_planck_constant);
         imageMap.put(51, R.drawable.img_phy_speed_of_light);
         imageMap.put(52, R.drawable.img_phy_permittivity);
@@ -122,24 +94,12 @@ public class FormulaMap {
         imageMap.put(54, R.drawable.img_phy_gravitational_accel);
         imageMap.put(55, R.drawable.img_chem_acid_base);
         imageMap.put(56, R.drawable.img_phy_angular_speed);
-        imageMap.put(57, R.drawable.img_phy_average_acceleration);
-        imageMap.put(58, R.drawable.img_phy_average_angular_acceleration);
-        imageMap.put(59, R.drawable.img_phy_average_velocity);
-        imageMap.put(60, R.drawable.img_phy_displacement);
         imageMap.put(61, R.drawable.img_phy_gravitational_potential_energy);
         imageMap.put(62, R.drawable.img_phy_hookes_law);
         imageMap.put(63, R.drawable.img_phy_impulse);
-        imageMap.put(64, R.drawable.img_phy_instantaneous_acceleration);
-        imageMap.put(65, R.drawable.img_phy_instantaneous_velocity);
         imageMap.put(66, R.drawable.img_phy_keplers_third_law);
         imageMap.put(67, R.drawable.img_phy_kinetic_energy);
-        imageMap.put(68, R.drawable.img_phy_newtons_third_law);
         imageMap.put(69, R.drawable.img_phy_power);
-        imageMap.put(70, R.drawable.img_phy_static_friction);
-        imageMap.put(71, R.drawable.img_phy_tangential_acceleration);
-        imageMap.put(72, R.drawable.img_phy_tangential_speed);
-        imageMap.put(73, R.drawable.img_phy_vector_components);
-        imageMap.put(74, R.drawable.img_phy_velocity_equations);
         imageMap.put(75, R.drawable.img_alg_vector_addsub);
         imageMap.put(76, R.drawable.img_alg_vector_def);
         imageMap.put(77, R.drawable.img_alg_vector_dot);
@@ -156,10 +116,10 @@ public class FormulaMap {
         imageMap.put(88, R.drawable.img_phy_buoyant_force);
         imageMap.put(89, R.drawable.img_phy_carnot_efficiency);
         imageMap.put(90, R.drawable.img_phy_center_of_gravity);
-        imageMap.put(91, R.drawable.img_phy_continuity_equation);
+        imageMap.put(91, R.drawable.img_phy_fluid_continuity);
         imageMap.put(92, R.drawable.img_phy_coulombs_constant);
-        imageMap.put(93, R.drawable.img_phy_current);
-        imageMap.put(94, R.drawable.img_phy_decibels);
+        imageMap.put(93, R.drawable.img_phy_electrical_current);
+        imageMap.put(94, R.drawable.img_phy_decibel_level);
         imageMap.put(95, R.drawable.img_phy_doppler_effect);
         imageMap.put(96, R.drawable.img_phy_electric_flux);
         imageMap.put(97, R.drawable.img_phy_electric_potential);
@@ -167,7 +127,7 @@ public class FormulaMap {
         imageMap.put(99, R.drawable.img_phy_electrical_potential_energy);
         imageMap.put(100, R.drawable.img_phy_electrical_power);
         imageMap.put(101, R.drawable.img_phy_entropy);
-        imageMap.put(102, R.drawable.img_phy_first_law_thermodynamics);
+        imageMap.put(102, R.drawable.img_phy_first_thermodynamic_law);
         imageMap.put(103, R.drawable.img_phy_fluid_pressure);
         imageMap.put(104, R.drawable.img_phy_gauss_law);
         imageMap.put(105, R.drawable.img_phy_heat_engine_efficiency);
@@ -178,17 +138,23 @@ public class FormulaMap {
         imageMap.put(110, R.drawable.img_phy_internal_energy);
         imageMap.put(111, R.drawable.img_phy_latent_heat);
         imageMap.put(112, R.drawable.img_phy_pascals_principle);
-        imageMap.put(113, R.drawable.img_phy_period_pendulum);
-        imageMap.put(114, R.drawable.img_phy_period_spring);
+        imageMap.put(113, R.drawable.img_phy_pendulum_period);
+        imageMap.put(114, R.drawable.img_phy_spring_period);
         imageMap.put(115, R.drawable.img_phy_period);
-        imageMap.put(116, R.drawable.img_phy_rot_kinetic_energy);
-        imageMap.put(117, R.drawable.img_phy_speed_of_wave_on_string);
+        imageMap.put(116, R.drawable.img_phy_rotational_kinetic_energy);
+        imageMap.put(117, R.drawable.img_phy_string_wave_speed);
         imageMap.put(118, R.drawable.img_phy_stefan_boltzmann_constant);
         imageMap.put(119, R.drawable.img_phy_stefans_law);
-        imageMap.put(120, R.drawable.img_phy_thermal_expansion);
-        imageMap.put(121, R.drawable.img_phy_volumetric_expansion);
+        imageMap.put(120, R.drawable.img_phy_linear_thermal_expansion);
+        imageMap.put(121, R.drawable.img_phy_volumetric_thermal_expansion);
         imageMap.put(122, R.drawable.img_phy_wave_speed);
         imageMap.put(123, R.drawable.img_phy_work_on_gas);
+        imageMap.put(124, R.drawable.img_phy_acceleration);
+        imageMap.put(125, R.drawable.img_phy_angular_acceleration);
+        imageMap.put(126, R.drawable.img_phy_friction);
+        imageMap.put(127, R.drawable.img_phy_kinematic_equations);
+        imageMap.put(128, R.drawable.img_phy_rotational_kinematic_equations);
+        imageMap.put(129, R.drawable.img_phy_velocity);
     }
 
     private FormulaMap() {
