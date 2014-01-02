@@ -37,7 +37,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
     private static boolean dualPane = false;
 
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<CharSequence> adapter;
 
     private SimpleCursorAdapter algebraAdapter;
     private SimpleCursorAdapter geometryAdapter;
@@ -94,8 +94,9 @@ public class MainActivity extends SherlockFragmentActivity implements
         favoritesAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_activated_1, favoritesCursor, from, to, 0);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter = ArrayAdapter.createFromResource(getSherlock().getActionBar().getThemedContext(),
+                R.array.categories, R.layout.sherlock_spinner_item);
+        adapter.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
 
         formulaListFragment = (FormulaListFragment) getSupportFragmentManager().findFragmentById(
                 R.id.formulasList);
