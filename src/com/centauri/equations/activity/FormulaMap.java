@@ -77,6 +77,7 @@ public class FormulaMap {
         imageMap.put(31, R.drawable.img_chem_gay_lussac);
         imageMap.put(32, R.drawable.img_chem_dalton);
         imageMap.put(33, R.drawable.img_chem_combined_gas);
+        imageMap.put(35, R.drawable.img_phy_force);
         imageMap.put(36, R.drawable.img_phy_torque);
         imageMap.put(37, R.drawable.img_phy_centripetal_force);
         imageMap.put(38, R.drawable.img_phy_centripetal_acceleration);
