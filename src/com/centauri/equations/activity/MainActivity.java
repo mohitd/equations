@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -17,25 +18,24 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.centauri.equations.BuildConfig;
 import com.centauri.equations.R;
 import com.centauri.equations.activity.settings.SettingsActivity;
 import com.centauri.equations.provider.Equations;
 import com.centauri.equations.provider.Equations.Formula;
 
 public class MainActivity extends SherlockFragmentActivity implements
-        ActionBar.OnNavigationListener,
-        FormulaListFragment.OnFormulaSelectedListener {
+        ActionBar.OnNavigationListener, FormulaListFragment.OnFormulaSelectedListener {
 
-    private final String[] PROJECTION = { Equations.Formula._ID,
-            Equations.Formula.FORMULA_NAME, Equations.Formula.FAVORITE };
+    private final String[] PROJECTION = { Equations.Formula._ID, Equations.Formula.FORMULA_NAME,
+        Equations.Formula.FAVORITE };
 
-    private static final String KEY_LIST_STATE = "listViewState";
+    private static final String LIST_STATE = "listState";
+    private Parcelable listState = null;
 
     private static int spinnerPosition = 0;
 
     private static boolean dualPane = false;
-
-    private Parcelable listViewState = null;
 
     private ArrayAdapter<String> adapter;
 
@@ -60,56 +60,45 @@ public class MainActivity extends SherlockFragmentActivity implements
         final String[] from = { Equations.Formula.FORMULA_NAME };
         final int[] to = { android.R.id.text1 };
 
-        Cursor algebraCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                "category=\"" + categories[0] + "\"", null,
+        Cursor algebraCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, "category=\"" + categories[0] + "\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor geometryCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                "category=\"" + categories[1] + "\"", null,
+        Cursor geometryCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, "category=\"" + categories[1] + "\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor trigCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                "category=\"" + categories[2] + "\"", null,
+        Cursor trigCursor = getContentResolver()
+                .query(Equations.Formula.CONTENT_URI, PROJECTION,
+                        "category=\"" + categories[2] + "\"", null,
+                        Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor chemCursor = getContentResolver()
+                .query(Equations.Formula.CONTENT_URI, PROJECTION,
+                        "category=\"" + categories[3] + "\"", null,
+                        Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor physicsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, "category=\"" + categories[4] + "\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor chemCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                "category=\"" + categories[3] + "\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor physicsCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                "category=\"" + categories[4] + "\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor favoritesCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                Equations.Formula.FAVORITE + " = \"1\"", null,
+        Cursor favoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
 
         algebraAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, algebraCursor,
-                from, to, 0);
+                android.R.layout.simple_list_item_activated_1, algebraCursor, from, to, 0);
         geometryAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, geometryCursor,
-                from, to, 0);
-        trigAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, trigCursor,
-                from, to, 0);
-        chemAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, chemCursor,
-                from, to, 0);
+                android.R.layout.simple_list_item_activated_1, geometryCursor, from, to, 0);
+        trigAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
+                trigCursor, from, to, 0);
+        chemAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
+                chemCursor, from, to, 0);
         physicsAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, physicsCursor,
-                from, to, 0);
+                android.R.layout.simple_list_item_activated_1, physicsCursor, from, to, 0);
         favoritesAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, favoritesCursor,
-                from, to, 0);
+                android.R.layout.simple_list_item_activated_1, favoritesCursor, from, to, 0);
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, categories);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        formulaListFragment = (FormulaListFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.formulasList);
+        formulaListFragment = (FormulaListFragment) getSupportFragmentManager().findFragmentById(
+                R.id.formulasList);
 
         if (formulaListFragment == null) {
             formulaListFragment = new FormulaListFragment();
@@ -158,36 +147,39 @@ public class MainActivity extends SherlockFragmentActivity implements
     }
 
     /**
-     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        listViewState = formulaListFragment.getListView().onSaveInstanceState();
-        outState.putParcelable(KEY_LIST_STATE, listViewState);
-    }
-
-    /**
      * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
      */
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        listViewState = savedInstanceState.getParcelable(KEY_LIST_STATE);
+        listState = savedInstanceState.getParcelable(LIST_STATE);
+    }
+
+    /**
+     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        listState = formulaListFragment.getListView().onSaveInstanceState();
+        outState.putParcelable(LIST_STATE, listState);
+        if (BuildConfig.DEBUG) Log.i("MainActivity", "onSaveInstanceState");
     }
 
     /*
      * (non-Javadoc)
+     * 
      * @see android.support.v4.app.FragmentActivity#onResume()
      */
     @Override
     protected void onResume() {
         super.onResume();
-        if (listViewState != null)
-            formulaListFragment.getListView().onRestoreInstanceState(
-                    listViewState);
-        listViewState = null;
         setupActionBar();
+        if (listState != null) {
+            formulaListFragment.getListView().onRestoreInstanceState(listState);
+        }
+        listState = null;
+        if (BuildConfig.DEBUG) Log.i("MainActivity", "onResume");
     }
 
     @Override
@@ -204,9 +196,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
     public boolean onNavigationItemSelected(int position, long id) {
         spinnerPosition = position;
-        Cursor newFavoritesCursor = getContentResolver().query(
-                Equations.Formula.CONTENT_URI, PROJECTION,
-                Equations.Formula.FAVORITE + " = \"1\"", null,
+        Cursor newFavoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
         favoritesAdapter.changeCursor(newFavoritesCursor);
         switch (position) {
@@ -246,8 +237,7 @@ public class MainActivity extends SherlockFragmentActivity implements
             arguments.putLong(Formula._ID, id);
 
             Fragment replaceFragment = FormulaMap.getFragment(id);
-            Fragment currentFragment = getSupportFragmentManager()
-                    .findFragmentById(R.id.details);
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.details);
 
             if (replaceFragment.equals(currentFragment)) return;
 
@@ -259,11 +249,9 @@ public class MainActivity extends SherlockFragmentActivity implements
                 replaceFragment.getArguments().putAll(arguments);
             }
 
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.details, replaceFragment);
-            transaction
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             transaction.addToBackStack(null);
             transaction.commit();
         } else {
