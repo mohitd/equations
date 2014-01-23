@@ -109,28 +109,10 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.activity.geometry.AreaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
-            <intent-filter>
-                <action android:name="com.centauri.equations.action.AREA" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
-        </activity>
         <activity android:name="com.centauri.equations.activity.geometry.PythagoreanActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PYTHAGOREAN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
-        </activity>
-
-        <!-- Chemistry -->
-        
-        <activity android:name="com.centauri.equations.activity.chem.FunctionalGroupsActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
-            <intent-filter>
-                <action android:name="com.centauri.equations.action.FUNCTION_GROUPS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

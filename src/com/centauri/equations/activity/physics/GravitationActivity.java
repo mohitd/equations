@@ -12,7 +12,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -45,8 +44,6 @@ public class GravitationActivity extends ImageFormulaActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_phy_universal_gravitation);
 
             a_txt = ((EditText) getView().findViewById(R.id.area_a));
             b_txt = ((EditText) getView().findViewById(R.id.area_b));

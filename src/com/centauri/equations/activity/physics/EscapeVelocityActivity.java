@@ -12,7 +12,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,8 +33,8 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
         return new EscapeVelocityFragment();
     }
 
-    public static class EscapeVelocityFragment extends ImageFormulaFragment
-            implements OnClickListener, OnItemSelectedListener {
+    public static class EscapeVelocityFragment extends ImageFormulaFragment implements
+            OnClickListener, OnItemSelectedListener {
 
         private ArrayAdapter<CharSequence> adapter;
         private Spinner spinner;
@@ -45,21 +44,15 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_phy_escape_velocity);
 
             a_txt = ((EditText) getView().findViewById(R.id.area_a));
             b_txt = ((EditText) getView().findViewById(R.id.area_b));
 
-            a_txt.setHint(getResources()
-                    .getStringArray(R.array.escape_velocity)[1]);
-            b_txt.setHint(getResources()
-                    .getStringArray(R.array.escape_velocity)[2]);
-            ((EditText) getView().findViewById(R.id.area_c))
-                    .setVisibility(View.GONE);
+            a_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[1]);
+            b_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[2]);
+            ((EditText) getView().findViewById(R.id.area_c)).setVisibility(View.GONE);
 
-            adapter = ArrayAdapter.createFromResource(getActivity(),
-                    R.array.escape_velocity,
+            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.escape_velocity,
                     android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -67,33 +60,22 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
             spinner.setAdapter(adapter);
 
             spinner.setOnItemSelectedListener(this);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
         }
 
-        public void onItemSelected(AdapterView<?> parent, View view,
-                int position, long id) {
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
             String variable = adapter.getItem(position).toString();
 
-            if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[0])) {
-                a_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[1]);
-                b_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[2]);
-            } else if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[1])) {
-                a_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[0]);
-                b_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[2]);
-            } else if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[2])) {
-                a_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[0]);
-                b_txt.setHint(getResources().getStringArray(
-                        R.array.escape_velocity)[1]);
+            if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[0])) {
+                a_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[1]);
+                b_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[2]);
+            } else if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[1])) {
+                a_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[0]);
+                b_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[2]);
+            } else if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[2])) {
+                a_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[0]);
+                b_txt.setHint(getResources().getStringArray(R.array.escape_velocity)[1]);
             }
         }
 
@@ -104,10 +86,8 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setTitle(getResources().getString(R.string.answer));
 
-            if (a_txt.getText().toString().equals("")
-                    || b_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+            if (a_txt.getText().toString().equals("") || b_txt.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -118,8 +98,7 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
                 a = Double.parseDouble(a_txt.getText().toString());
                 b = Double.parseDouble(b_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.number_too_large),
+                Toast.makeText(getActivity(), getResources().getString(R.string.number_too_large),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -127,14 +106,11 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
             String variable = spinner.getSelectedItem().toString();
             Complex result = null;
 
-            if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[0])) {
+            if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[0])) {
                 result = Physics.escapeVelocity(Double.NEGATIVE_INFINITY, a, b);
-            } else if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[1])) {
+            } else if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[1])) {
                 result = Physics.escapeVelocity(a, Double.NEGATIVE_INFINITY, b);
-            } else if (variable.equals(getResources().getStringArray(
-                    R.array.escape_velocity)[2])) {
+            } else if (variable.equals(getResources().getStringArray(R.array.escape_velocity)[2])) {
                 result = Physics.escapeVelocity(a, b, Double.NEGATIVE_INFINITY);
             }
 
@@ -156,6 +132,7 @@ public class EscapeVelocityActivity extends ImageFormulaActivity {
 
         /*
          * (non-Javadoc)
+         * 
          * @see FormulaActivity.FormulaFragment# getFragmentView()
          */
         @Override

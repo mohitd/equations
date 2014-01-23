@@ -12,7 +12,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,8 +33,8 @@ public class PythagoreanActivity extends ImageFormulaActivity {
         return new PythagoreanFragment();
     }
 
-    public static class PythagoreanFragment extends ImageFormulaFragment
-            implements OnClickListener, OnItemSelectedListener {
+    public static class PythagoreanFragment extends ImageFormulaFragment implements
+            OnClickListener, OnItemSelectedListener {
 
         private ArrayAdapter<CharSequence> adapter;
         private Spinner spinner;
@@ -45,13 +44,10 @@ public class PythagoreanActivity extends ImageFormulaActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_geo_pythagorean);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
 
-            adapter = ArrayAdapter.createFromResource(getActivity(),
-                    R.array.pythagorean, android.R.layout.simple_spinner_item);
+            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.pythagorean,
+                    android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner = (Spinner) getView().findViewById(R.id.area_polygon);
@@ -64,16 +60,13 @@ public class PythagoreanActivity extends ImageFormulaActivity {
 
             a_txt.setVisibility(View.VISIBLE);
             b_txt.setVisibility(View.VISIBLE);
-            ((EditText) getView().findViewById(R.id.area_c))
-                    .setVisibility(View.GONE);
+            ((EditText) getView().findViewById(R.id.area_c)).setVisibility(View.GONE);
         }
 
         public void onClick(View view) {
 
-            if (a_txt.getText().toString().equals("")
-                    || b_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+            if (a_txt.getText().toString().equals("") || b_txt.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -85,8 +78,7 @@ public class PythagoreanActivity extends ImageFormulaActivity {
                 a = Double.parseDouble(a_txt.getText().toString());
                 b = Double.parseDouble(b_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.number_too_large),
+                Toast.makeText(getActivity(), getResources().getString(R.string.number_too_large),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -112,8 +104,8 @@ public class PythagoreanActivity extends ImageFormulaActivity {
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setTitle("Answer");
-            dialog.setMessage(sides[0].toString() + "," + sides[1].toString()
-                    + "," + sides[2].toString());
+            dialog.setMessage(sides[0].toString() + "," + sides[1].toString() + ","
+                    + sides[2].toString());
             dialog.setOnCancelListener(new OnCancelListener() {
 
                 public void onCancel(DialogInterface dialog) {
@@ -123,8 +115,7 @@ public class PythagoreanActivity extends ImageFormulaActivity {
             dialog.create().show();
         }
 
-        public void onItemSelected(AdapterView<?> parent, View view,
-                int position, long id) {
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
             case 0:
                 a_txt.setHint(R.string.b);
