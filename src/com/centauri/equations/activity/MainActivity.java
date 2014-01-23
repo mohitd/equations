@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -18,7 +16,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.centauri.equations.BuildConfig;
 import com.centauri.equations.R;
 import com.centauri.equations.activity.settings.SettingsActivity;
 import com.centauri.equations.provider.Equations;
@@ -29,9 +26,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 
     private final String[] PROJECTION = { Equations.Formula._ID, Equations.Formula.FORMULA_NAME,
         Equations.Formula.FAVORITE };
-
-    private static final String LIST_STATE = "listState";
-    private Parcelable listState = null;
 
     private static int spinnerPosition = 0;
 
@@ -145,47 +139,6 @@ public class MainActivity extends SherlockFragmentActivity implements
             return true;
         }
         return false;
-    }
-
-    /**
-     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
-     */
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        listState = savedInstanceState.getParcelable(LIST_STATE);
-    }
-
-    /**
-     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        listState = formulaListFragment.getListView().onSaveInstanceState();
-        outState.putParcelable(LIST_STATE, listState);
-        if (BuildConfig.DEBUG) Log.i("MainActivity", "onSaveInstanceState");
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.support.v4.app.FragmentActivity#onResume()
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setupActionBar();
-        if (listState != null) {
-            formulaListFragment.getListView().onRestoreInstanceState(listState);
-        }
-        listState = null;
-        if (BuildConfig.DEBUG) Log.i("MainActivity", "onResume");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     protected void setupActionBar() {
