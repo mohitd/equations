@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.centauri.equations.R;
@@ -30,8 +29,7 @@ public class SlopeActivity extends ImageFormulaActivity {
         return new SlopeFragment();
     }
 
-    public static class SlopeFragment extends ImageFormulaFragment implements
-            OnClickListener {
+    public static class SlopeFragment extends ImageFormulaFragment implements OnClickListener {
 
         private EditText x1_txt, y1_txt, x2_txt, y2_txt;
 
@@ -43,20 +41,15 @@ public class SlopeActivity extends ImageFormulaActivity {
             x2_txt = ((EditText) getView().findViewById(R.id.dist_x2));
             y2_txt = ((EditText) getView().findViewById(R.id.dist_y2));
 
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_alg_slope);
-            ((Button) getView().findViewById(R.id.dist_solve))
-                    .setOnClickListener(this);
+            ((Button) getView().findViewById(R.id.dist_solve)).setOnClickListener(this);
         }
 
         public void onClick(View v) {
 
-            if (x1_txt.getText().toString().equals("")
-                    || y1_txt.getText().toString().equals("")
+            if (x1_txt.getText().toString().equals("") || y1_txt.getText().toString().equals("")
                     || x2_txt.getText().toString().equals("")
                     || y2_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -71,8 +64,7 @@ public class SlopeActivity extends ImageFormulaActivity {
                 x2 = Integer.parseInt(x2_txt.getText().toString());
                 y2 = Integer.parseInt(y2_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.must_be_integer),
+                Toast.makeText(getActivity(), getResources().getString(R.string.must_be_integer),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -84,8 +76,7 @@ public class SlopeActivity extends ImageFormulaActivity {
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setTitle(R.string.answer);
-            dialog.setMessage(point1.toString() + point2.toString() + " = "
-                    + slope.toString());
+            dialog.setMessage(point1.toString() + point2.toString() + " = " + slope.toString());
             dialog.setOnCancelListener(new OnCancelListener() {
 
                 public void onCancel(DialogInterface dialog) {
@@ -104,6 +95,7 @@ public class SlopeActivity extends ImageFormulaActivity {
 
         /*
          * (non-Javadoc)
+         * 
          * @see FormulaActivity.FormulaFragment# getFragmentView()
          */
         @Override

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,16 +29,14 @@ public class HeronsFormulaActivity extends ImageFormulaActivity {
         return new HeronsFormulaFragment();
     }
 
-    public static class HeronsFormulaFragment extends ImageFormulaFragment
-            implements OnClickListener {
+    public static class HeronsFormulaFragment extends ImageFormulaFragment implements
+            OnClickListener {
 
         private EditText a_txt, b_txt, c_txt;
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_geo_heron);
 
             a_txt = ((EditText) getView().findViewById(R.id.area_a));
             b_txt = ((EditText) getView().findViewById(R.id.area_b));
@@ -50,19 +47,15 @@ public class HeronsFormulaActivity extends ImageFormulaActivity {
             c_txt.setHint(R.string.c);
 
             c_txt.setVisibility(View.VISIBLE);
-            ((Spinner) getView().findViewById(R.id.area_polygon))
-                    .setVisibility(View.GONE);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((Spinner) getView().findViewById(R.id.area_polygon)).setVisibility(View.GONE);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
         }
 
         public void onClick(View v) {
 
-            if (a_txt.getText().toString().equals("")
-                    || b_txt.getText().toString().equals("")
+            if (a_txt.getText().toString().equals("") || b_txt.getText().toString().equals("")
                     || c_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -75,8 +68,7 @@ public class HeronsFormulaActivity extends ImageFormulaActivity {
                 b = Double.parseDouble(b_txt.getText().toString());
                 c = Double.parseDouble(c_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.number_too_large),
+                Toast.makeText(getActivity(), getResources().getString(R.string.number_too_large),
                         Toast.LENGTH_SHORT).show();
                 return;
             }

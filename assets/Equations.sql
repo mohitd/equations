@@ -167,3 +167,20 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Friction', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Kinematic Equations', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Rotational Kinematic Equations', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Velocity', 'Physics');
+
+-- Version 9
+DELETE FROM formula WHERE suggest_text_1='Vector Addition and Subtraction';
+DELETE FROM formula WHERE suggest_text_1='Functional Groups';
+DELETE FROM formula WHERE suggest_text_1='Law of Tangents';
+DELETE FROM formula WHERE suggest_text_1='Quotient Formulas';
+DELETE FROM formula WHERE suggest_text_1='Right Triangle Definition';
+DELETE FROM formula WHERE suggest_text_1='Period';
+DELETE FROM formula WHERE suggest_text_1='Area';
+
+UPDATE formula SET suggest_text_1='Dot Product Definition' WHERE _id=77;
+UPDATE formula SET suggest_text_1='Dot Product Properties' WHERE _id=81;
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Area of a Sector', 'Geometry');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Area of an Ellipse', 'Geometry');
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Double Angle Formula', 'Trigonometry');

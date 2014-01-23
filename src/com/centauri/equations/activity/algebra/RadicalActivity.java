@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,43 +30,34 @@ public class RadicalActivity extends ImageFormulaActivity {
         return new RadicalFragment();
     }
 
-    public static class RadicalFragment extends ImageFormulaFragment implements
-            OnClickListener {
+    public static class RadicalFragment extends ImageFormulaFragment implements OnClickListener {
 
         private EditText a_txt;
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            ((ImageView) getView().findViewById(R.id.img_formula))
-                    .setImageResource(R.drawable.img_alg_radical);
 
             a_txt = ((EditText) getView().findViewById(R.id.area_a));
 
             a_txt.setHint(R.string.radicand);
-            ((EditText) getView().findViewById(R.id.area_b))
-                    .setVisibility(View.GONE);
-            ((EditText) getView().findViewById(R.id.area_c))
-                    .setVisibility(View.GONE);
-            ((Spinner) getView().findViewById(R.id.area_polygon))
-                    .setVisibility(View.GONE);
-            ((Button) getView().findViewById(R.id.area_solve))
-                    .setOnClickListener(this);
+            ((EditText) getView().findViewById(R.id.area_b)).setVisibility(View.GONE);
+            ((EditText) getView().findViewById(R.id.area_c)).setVisibility(View.GONE);
+            ((Spinner) getView().findViewById(R.id.area_polygon)).setVisibility(View.GONE);
+            ((Button) getView().findViewById(R.id.area_solve)).setOnClickListener(this);
         }
 
         public void onClick(View v) {
             int radicand = 0;
             if (a_txt.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.blank_field),
+                Toast.makeText(getActivity(), getResources().getString(R.string.blank_field),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
             try {
                 radicand = Integer.parseInt(a_txt.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(),
-                        getResources().getString(R.string.must_be_integer),
+                Toast.makeText(getActivity(), getResources().getString(R.string.must_be_integer),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -75,8 +65,7 @@ public class RadicalActivity extends ImageFormulaActivity {
             if (radicand > 0) {
                 RadicalNumber radical = new RadicalNumber(radicand);
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(
-                        getActivity());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle(R.string.answer);
                 dialog.setMessage(Html.fromHtml(radical.simplify().toString()));
                 dialog.setOnCancelListener(new OnCancelListener() {
@@ -95,6 +84,7 @@ public class RadicalActivity extends ImageFormulaActivity {
 
         /*
          * (non-Javadoc)
+         * 
          * @see FormulaActivity.FormulaFragment# getFragmentView()
          */
         @Override
