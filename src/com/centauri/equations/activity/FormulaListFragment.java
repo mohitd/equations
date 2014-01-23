@@ -16,6 +16,8 @@ import com.actionbarsherlock.app.SherlockListFragment;
  */
 public class FormulaListFragment extends SherlockListFragment {
 
+    private int top, index = 0;
+
     private OnFormulaSelectedListener callback;
 
     public interface OnFormulaSelectedListener {
@@ -46,6 +48,26 @@ public class FormulaListFragment extends SherlockListFragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFormulaSelectedListener");
         }
+    }
+
+    /**
+     * @see android.support.v4.app.Fragment#onPause()
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        index = getListView().getFirstVisiblePosition();
+        View v = getListView().getChildAt(0);
+        top = (v == null) ? 0 : v.getTop();
+    }
+
+    /**
+     * @see android.support.v4.app.Fragment#onResume()
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        getListView().setSelectionFromTop(index, top);
     }
 
     /**
