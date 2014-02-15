@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -53,8 +52,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 
         AppRater.appLaunched(this);
 
-        String[] categories = getResources().getStringArray(R.array.categories);
-        Log.i("HELP!!!!!", "This: " + categories.toString());
         final String[] from = { Equations.Formula.FORMULA_NAME };
         final int[] to = { android.R.id.text1 };
 
