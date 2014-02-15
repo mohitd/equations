@@ -38,6 +38,8 @@ public class MainActivity extends SherlockFragmentActivity implements
     private SimpleCursorAdapter trigAdapter;
     private SimpleCursorAdapter chemAdapter;
     private SimpleCursorAdapter physicsAdapter;
+    private SimpleCursorAdapter calcAdapter;
+    private SimpleCursorAdapter statsAdapter;
     private SimpleCursorAdapter favoritesAdapter;
 
     private FormulaListFragment formulaListFragment;
@@ -50,27 +52,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 
         AppRater.appLaunched(this);
 
-        String[] categories = getResources().getStringArray(R.array.categories);
         final String[] from = { Equations.Formula.FORMULA_NAME };
         final int[] to = { android.R.id.text1 };
 
         Cursor algebraCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
-                PROJECTION, "category=\"" + categories[0] + "\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
+                PROJECTION, "category=\"Algebra\"", null, Equations.Formula.FORMULA_NAME + " ASC");
         Cursor geometryCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
-                PROJECTION, "category=\"" + categories[1] + "\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor trigCursor = getContentResolver()
-                .query(Equations.Formula.CONTENT_URI, PROJECTION,
-                        "category=\"" + categories[2] + "\"", null,
-                        Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor chemCursor = getContentResolver()
-                .query(Equations.Formula.CONTENT_URI, PROJECTION,
-                        "category=\"" + categories[3] + "\"", null,
-                        Equations.Formula.FORMULA_NAME + " ASC");
+                PROJECTION, "category=\"Geometry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor trigCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+                "category=\"Trigonometry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor chemCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+                "category=\"Chemistry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
         Cursor physicsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
-                PROJECTION, "category=\"" + categories[4] + "\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
+                PROJECTION, "category=\"Physics\"", null, Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor calcCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+                "category=\"Calculus\"", null, Equations.Formula.FORMULA_NAME + " ASC");
+        Cursor statsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+                "category=\"Statistics\"", null, Equations.Formula.FORMULA_NAME + " ASC");
         Cursor favoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
@@ -85,6 +83,10 @@ public class MainActivity extends SherlockFragmentActivity implements
                 chemCursor, from, to, 0);
         physicsAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_activated_1, physicsCursor, from, to, 0);
+        calcAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
+                calcCursor, from, to, 0);
+        statsAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
+                statsCursor, from, to, 0);
         favoritesAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_activated_1, favoritesCursor, from, to, 0);
 
@@ -171,6 +173,12 @@ public class MainActivity extends SherlockFragmentActivity implements
             formulaListFragment.getListView().setAdapter(physicsAdapter);
             break;
         case 5:
+            formulaListFragment.getListView().setAdapter(calcAdapter);
+            break;
+        case 6:
+            formulaListFragment.getListView().setAdapter(statsAdapter);
+            break;
+        case 7:
             formulaListFragment.getListView().setAdapter(favoritesAdapter);
             break;
         }

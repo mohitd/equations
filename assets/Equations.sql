@@ -184,3 +184,26 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Area of a Sector', 'Geom
 INSERT INTO formula (suggest_text_1, category) VALUES ('Area of an Ellipse', 'Geometry');
 
 INSERT INTO formula (suggest_text_1, category) VALUES ('Double Angle Formula', 'Trigonometry');
+
+-- Version 10
+INSERT INTO formula (suggest_text_1, category) VALUES ('Derivative Definition', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Common Derivatives', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Trigonometric Derivatives', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Exponential Derivatives', 'Calculus');
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Common Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Trigonometric Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Exponential Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Inverse Trigonometric Integrals', 'Calculus');
+
+INSERT INTO formula (suggest_text_1, category) VALUES ('Mean', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Standard Deviation', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Linear Transformations', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Z-Score', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Correlation', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Least-Squares Regression', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Probability', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Random Variable Means and Variance', 'Statistics');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Rules for Means and Variance', 'Statistics');
+
+
