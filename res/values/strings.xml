@@ -3,6 +3,17 @@
 
     <string name="app_name">Equations</string>
     <string name="app_version">2.0</string>
+    
+    <string-array name="categories">
+        <item>Algebra</item>
+        <item>Geometry</item>
+        <item>Trigonometry</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Calculus</item>
+        <item>Statistics</item>
+        <item>Favorites</item>
+    </string-array>
 
     <string-array name="polygon2D">
         <item>Triangle</item>
@@ -146,14 +157,6 @@
         <item>I</item>
         <item>V</item>
         <item>R</item>
-    </string-array>
-    <string-array name="categories">
-        <item>Algebra</item>
-        <item>Geometry</item>
-        <item>Trigonometry</item>
-        <item>Chemistry</item>
-        <item>Physics</item>
-        <item>Favorites</item>
     </string-array>
 
     <string name="answer">Answer</string>

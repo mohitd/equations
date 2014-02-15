@@ -149,6 +149,23 @@ public class FormulaMap {
         imageMap.put(130, R.drawable.geo_area_sector);
         imageMap.put(131, R.drawable.geo_area_ellipse);
         imageMap.put(132, R.drawable.trig_double_angle_formulas);
+        imageMap.put(133, R.drawable.calc_derivative_definition);
+        imageMap.put(134, R.drawable.calc_common_derivatives);
+        imageMap.put(135, R.drawable.calc_trig_derivatives);
+        imageMap.put(136, R.drawable.calc_exponential_derivatives);
+        imageMap.put(137, R.drawable.calc_common_integrals);
+        imageMap.put(138, R.drawable.calc_trig_integrals);
+        imageMap.put(139, R.drawable.calc_exponential_integrals);
+        imageMap.put(140, R.drawable.calc_inverse_trig_integrals);
+        imageMap.put(141, R.drawable.stats_mean);
+        imageMap.put(142, R.drawable.stats_std_dev);
+        imageMap.put(143, R.drawable.stats_linear_transformations);
+        imageMap.put(144, R.drawable.stats_z_scores);
+        imageMap.put(145, R.drawable.stats_correlation);
+        imageMap.put(146, R.drawable.stats_lsrl);
+        imageMap.put(147, R.drawable.stats_probability);
+        imageMap.put(148, R.drawable.stats_rv_means_variances);
+        imageMap.put(149, R.drawable.stats_rules_for_means_variances);
     }
 
     private FormulaMap() {
