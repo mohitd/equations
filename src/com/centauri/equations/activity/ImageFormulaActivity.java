@@ -3,6 +3,7 @@
  */
 package com.centauri.equations.activity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -131,6 +132,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
             inflater.inflate(R.menu.formula_menu, menu);
         }
 
+        @SuppressLint("NewApi")
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
@@ -152,8 +154,8 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
                             getResources().getString(R.string.added_to_favorites),
                             Toast.LENGTH_SHORT).show();
                 }
-                getActivity().getContentResolver().update(uri, values, null, null);
-                getActivity().invalidateOptionsMenu();
+                getSherlockActivity().getContentResolver().update(uri, values, null, null);
+                getSherlockActivity().invalidateOptionsMenu();
                 return true;
 
             default:
@@ -179,6 +181,5 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         protected long getID() {
             return getArguments().getLong(Formula._ID);
         }
-
     }
 }
