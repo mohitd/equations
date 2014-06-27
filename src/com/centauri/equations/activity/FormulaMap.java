@@ -178,6 +178,11 @@ public class FormulaMap {
         imageMap.put(159, R.drawable.phy_magnetic_torque);
         imageMap.put(160, R.drawable.phy_permeability_of_free_space);
         imageMap.put(161, R.drawable.phy_resistance);
+        imageMap.put(162, R.drawable.calc_eulers_method);
+        imageMap.put(163, R.drawable.calc_integration_by_parts);
+        imageMap.put(164, R.drawable.calc_lhopitals_rule);
+        imageMap.put(165, R.drawable.calc_maclaurin_polynomial);
+        imageMap.put(166, R.drawable.calc_taylor_polynomial);
     }
 
     private FormulaMap() {

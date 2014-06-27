@@ -219,3 +219,10 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Magnetic Force', 'Physic
 INSERT INTO formula (suggest_text_1, category) VALUES ('Magnetic Torque', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Permeability of Free Space', 'Physics');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Resistance', 'Physics');
+
+-- Version 12
+INSERT INTO formula (suggest_text_1, category) VALUES ('Euler''s Method', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Integration by Parts', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('L''Hopital''s Rule', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Maclaurin Polynomials', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Taylor Polynomials', 'Calculus');

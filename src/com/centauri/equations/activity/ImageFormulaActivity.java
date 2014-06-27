@@ -46,6 +46,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         long id = getIntent().getLongExtra(Formula._ID, 0);
 
         if (savedInstanceState == null) {
@@ -86,6 +87,15 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * @see android.support.v4.app.FragmentActivity#onBackPressed()
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
     public static class ImageFormulaFragment extends SherlockFragment {
