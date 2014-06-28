@@ -219,6 +219,7 @@ public class MainActivity extends SherlockFragmentActivity implements
         } else {
             Intent intent = FormulaMap.getIntent(id).putExtra(Formula._ID, id);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
     }
 }

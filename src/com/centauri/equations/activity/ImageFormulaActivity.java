@@ -3,7 +3,6 @@
  */
 package com.centauri.equations.activity;
 
-import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -46,7 +45,6 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         long id = getIntent().getLongExtra(Formula._ID, 0);
 
         if (savedInstanceState == null) {
@@ -95,7 +93,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        overridePendingTransition(R.anim.grow_fade_in, R.anim.slide_out_right);
     }
 
     public static class ImageFormulaFragment extends SherlockFragment {
@@ -142,7 +140,6 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
             inflater.inflate(R.menu.formula_menu, menu);
         }
 
-        @SuppressLint("NewApi")
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
@@ -165,7 +162,7 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 getSherlockActivity().getContentResolver().update(uri, values, null, null);
-                getSherlockActivity().invalidateOptionsMenu();
+                getSherlockActivity().supportInvalidateOptionsMenu();
                 return true;
 
             default:
