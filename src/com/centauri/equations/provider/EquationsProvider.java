@@ -157,6 +157,7 @@ public class EquationsProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setProjectionMap(projectionMap);
         qb.setTables(FORMULA_TABLE_NAME);
@@ -175,26 +176,20 @@ public class EquationsProvider extends ContentProvider {
             if (selectionArgs == null) {
                 throw new IllegalArgumentException("selectionArgs cannot be null!");
             }
-            return getSuggestions(selectionArgs[0]);
+            String searchSelection = Equations.Formula.FORMULA_NAME + " LIKE ?";
+            String[] searchSelectionArgs = { "%" + selectionArgs[0] + "%" };
+            Cursor result = db.query(FORMULA_TABLE_NAME, new String[] { BaseColumns._ID,
+                SearchManager.SUGGEST_COLUMN_TEXT_1,
+                BaseColumns._ID + " AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID },
+                    searchSelection, searchSelectionArgs, null, null, null);
+            return result;
         default:
             throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
 
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-        return cursor;
-    }
-
-    public static Cursor getSuggestions(String query) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selection = Equations.Formula.FORMULA_NAME + " LIKE ?";
-        String[] selectionArgs = { "%" + query + "%" };
-        Cursor cursor = db.query(FORMULA_TABLE_NAME, new String[] { BaseColumns._ID,
-            SearchManager.SUGGEST_COLUMN_TEXT_1,
-            BaseColumns._ID + " AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID }, selection,
-                selectionArgs, null, null, null);
         return cursor;
     }
 
