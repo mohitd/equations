@@ -27,9 +27,8 @@ public class MainActivity extends SherlockFragmentActivity implements
     private final String[] PROJECTION = { Equations.Formula._ID, Equations.Formula.FORMULA_NAME,
         Equations.Formula.FAVORITE };
 
-    private static int spinnerPosition = 0;
-
     private static boolean dualPane = false;
+    private static int spinnerPosition = 0;
 
     private ArrayAdapter<CharSequence> adapter;
 
@@ -143,19 +142,19 @@ public class MainActivity extends SherlockFragmentActivity implements
         return false;
     }
 
-    protected void setupActionBar() {
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        getSupportActionBar().setListNavigationCallbacks(adapter, this);
-        getSupportActionBar().setSelectedNavigationItem(spinnerPosition);
+    /**
+     * @see android.support.v4.app.FragmentActivity#onStart()
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (spinnerPosition == 7) {
+            refreshFavorites();
+        }
     }
 
     public boolean onNavigationItemSelected(int position, long id) {
         spinnerPosition = position;
-        Cursor newFavoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
-                PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
-                Equations.Formula.FORMULA_NAME + " ASC");
-        favoritesAdapter.changeCursor(newFavoritesCursor);
         switch (position) {
         case 0:
             formulaListFragment.getListView().setAdapter(algebraAdapter);
@@ -179,6 +178,7 @@ public class MainActivity extends SherlockFragmentActivity implements
             formulaListFragment.getListView().setAdapter(statsAdapter);
             break;
         case 7:
+            refreshFavorites();
             formulaListFragment.getListView().setAdapter(favoritesAdapter);
             break;
         }
@@ -221,5 +221,18 @@ public class MainActivity extends SherlockFragmentActivity implements
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
+    }
+
+    private void setupActionBar() {
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        getSupportActionBar().setListNavigationCallbacks(adapter, this);
+    }
+
+    private void refreshFavorites() {
+        Cursor newFavoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+                PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
+                Equations.Formula.FORMULA_NAME + " ASC");
+        favoritesAdapter.changeCursor(newFavoritesCursor);
     }
 }
