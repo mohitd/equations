@@ -87,6 +87,15 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * @see android.support.v4.app.FragmentActivity#onBackPressed()
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.grow_fade_in, R.anim.slide_out_right);
+    }
+
     public static class ImageFormulaFragment extends SherlockFragment {
 
         private static final String[] PROJECTION = { Equations.Formula._ID,
@@ -152,8 +161,8 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
                             getResources().getString(R.string.added_to_favorites),
                             Toast.LENGTH_SHORT).show();
                 }
-                getActivity().getContentResolver().update(uri, values, null, null);
-                getActivity().invalidateOptionsMenu();
+                getSherlockActivity().getContentResolver().update(uri, values, null, null);
+                getSherlockActivity().supportInvalidateOptionsMenu();
                 return true;
 
             default:
@@ -179,6 +188,5 @@ public class ImageFormulaActivity extends SherlockFragmentActivity {
         protected long getID() {
             return getArguments().getLong(Formula._ID);
         }
-
     }
 }

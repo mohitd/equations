@@ -166,6 +166,23 @@ public class FormulaMap {
         imageMap.put(147, R.drawable.stats_probability);
         imageMap.put(148, R.drawable.stats_rv_means_variances);
         imageMap.put(149, R.drawable.stats_rules_for_means_variances);
+        imageMap.put(150, R.drawable.phy_amperes_law);
+        imageMap.put(151, R.drawable.phy_biot_savart_law);
+        imageMap.put(152, R.drawable.phy_capacitance);
+        imageMap.put(153, R.drawable.phy_current_density);
+        imageMap.put(154, R.drawable.phy_faradays_law_of_induction);
+        imageMap.put(155, R.drawable.phy_gausss_law_of_magnetism);
+        imageMap.put(156, R.drawable.phy_inductance);
+        imageMap.put(157, R.drawable.phy_magnetic_flux);
+        imageMap.put(158, R.drawable.phy_magnetic_force);
+        imageMap.put(159, R.drawable.phy_magnetic_torque);
+        imageMap.put(160, R.drawable.phy_permeability_of_free_space);
+        imageMap.put(161, R.drawable.phy_resistance);
+        imageMap.put(162, R.drawable.calc_eulers_method);
+        imageMap.put(163, R.drawable.calc_integration_by_parts);
+        imageMap.put(164, R.drawable.calc_lhopitals_rule);
+        imageMap.put(165, R.drawable.calc_maclaurin_polynomial);
+        imageMap.put(166, R.drawable.calc_taylor_polynomial);
     }
 
     private FormulaMap() {
