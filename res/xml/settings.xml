@@ -19,11 +19,7 @@
         <Preference 
             android:title="@string/copyright"
             android:summary="@string/copyright_details"
-            android:enabled="false"/>
-    	<Preference 
-    	    android:title="@string/version"
-    	    android:summary="@string/app_version"
-    	    android:enabled="false"/>  
+            android:enabled="false"/> 
 
     </PreferenceCategory>
     
