@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_launcher_free"
         android:label="@string/app_name"
         android:allowBackup="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/AppTheme">
         <provider
             android:name=".provider.EquationsProvider"
             android:authorities="com.centauri.equations.provider.EquationsProvider"
@@ -31,7 +31,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.centauri.equations.MainActivity" android:configChanges="orientation|screenSize" >
+        <activity android:name="com.centauri.equations.MainActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
