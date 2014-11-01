@@ -58,7 +58,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         
-        <activity android:name="com.centauri.equations.ImageFormulaActivity" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.ImageFormulaActivity" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.VIEW_FORMULA"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -68,7 +68,7 @@
 
         <!-- Algebraic formulas -->
 
-        <activity android:name="com.centauri.equations.algebra.QuadraticFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.algebra.QuadraticFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.QUADRATIC" />
 
@@ -76,7 +76,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.algebra.DistanceFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.algebra.DistanceFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.DISTANCE" />
 
@@ -84,7 +84,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.algebra.RadicalActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.algebra.RadicalActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.RADICAL" />
 
@@ -92,7 +92,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.algebra.SlopeActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.algebra.SlopeActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.SLOPE" />
 
@@ -103,7 +103,7 @@
 
         <!-- Geometric formulas -->
 
-        <activity android:name="com.centauri.equations.geometry.HeronsFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.geometry.HeronsFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.HERON" />
 
@@ -112,7 +112,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
 
-        <activity android:name="com.centauri.equations.geometry.PythagoreanActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.geometry.PythagoreanActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.PYTHAGOREAN" />
 
@@ -123,7 +123,7 @@
 
         <!-- Physics formulas -->
 
-        <activity android:name="com.centauri.equations.physics.GravitationActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.physics.GravitationActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.GRAVITATION" />
 
@@ -131,7 +131,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.physics.CoulombsLawActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.physics.CoulombsLawActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.COULOMBS_LAW" />
 
@@ -139,7 +139,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
         </activity>
-        <activity android:name="com.centauri.equations.physics.EscapeVelocityActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+        <activity android:name="com.centauri.equations.physics.EscapeVelocityActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.MainActivity">
             <intent-filter>
                 <action android:name="com.centauri.equations.action.ESCAPE_VELOCITY" />
 

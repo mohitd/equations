@@ -56,10 +56,10 @@ public class ImageFormulaActivity extends ActionBarActivity {
         if (cursor.getCount() > 0) {
             String formulaName = cursor.getString(cursor
                     .getColumnIndexOrThrow(Formula.FORMULA_NAME));
-            String formulaCategory = cursor.getString(cursor
-                    .getColumnIndexOrThrow(Formula.CATEGORY));
+//            String formulaCategory = cursor.getString(cursor
+//                    .getColumnIndexOrThrow(Formula.CATEGORY));
             getSupportActionBar().setTitle(formulaName);
-            getSupportActionBar().setSubtitle(formulaCategory);
+//            getSupportActionBar().setSubtitle(formulaCategory);
         }
         cursor.close();
 
