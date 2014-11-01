@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.centauri.equations"
+    android:versionCode="16"
+    android:versionName="2.2"
+    android:installLocation="auto">
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:icon="@drawable/ic_launcher_free"
+        android:label="@string/app_name"
+        android:allowBackup="true"
+        android:theme="@style/Theme.AppCompat.Light">
+        <provider
+            android:name=".provider.EquationsProvider"
+            android:authorities="com.centauri.equations.provider.EquationsProvider"
+            tools:ignore="ExportedContentProvider" />
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".activity.SearchActivity" />
+
+        <activity android:name="com.centauri.equations.settings.SettingsActivity" android:configChanges="orientation|screenSize" >
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.centauri.equations.MainActivity" android:configChanges="orientation|screenSize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value="com.centauri.equations.activity.SearchActivity" />
+        </activity>
+        <activity
+            android:name="com.centauri.equations.SearchActivity"
+            android:label="@string/search_label"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        
+        <activity android:name="com.centauri.equations.ImageFormulaActivity" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.VIEW_FORMULA"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+
+        <!-- Algebraic formulas -->
+
+        <activity android:name="com.centauri.equations.algebra.QuadraticFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.QUADRATIC" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+        <activity android:name="com.centauri.equations.algebra.DistanceFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.DISTANCE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+        <activity android:name="com.centauri.equations.algebra.RadicalActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.RADICAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+        <activity android:name="com.centauri.equations.algebra.SlopeActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.SLOPE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+
+        <!-- Geometric formulas -->
+
+        <activity android:name="com.centauri.equations.geometry.HeronsFormulaActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.HERON" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+
+        <activity android:name="com.centauri.equations.geometry.PythagoreanActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.PYTHAGOREAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+
+        <!-- Physics formulas -->
+
+        <activity android:name="com.centauri.equations.physics.GravitationActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.GRAVITATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+        <activity android:name="com.centauri.equations.physics.CoulombsLawActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.COULOMBS_LAW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+        <activity android:name="com.centauri.equations.physics.EscapeVelocityActivity" android:configChanges="orientation|screenSize" android:parentActivityName="com.centauri.equations.activity.MainActivity">
+            <intent-filter>
+                <action android:name="com.centauri.equations.action.ESCAPE_VELOCITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.centauri.equations.activity.MainActivity"/>
+        </activity>
+
+    </application>
+
+</manifest>
