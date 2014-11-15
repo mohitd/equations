@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
@@ -38,17 +37,18 @@ public class MainActivity extends ActionBarActivity implements
     private static boolean dualPane = false;
     private static int spinnerPosition = 0;
 
-    private ArrayAdapter<CharSequence> adapter;
+    private ArrayAdapter<CharSequence> spinnerAdapter;
 
-    private SimpleCursorAdapter algebraAdapter;
-    private SimpleCursorAdapter geometryAdapter;
-    private SimpleCursorAdapter trigAdapter;
-    private SimpleCursorAdapter chemAdapter;
-    private SimpleCursorAdapter physicsAdapter;
-    private SimpleCursorAdapter calcAdapter;
-    private SimpleCursorAdapter statsAdapter;
-    private SimpleCursorAdapter favoritesAdapter;
-    SimpleCursorAdapter searchAdapter;
+    private Cursor algebraCursor;
+    private Cursor geometryCursor;
+    private Cursor trigCursor;
+    private Cursor chemCursor;
+    private Cursor physicsCursor;
+    private Cursor calcCursor;
+    private Cursor statsCursor;
+    private Cursor favoritesCursor;
+
+    private SimpleCursorAdapter searchAdapter;
 
     private FormulaListFragment formulaListFragment;
 
@@ -61,49 +61,32 @@ public class MainActivity extends ActionBarActivity implements
         AppRater.appLaunched(this);
 
         final String[] from = { Equations.Formula.FORMULA_NAME };
-        final int[] to = { android.R.id.text1 };
+        final int[] to = { R.id.title };
 
-        Cursor algebraCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+        algebraCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, "category=\"Algebra\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor geometryCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+        geometryCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, "category=\"Geometry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor trigCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+        trigCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
                 "category=\"Trigonometry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor chemCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+        chemCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
                 "category=\"Chemistry\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor physicsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+        physicsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, "category=\"Physics\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor calcCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+        calcCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
                 "category=\"Calculus\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor statsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
+        statsCursor = getContentResolver().query(Equations.Formula.CONTENT_URI, PROJECTION,
                 "category=\"Statistics\"", null, Equations.Formula.FORMULA_NAME + " ASC");
-        Cursor favoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+        favoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
 
-        algebraAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, algebraCursor, from, to, 0);
-        geometryAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, geometryCursor, from, to, 0);
-        trigAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
-                trigCursor, from, to, 0);
-        chemAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
-                chemCursor, from, to, 0);
-        physicsAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, physicsCursor, from, to, 0);
-        calcAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
-                calcCursor, from, to, 0);
-        statsAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1,
-                statsCursor, from, to, 0);
-        favoritesAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_activated_1, favoritesCursor, from, to, 0);
-
         searchAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_1, null, from, to, 0);
+                R.layout.row_item, null, from, to, 0);
 
-        adapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
-                R.array.categories, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
+                R.array.categories, R.layout.spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         formulaListFragment = (FormulaListFragment) getSupportFragmentManager().findFragmentById(
                 R.id.formulasList);
@@ -113,6 +96,9 @@ public class MainActivity extends ActionBarActivity implements
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.formulasList, formulaListFragment).commit();
         }
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.row_item, algebraCursor, from, to, 0);
+        formulaListFragment.setListAdapter(adapter);
 
         View details = findViewById(R.id.details);
         dualPane = details != null && details.getVisibility() == View.VISIBLE;
@@ -162,32 +148,37 @@ public class MainActivity extends ActionBarActivity implements
 
     public boolean onNavigationItemSelected(int position, long id) {
         spinnerPosition = position;
+        Cursor c = null;
         switch (position) {
         case 0:
-            formulaListFragment.getListView().setAdapter(algebraAdapter);
+            c = algebraCursor;
             break;
         case 1:
-            formulaListFragment.getListView().setAdapter(geometryAdapter);
+            c = geometryCursor;
             break;
         case 2:
-            formulaListFragment.getListView().setAdapter(trigAdapter);
+            c = trigCursor;
             break;
         case 3:
-            formulaListFragment.getListView().setAdapter(chemAdapter);
+            c = chemCursor;
             break;
         case 4:
-            formulaListFragment.getListView().setAdapter(physicsAdapter);
+            c = physicsCursor;
             break;
         case 5:
-            formulaListFragment.getListView().setAdapter(calcAdapter);
+            c = calcCursor;
             break;
         case 6:
-            formulaListFragment.getListView().setAdapter(statsAdapter);
+            c = statsCursor;
             break;
         case 7:
             refreshFavorites();
-            formulaListFragment.getListView().setAdapter(favoritesAdapter);
+            c = favoritesCursor;
             break;
+        }
+
+        if (c != null) {
+            ((SimpleCursorAdapter) formulaListFragment.getListView().getAdapter()).swapCursor(c);
         }
 
         return true;
@@ -231,14 +222,13 @@ public class MainActivity extends ActionBarActivity implements
     private void setupActionBar() {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        getSupportActionBar().setListNavigationCallbacks(adapter, this);
+        getSupportActionBar().setListNavigationCallbacks(spinnerAdapter, this);
     }
 
     private void refreshFavorites() {
-        Cursor newFavoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
+        favoritesCursor = getContentResolver().query(Equations.Formula.CONTENT_URI,
                 PROJECTION, Equations.Formula.FAVORITE + " = \"1\"", null,
                 Equations.Formula.FORMULA_NAME + " ASC");
-        favoritesAdapter.changeCursor(newFavoritesCursor);
     }
 
     @Override
