@@ -180,7 +180,11 @@ public class ImageFormulaActivity extends ActionBarActivity {
         }
 
         protected long getID() {
-            return getArguments().getLong(Formula._ID);
+            if (getArguments() != null) {
+                return getArguments().getLong(Formula._ID);
+            } else {
+                throw new IllegalArgumentException("Cannot have null arguments!");
+            }
         }
     }
 }

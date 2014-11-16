@@ -1,9 +1,11 @@
 package com.centauri.equations;
 
 import android.app.SearchManager;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
@@ -36,6 +38,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private static boolean dualPane = false;
     private static int spinnerPosition = 0;
+    private String[] categories;
 
     private ArrayAdapter<CharSequence> spinnerAdapter;
 
@@ -83,6 +86,8 @@ public class MainActivity extends ActionBarActivity implements
 
         searchAdapter = new SimpleCursorAdapter(this,
                 R.layout.row_item, null, from, to, 0);
+
+        categories = getResources().getStringArray(R.array.categories);
 
         spinnerAdapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
                 R.array.categories, R.layout.spinner_item);
@@ -231,6 +236,22 @@ public class MainActivity extends ActionBarActivity implements
                 Equations.Formula.FORMULA_NAME + " ASC");
     }
 
+    private Cursor getCursorCategory(String category) {
+        if (category.equals("Algebra")) {
+            return algebraCursor;
+        } else {
+            return null;
+        }
+    }
+
+    private int getSpinnerPosition(String category) {
+        int pos = -1;
+        for (int i = 0; i < categories.length; i++) {
+            if (category.equals(categories[i])) pos = i;
+        }
+        return pos;
+    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -263,8 +284,33 @@ public class MainActivity extends ActionBarActivity implements
         searchView.setIconified(true);
         searchItem.collapseActionView();
         MenuItemCompat.collapseActionView(searchItem);
-        startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
+
+        if (dualPane) {
+            Fragment replaceFragment = FormulaMap.getFragment(id);
+            Bundle arguments = new Bundle();
+            arguments.putLong(Formula._ID, id);
+            replaceFragment.setArguments(arguments);
+
+            Uri uri = ContentUris.withAppendedId(Formula.CONTENT_URI, id);
+            Cursor c = getContentResolver().query(uri, new String[] { Formula._ID, Formula.FORMULA_NAME, Formula.CATEGORY }, null, null, null);
+            c.moveToFirst();
+
+            String category = c.getString(c.getColumnIndexOrThrow(Formula.CATEGORY));
+            Cursor categoryCursor = getCursorCategory(category);
+
+            ((SimpleCursorAdapter) formulaListFragment.getListView().getAdapter()).swapCursor(categoryCursor);
+            getSupportActionBar().setSelectedNavigationItem(getSpinnerPosition(category));
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.details, replaceFragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        } else {
+            startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
+        }
         return true;
     }
 }
