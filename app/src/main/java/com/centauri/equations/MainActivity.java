@@ -15,6 +15,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,7 +62,8 @@ public class MainActivity extends ActionBarActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        AppRater.appLaunched(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         final String[] from = { Equations.Formula.FORMULA_NAME };
         final int[] to = { R.id.title };
@@ -199,7 +201,7 @@ public class MainActivity extends ActionBarActivity implements
             Bundle arguments = new Bundle();
             arguments.putLong(Formula._ID, id);
 
-            Fragment replaceFragment = FormulaMap.getFragment(id);
+            Fragment replaceFragment = new ImageFormulaActivity.ImageFormulaFragment();
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.details);
 
             if (replaceFragment.equals(currentFragment)) return;
@@ -218,7 +220,8 @@ public class MainActivity extends ActionBarActivity implements
             transaction.addToBackStack(null);
             transaction.commit();
         } else {
-            Intent intent = FormulaMap.getIntent(id).putExtra(Formula._ID, id);
+            Intent intent = new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA);
+            intent.putExtra(Formula._ID, id);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
@@ -286,7 +289,7 @@ public class MainActivity extends ActionBarActivity implements
         MenuItemCompat.collapseActionView(searchItem);
 
         if (dualPane) {
-            Fragment replaceFragment = FormulaMap.getFragment(id);
+            Fragment replaceFragment = new ImageFormulaActivity.ImageFormulaFragment();
             Bundle arguments = new Bundle();
             arguments.putLong(Formula._ID, id);
             replaceFragment.setArguments(arguments);
@@ -308,7 +311,7 @@ public class MainActivity extends ActionBarActivity implements
             transaction.commit();
 
         } else {
-            startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
+            startActivity(new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA).putExtra(Formula._ID, id));
             overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
         return true;

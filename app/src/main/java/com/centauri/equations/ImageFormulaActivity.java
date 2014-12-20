@@ -6,11 +6,14 @@ package com.centauri.equations;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,20 +36,23 @@ public class ImageFormulaActivity extends ActionBarActivity {
     public static final String ACTION_VIEW_FORMULA = "com.centauri.equations.action.VIEW_FORMULA";
 
     private static final String[] PROJECTION = { Equations.Formula._ID,
-        Equations.Formula.FORMULA_NAME, Equations.Formula.CATEGORY, };
+        Equations.Formula.FORMULA_NAME, };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.image_formula);
 
         long id = getIntent().getLongExtra(Formula._ID, 0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
             Fragment fragment = getFragment();
             Bundle arguments = new Bundle();
             arguments.putLong(Formula._ID, id);
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.image_fragment_frame, fragment)
                     .commit();
         }
 
@@ -56,10 +62,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
         if (cursor.getCount() > 0) {
             String formulaName = cursor.getString(cursor
                     .getColumnIndexOrThrow(Formula.FORMULA_NAME));
-//            String formulaCategory = cursor.getString(cursor
-//                    .getColumnIndexOrThrow(Formula.CATEGORY));
             getSupportActionBar().setTitle(formulaName);
-//            getSupportActionBar().setSubtitle(formulaCategory);
         }
         cursor.close();
 
@@ -92,15 +95,17 @@ public class ImageFormulaActivity extends ActionBarActivity {
 
     public static class ImageFormulaFragment extends Fragment {
 
-        private static final String[] PROJECTION = { Equations.Formula._ID,
+        private static final String TAG = ImageFormulaFragment.class.getSimpleName();
+
+        private static final String[] PROJECTION = { Equations.Formula._ID, Formula.FORMULA_NAME,
             Equations.Formula.FAVORITE };
 
-        private boolean favorite;
+        private boolean favorite = false;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            if (BuildConfig.DEBUG) Log.d("Base Fragment", "Id is " + getID());
+            if (BuildConfig.DEBUG) Log.d(TAG, "Id is " + getID());
             Cursor cursor = getActivity().getContentResolver().query(Equations.Formula.CONTENT_URI,
                     PROJECTION, Equations.Formula._ID + "=" + getID(), null, null);
             cursor.moveToFirst();
@@ -115,7 +120,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             setHasOptionsMenu(true);
-            return inflater.inflate(getFragmentView(), container, false);
+            return inflater.inflate(R.layout.single_image, container, false);
         }
 
         @Override
@@ -147,9 +152,9 @@ public class ImageFormulaActivity extends ActionBarActivity {
                     Toast.makeText(getActivity(),
                             getResources().getString(R.string.removed_from_favorites),
                             Toast.LENGTH_SHORT).show();
-                } else if (!favorite) {
+                } else {
                     favorite = true;
-                    values.put(Equations.Formula.FAVORITE, 1);
+                    values.put(Formula.FAVORITE, 1);
 
                     Toast.makeText(getActivity(),
                             getResources().getString(R.string.added_to_favorites),
@@ -172,11 +177,11 @@ public class ImageFormulaActivity extends ActionBarActivity {
             super.onStart();
             ImageView imageView = (ImageView) getView().findViewById(R.id.img_formula);
             int imageResource = FormulaMap.getImage(getID());
-            if (imageResource != 0) imageView.setImageResource(imageResource);
-        }
-
-        protected int getFragmentView() {
-            return R.layout.single_image;
+            if (imageResource != 0) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageResource);
+                Bitmap scaledBitmap = scaleBitmap(bitmap);
+                imageView.setImageBitmap(scaledBitmap);
+            }
         }
 
         protected long getID() {
@@ -185,6 +190,13 @@ public class ImageFormulaActivity extends ActionBarActivity {
             } else {
                 throw new IllegalArgumentException("Cannot have null arguments!");
             }
+        }
+
+        private Bitmap scaleBitmap(Bitmap bitmap) {
+            if (bitmap.getHeight() <= 4096 && bitmap.getWidth() <= 4096) return bitmap;
+            if (BuildConfig.DEBUG) Log.i(TAG, "Scaling bitmap...");
+            int newHeight = (int)(bitmap.getHeight() * (4096.0 / bitmap.getWidth()));
+            return Bitmap.createScaledBitmap(bitmap, 4096, newHeight, true);
         }
     }
 }

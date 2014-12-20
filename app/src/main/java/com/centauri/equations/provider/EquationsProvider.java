@@ -29,7 +29,7 @@ public class EquationsProvider extends ContentProvider {
     // Database
     private static final String DATABASE_NAME = "formula.db";
     private static final String FORMULA_TABLE_NAME = "formula";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static DatabaseHelper dbHelper;
 
     // Content Provider
@@ -78,7 +78,6 @@ public class EquationsProvider extends ContentProvider {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Unable to create the database!");
                 builder.create().show();
-                return;
             }
         }
 
@@ -178,11 +177,10 @@ public class EquationsProvider extends ContentProvider {
             }
             String searchSelection = Equations.Formula.FORMULA_NAME + " LIKE ?";
             String[] searchSelectionArgs = { "%" + selectionArgs[0] + "%" };
-            Cursor result = db.query(FORMULA_TABLE_NAME, new String[] { BaseColumns._ID,
+            return db.query(FORMULA_TABLE_NAME, new String[] { BaseColumns._ID,
                 SearchManager.SUGGEST_COLUMN_TEXT_1,
                 BaseColumns._ID + " AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID },
                     searchSelection, searchSelectionArgs, null, null, null);
-            return result;
         default:
             throw new IllegalArgumentException("Unknown URI: " + uri);
         }
