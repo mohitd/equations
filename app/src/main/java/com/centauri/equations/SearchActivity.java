@@ -52,7 +52,7 @@ public class SearchActivity extends ListActivity {
             formulaCursor.moveToFirst();
             long id = formulaCursor.getLong(formulaCursor.getColumnIndex(Equations.Formula._ID));
             if (BuildConfig.DEBUG) Log.v("Search", "This id is " + id);
-            startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
+            startActivity(new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA).putExtra(Formula._ID, id));
             overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
 

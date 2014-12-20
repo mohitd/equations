@@ -1,7 +1,5 @@
 package com.centauri.equations;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.util.SparseIntArray;
 
 public class FormulaMap {
@@ -193,14 +191,6 @@ public class FormulaMap {
     }
 
     private FormulaMap() {
-    }
-
-    public static Intent getIntent(long id) {
-        return new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA);
-    }
-
-    public static Fragment getFragment(long id) {
-        return new ImageFormulaActivity.ImageFormulaFragment();
     }
 
     public static int getImage(long id) {
