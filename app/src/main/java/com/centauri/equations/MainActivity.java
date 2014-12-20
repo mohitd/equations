@@ -15,6 +15,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +63,9 @@ public class MainActivity extends ActionBarActivity implements
         setContentView(R.layout.main);
 
         AppRater.appLaunched(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         final String[] from = { Equations.Formula.FORMULA_NAME };
         final int[] to = { R.id.title };

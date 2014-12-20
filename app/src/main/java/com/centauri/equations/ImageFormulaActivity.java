@@ -8,9 +8,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,15 +40,18 @@ public class ImageFormulaActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.image_formula);
 
         long id = getIntent().getLongExtra(Formula._ID, 0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
             Fragment fragment = getFragment();
             Bundle arguments = new Bundle();
             arguments.putLong(Formula._ID, id);
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.image_fragment_frame, fragment)
                     .commit();
         }
 
@@ -92,7 +97,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
 
     public static class ImageFormulaFragment extends Fragment {
 
-        private static final String[] PROJECTION = { Equations.Formula._ID,
+        private static final String[] PROJECTION = { Equations.Formula._ID, Formula.FORMULA_NAME,
             Equations.Formula.FAVORITE };
 
         private boolean favorite;
@@ -115,7 +120,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             setHasOptionsMenu(true);
-            return inflater.inflate(getFragmentView(), container, false);
+            return inflater.inflate(R.layout.single_image, container, false);
         }
 
         @Override
@@ -173,10 +178,6 @@ public class ImageFormulaActivity extends ActionBarActivity {
             ImageView imageView = (ImageView) getView().findViewById(R.id.img_formula);
             int imageResource = FormulaMap.getImage(getID());
             if (imageResource != 0) imageView.setImageResource(imageResource);
-        }
-
-        protected int getFragmentView() {
-            return R.layout.single_image;
         }
 
         protected long getID() {

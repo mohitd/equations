@@ -2,46 +2,12 @@ package com.centauri.equations;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.util.SparseArray;
 import android.util.SparseIntArray;
 
-import com.centauri.equations.algebra.DistanceFormulaActivity;
-import com.centauri.equations.algebra.QuadraticFormulaActivity;
-import com.centauri.equations.algebra.RadicalActivity;
-import com.centauri.equations.algebra.SlopeActivity;
-import com.centauri.equations.geometry.HeronsFormulaActivity;
-import com.centauri.equations.geometry.PythagoreanActivity;
-import com.centauri.equations.physics.CoulombsLawActivity;
-import com.centauri.equations.physics.EscapeVelocityActivity;
-import com.centauri.equations.physics.GravitationActivity;
-
 public class FormulaMap {
-
-    private static SparseArray<String> formulaMap = new SparseArray<String>();
-    private static SparseArray<Fragment> fragmentMap = new SparseArray<Fragment>();
     private static SparseIntArray imageMap = new SparseIntArray();
 
     static {
-        formulaMap.put(1, QuadraticFormulaActivity.ACTION_QUADRATIC);
-        formulaMap.put(2, DistanceFormulaActivity.ACTION_DISTANCE);
-        formulaMap.put(3, RadicalActivity.ACTION_RADICAL);
-        formulaMap.put(4, SlopeActivity.ACTION_SLOPE);
-        formulaMap.put(6, PythagoreanActivity.ACTION_PYTHAGOREAN);
-        formulaMap.put(7, HeronsFormulaActivity.ACTION_HERON);
-        formulaMap.put(39, GravitationActivity.ACTION_GRAVITATION);
-        formulaMap.put(42, CoulombsLawActivity.ACTION_COULOMBS_LAW);
-        formulaMap.put(43, EscapeVelocityActivity.ACTION_ESCAPE_VELOCITY);
-
-        fragmentMap.put(1, new QuadraticFormulaActivity.QuadraticFormulaFragment());
-        fragmentMap.put(2, new DistanceFormulaActivity.DistanceFormulaFragment());
-        fragmentMap.put(3, new RadicalActivity.RadicalFragment());
-        fragmentMap.put(4, new SlopeActivity.SlopeFragment());
-        fragmentMap.put(6, new PythagoreanActivity.PythagoreanFragment());
-        fragmentMap.put(7, new HeronsFormulaActivity.HeronsFormulaFragment());
-        fragmentMap.put(39, new GravitationActivity.GravitationFragment());
-        fragmentMap.put(42, new CoulombsLawActivity.CoulombsLawFragment());
-        fragmentMap.put(43, new EscapeVelocityActivity.EscapeVelocityFragment());
-
         imageMap.put(1, R.drawable.alg_quadratic_formula);
         imageMap.put(2, R.drawable.alg_distance_formula);
         imageMap.put(3, R.drawable.alg_radicand_simplify);
@@ -188,20 +154,11 @@ public class FormulaMap {
     }
 
     public static Intent getIntent(long id) {
-        String action = formulaMap.get((int) id);
-        if (action == null) {
-            return new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA);
-        } else {
-            return new Intent(action);
-        }
+        return new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA);
     }
 
     public static Fragment getFragment(long id) {
-        Fragment fragment = fragmentMap.get((int) id);
-        if (fragment == null) {
-            fragment = new ImageFormulaActivity.ImageFormulaFragment();
-        }
-        return fragment;
+        return new ImageFormulaActivity.ImageFormulaFragment();
     }
 
     public static int getImage(long id) {
