@@ -28,13 +28,13 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
-        ((Preference) findPreference("feedback_key"))
+        findPreference("feedback_key")
                 .setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
                     public boolean onPreferenceClick(Preference preference) {
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
                         emailIntent.putExtra(Intent.EXTRA_EMAIL,
-                                new String[] { "centauriappsco@gmail.com" });
+                                new String[]{"centauriappsco@gmail.com"});
                         emailIntent.setType("plain/text");
                         emailIntent
                                 .putExtra(Intent.EXTRA_SUBJECT, "Feedback: ");
@@ -45,13 +45,13 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                 });
 
-        ((Preference) findPreference("bug_key"))
+        findPreference("bug_key")
                 .setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
                     public boolean onPreferenceClick(Preference preference) {
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
                         emailIntent.putExtra(Intent.EXTRA_EMAIL,
-                                new String[] { "centauricompany@yahoo.com" });
+                                new String[]{"centauricompany@yahoo.com"});
                         emailIntent.setType("plain/text");
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bug: ");
                         startActivity(Intent.createChooser(
@@ -62,7 +62,7 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                 });
 
-        ((Preference) findPreference("open_source_key"))
+        findPreference("open_source_key")
                 .setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
                     public boolean onPreferenceClick(Preference preference) {
@@ -77,7 +77,7 @@ public class SettingsActivity extends PreferenceActivity {
                                 new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog,
-                                            int which) {
+                                                        int which) {
                                         dialog.dismiss();
                                     }
                                 });
@@ -86,7 +86,7 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                 });
 
-        ((Preference) findPreference("db_problems_key"))
+        findPreference("db_problems_key")
                 .setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
                     public boolean onPreferenceClick(Preference preference) {

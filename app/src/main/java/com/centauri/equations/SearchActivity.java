@@ -10,8 +10,6 @@ import android.provider.BaseColumns;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 
-import com.centauri.equations.BuildConfig;
-import com.centauri.equations.R;
 import com.centauri.equations.provider.Equations;
 import com.centauri.equations.provider.Equations.Formula;
 
