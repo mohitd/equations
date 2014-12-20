@@ -148,6 +148,48 @@ public class FormulaMap {
         imageMap.put(164, R.drawable.calc_lhopitals_rule);
         imageMap.put(165, R.drawable.calc_maclaurin_polynomial);
         imageMap.put(166, R.drawable.calc_taylor_polynomial);
+        // Newest version
+        imageMap.put(167, R.drawable.calc_absolute_conditional_convergence);
+        imageMap.put(168, R.drawable.calc_alternating_series_test);
+        imageMap.put(169, R.drawable.calc_arc_length);
+        imageMap.put(170, R.drawable.calc_area_of_plane_regions);
+        imageMap.put(171, R.drawable.calc_area_of_polar_regions);
+        imageMap.put(172, R.drawable.calc_center_of_mass_1d);
+        imageMap.put(173, R.drawable.calc_center_of_mass_2d);
+        imageMap.put(174, R.drawable.calc_center_of_mass_3d);
+        imageMap.put(175, R.drawable.calc_chain_rule);
+        imageMap.put(176, R.drawable.calc_circulation_greens_theorem);
+        imageMap.put(177, R.drawable.calc_clairauts_theorem);
+        imageMap.put(178, R.drawable.calc_comparison_test);
+        imageMap.put(179, R.drawable.calc_conservative_vector_field);
+        imageMap.put(180, R.drawable.calc_curvature);
+        imageMap.put(181, R.drawable.calc_cylindrical_coordinates);
+        imageMap.put(182, R.drawable.calc_directional_derivative);
+        imageMap.put(183, R.drawable.calc_divergence_test);
+        imageMap.put(184, R.drawable.calc_divergence_theorem);
+        imageMap.put(185, R.drawable.calc_double_integrals);
+        imageMap.put(186, R.drawable.calc_flux_greens_theorem);
+        imageMap.put(187, R.drawable.calc_fundamental_theorem_of_line_integrals);
+        imageMap.put(188, R.drawable.calc_geometric_series);
+        imageMap.put(189, R.drawable.calc_gradient);
+        imageMap.put(190, R.drawable.calc_integral_test);
+        imageMap.put(191, R.drawable.calc_lagrange_multipliers);
+        imageMap.put(192, R.drawable.calc_limit_comparison_test);
+        imageMap.put(193, R.drawable.calc_line_integrals);
+        imageMap.put(194, R.drawable.calc_p_series);
+        imageMap.put(195, R.drawable.calc_polynomial_remainder);
+        imageMap.put(196, R.drawable.calc_radial_vector_fields);
+        imageMap.put(197, R.drawable.calc_ratio_test);
+        imageMap.put(198, R.drawable.calc_root_test);
+        imageMap.put(199, R.drawable.calc_second_derivative_test);
+        imageMap.put(200, R.drawable.calc_spherical_coordinates);
+        imageMap.put(201, R.drawable.calc_stokes_theorem);
+        imageMap.put(202, R.drawable.calc_surface_integrals_explicit_surfaces);
+        imageMap.put(203, R.drawable.calc_surface_integrals_parametric_surfaces);
+        imageMap.put(204, R.drawable.calc_tangent_planes);
+        imageMap.put(205, R.drawable.calc_taylors_theorem);
+        imageMap.put(206, R.drawable.calc_torsion);
+        imageMap.put(207, R.drawable.calc_two_path_test);
     }
 
     private FormulaMap() {

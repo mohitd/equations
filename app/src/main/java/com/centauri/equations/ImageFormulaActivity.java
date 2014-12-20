@@ -6,6 +6,9 @@ package com.centauri.equations;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -177,7 +180,11 @@ public class ImageFormulaActivity extends ActionBarActivity {
             super.onStart();
             ImageView imageView = (ImageView) getView().findViewById(R.id.img_formula);
             int imageResource = FormulaMap.getImage(getID());
-            if (imageResource != 0) imageView.setImageResource(imageResource);
+            if (imageResource != 0) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageResource);
+                Bitmap scaledBitmap = scaleBitmap(bitmap);
+                imageView.setImageBitmap(scaledBitmap);
+            }
         }
 
         protected long getID() {
@@ -186,6 +193,13 @@ public class ImageFormulaActivity extends ActionBarActivity {
             } else {
                 throw new IllegalArgumentException("Cannot have null arguments!");
             }
+        }
+
+        private Bitmap scaleBitmap(Bitmap bitmap) {
+            if (bitmap.getHeight() <= 4096 && bitmap.getWidth() <= 4096) return bitmap;
+            Log.i(ImageFormulaFragment.class.getSimpleName(), "Scaling bitmap...");
+            int newHeight = (int)(bitmap.getHeight() * (4096.0 / bitmap.getWidth()));
+            return Bitmap.createScaledBitmap(bitmap, 4096, newHeight, true);
         }
     }
 }

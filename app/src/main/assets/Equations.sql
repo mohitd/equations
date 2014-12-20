@@ -226,3 +226,48 @@ INSERT INTO formula (suggest_text_1, category) VALUES ('Integration by Parts', '
 INSERT INTO formula (suggest_text_1, category) VALUES ('L''Hopital''s Rule', 'Calculus');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Maclaurin Polynomials', 'Calculus');
 INSERT INTO formula (suggest_text_1, category) VALUES ('Taylor Polynomials', 'Calculus');
+
+-- Version 13
+INSERT INTO formula (suggest_text_1, category) VALUES ('Absolute and Conditional Convergence', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Alternating Series Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Arc Length', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Area of Plane Regions', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Area of Polar Regions', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Center of Mass in One Dimension', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Center of Mass in Two Dimension', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Center of Mass in Three Dimension', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Chain Rule', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Circulation Form of Green''s Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Clairaut''s Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Comparison Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Conservative Vector Fields', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Curvature', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Cylindrical Coordinates', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Directional Derivatives', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Divergence Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Divergence Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Double Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Flux Form of Green''s Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Fundamental Theorem of Line Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Geometric Series', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Gradient', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Integral Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Lagrange Multipliers', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Limit Comparison Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Line Integrals', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('P-series', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Polynomial Remainder', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Radial Vector Fields', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Ratio Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Root Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Second Derivative Test', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Spherical Coordinates', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Stokes'' Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Surface Integrals of Explicit Surfaces', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Surface Integrals of Parametric Surfaces', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Tangent Planes', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Taylor''s Theorem', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Torsion', 'Calculus');
+INSERT INTO formula (suggest_text_1, category) VALUES ('Two-path Test', 'Calculus');
+
+
