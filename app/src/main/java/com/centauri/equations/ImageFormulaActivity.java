@@ -8,10 +8,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -38,7 +36,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
     public static final String ACTION_VIEW_FORMULA = "com.centauri.equations.action.VIEW_FORMULA";
 
     private static final String[] PROJECTION = { Equations.Formula._ID,
-        Equations.Formula.FORMULA_NAME, Equations.Formula.CATEGORY, };
+        Equations.Formula.FORMULA_NAME, };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +62,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
         if (cursor.getCount() > 0) {
             String formulaName = cursor.getString(cursor
                     .getColumnIndexOrThrow(Formula.FORMULA_NAME));
-//            String formulaCategory = cursor.getString(cursor
-//                    .getColumnIndexOrThrow(Formula.CATEGORY));
             getSupportActionBar().setTitle(formulaName);
-//            getSupportActionBar().setSubtitle(formulaCategory);
         }
         cursor.close();
 
@@ -100,15 +95,17 @@ public class ImageFormulaActivity extends ActionBarActivity {
 
     public static class ImageFormulaFragment extends Fragment {
 
+        private static final String TAG = ImageFormulaFragment.class.getSimpleName();
+
         private static final String[] PROJECTION = { Equations.Formula._ID, Formula.FORMULA_NAME,
             Equations.Formula.FAVORITE };
 
-        private boolean favorite;
+        private boolean favorite = false;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            if (BuildConfig.DEBUG) Log.d("Base Fragment", "Id is " + getID());
+            if (BuildConfig.DEBUG) Log.d(TAG, "Id is " + getID());
             Cursor cursor = getActivity().getContentResolver().query(Equations.Formula.CONTENT_URI,
                     PROJECTION, Equations.Formula._ID + "=" + getID(), null, null);
             cursor.moveToFirst();
@@ -155,9 +152,9 @@ public class ImageFormulaActivity extends ActionBarActivity {
                     Toast.makeText(getActivity(),
                             getResources().getString(R.string.removed_from_favorites),
                             Toast.LENGTH_SHORT).show();
-                } else if (!favorite) {
+                } else {
                     favorite = true;
-                    values.put(Equations.Formula.FAVORITE, 1);
+                    values.put(Formula.FAVORITE, 1);
 
                     Toast.makeText(getActivity(),
                             getResources().getString(R.string.added_to_favorites),
@@ -197,7 +194,7 @@ public class ImageFormulaActivity extends ActionBarActivity {
 
         private Bitmap scaleBitmap(Bitmap bitmap) {
             if (bitmap.getHeight() <= 4096 && bitmap.getWidth() <= 4096) return bitmap;
-            Log.i(ImageFormulaFragment.class.getSimpleName(), "Scaling bitmap...");
+            if (BuildConfig.DEBUG) Log.i(TAG, "Scaling bitmap...");
             int newHeight = (int)(bitmap.getHeight() * (4096.0 / bitmap.getWidth()));
             return Bitmap.createScaledBitmap(bitmap, 4096, newHeight, true);
         }

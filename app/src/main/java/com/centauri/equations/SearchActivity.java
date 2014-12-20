@@ -10,8 +10,6 @@ import android.provider.BaseColumns;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 
-import com.centauri.equations.BuildConfig;
-import com.centauri.equations.R;
 import com.centauri.equations.provider.Equations;
 import com.centauri.equations.provider.Equations.Formula;
 
@@ -52,7 +50,7 @@ public class SearchActivity extends ListActivity {
             formulaCursor.moveToFirst();
             long id = formulaCursor.getLong(formulaCursor.getColumnIndex(Equations.Formula._ID));
             if (BuildConfig.DEBUG) Log.v("Search", "This id is " + id);
-            startActivity(FormulaMap.getIntent(id).putExtra(Formula._ID, id));
+            startActivity(new Intent(ImageFormulaActivity.ACTION_VIEW_FORMULA).putExtra(Formula._ID, id));
             overridePendingTransition(R.anim.slide_in_right, R.anim.shrink_fade_out);
         }
 
